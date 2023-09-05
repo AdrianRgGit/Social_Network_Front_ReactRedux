@@ -3,22 +3,26 @@ import authService from "./postsService";
 import postsService from "./postsService";
 
 const initialState = {
-  // post: null,
+  posts: [],
 };
 
-export const postsSlice = createSlice({
-  name: "posts",
-  initialState,
-  reducers: {},
-});
-
-export const getPosts = createAsyncThunk("posts/getposts", async (posts) => {
+export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   try {
-    return await postsService.getPosts(posts);
+    return await postsService.getPosts();
   } catch (error) {
     console.error(error);
   }
 });
 
+export const postsSlice = createSlice({
+  name: "posts",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getPosts.fulfilled, (state, action) => {
+      state.posts = action.payload;
+    });
+  },
+});
 
 export default postsSlice.reducer;

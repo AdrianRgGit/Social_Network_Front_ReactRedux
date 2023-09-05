@@ -1,11 +1,11 @@
 import React from "react";
-import Post from "./Post/Post";
+import GetPosts from "./GetPosts/GetPosts";
 import AddPost from "./AddPost/AddPost";
 
 const Posts = () => {
   return (
     <>
-      <Post />
+      <GetPosts />
       <AddPost />
     </>
   );
