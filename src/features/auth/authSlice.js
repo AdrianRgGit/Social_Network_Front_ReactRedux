@@ -14,6 +14,8 @@ export const authSlice = createSlice({
 
 export const register = createAsyncThunk("auth/register", async (user) => {
   try {
+    console.log("userSlice", user) //ver console y el redux devtools init/pending/fullfilled > state y active 
+    //no guarda el estado de user?
     return await authService.register(user)
   } catch (error) {
     console.error(error)

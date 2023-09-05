@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../features/auth/authSlice";
+import { notification } from "antd";
 
 const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
+    password2: "",
   });
 
-  const { username, email, password } = formData;
+  const { username, email, password, password2 } = formData;
 
   const dispatch = useDispatch()
 
@@ -21,7 +23,15 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(formData))
+    if (password != password2) {
+      return notification.error({
+        message: "Error",
+        description: "Password do not match",
+      })
+      
+    } else {
+      return dispatch(register(formData))
+    }
   };
 
   return (
@@ -45,6 +55,13 @@ const Register = () => {
         name="password"
         value={password}
         placeholder="password"
+        onChange={onChange}
+      />
+      <input
+        type="password"
+        name="password2"
+        value={password2}
+        placeholder="repeat password"
         onChange={onChange}
       />
       <button type="submit">Register</button>
