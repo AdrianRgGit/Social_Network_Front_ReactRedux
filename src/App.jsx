@@ -1,9 +1,10 @@
 import "./App.scss";
+import Posts from "./components/Posts/Posts";
 
 function App() {
   return (
     <>
-      <div className="div">Hola</div>
+      <Posts />
     </>
   );
 }
