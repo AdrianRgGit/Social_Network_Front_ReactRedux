@@ -12,7 +12,7 @@ const PostDetail = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        await dispatch(getById(_id));
+        dispatch(getById(_id));
         dispatch(reset());
       } catch (error) {
         console.error("hubo un problema");
@@ -25,7 +25,7 @@ const PostDetail = () => {
   if (isLoading) {
     return <Spin />;
   }
-  
+
   // De momento lo soluciono así, pero quiero utilizar el isLoading ya que está hecho
   if (!post) {
     return <Spin />;

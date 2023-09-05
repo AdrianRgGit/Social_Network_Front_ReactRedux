@@ -1,12 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { posts } = useSelector((state) => state.posts);
+
+  const [text, setText] = useState("");
+  
+  const handleChange = (e) => {
+    setText(e.target.value);
+    if (e.key === "Enter") {
+      navigate("/search/" + text);
+    }
+  };
+
   return (
-    <nav>
-      <Link to={"/"}>Home | </Link>
-      <Link to={"/Register"}>Register | </Link>
-      <Link to={"/posts"}>Posts | </Link>
+    <nav className="nav-container">
+      <div className="links-container">
+        <Link to={"/"}>Home | </Link>
+        <Link to={"/Register"}>Register | </Link>
+        <Link to={"/posts"}>Posts | </Link>
+      </div>
+      <div className="search-container">
+        <input
+          type="text"
+          onKeyUp={handleChange}
+          placeholder="Search"
+          name="text"
+        />
+      </div>
     </nav>
   );
 };
