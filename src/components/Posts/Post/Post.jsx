@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getPosts } from "../../../features/posts/postsSlice";
+import { Card } from "antd";
 
 const Post = () => {
-  return (
-    <div>Post</div>
-  )
-}
+  // const dispatch = useDispatch();
 
-export default Post
+  // useEffect(() => {
+  //   getPosts();
+  // }, []);
+
+  return (
+    <Card
+      title="Card title"
+      bordered={false}
+      style={{
+        width: 300,
+      }}
+    >
+      <button onClick={getPosts()}></button>
+    </Card>
+  );
+};
+
+export default Post;
