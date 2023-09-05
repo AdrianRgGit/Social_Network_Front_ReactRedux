@@ -21,7 +21,13 @@ const PostDetail = () => {
     fetchData();
   }, []);
 
+  //   Está fallando a la hora de cargar, el return entra antes que se haga la petición, preguntar a sofia
   if (isLoading) {
+    return <Spin />;
+  }
+  
+  // De momento lo soluciono así, pero quiero utilizar el isLoading ya que está hecho
+  if (!post) {
     return <Spin />;
   }
 
