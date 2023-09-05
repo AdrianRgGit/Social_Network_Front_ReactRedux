@@ -5,11 +5,20 @@ import postsService from "./postsService";
 const initialState = {
   posts: [],
   isLoading: false,
+  post: {},
 };
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   try {
     return await postsService.getPosts();
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const getById = createAsyncThunk("posts/getById", async (_id) => {
+  try {
+    return await postsService.getById(_id);
   } catch (error) {
     console.error(error);
   }
@@ -29,6 +38,12 @@ export const postsSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(getPosts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getById.fulfilled, (state, action) => {
+        state.post = action.payload;
+      })
+      .addCase(getById.pending, (state) => {
         state.isLoading = true;
       });
   },

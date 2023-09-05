@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, reset } from "../../../features/posts/postsSlice";
 import { Card, Spin } from "antd";
+import { Link } from "react-router-dom";
 
 const GetPosts = () => {
   const { posts, isLoading } = useSelector((state) => state.posts);
@@ -17,7 +18,6 @@ const GetPosts = () => {
         console.error("hubo un problema");
       }
     }
-
     fetchData();
   }, []);
 
@@ -27,15 +27,20 @@ const GetPosts = () => {
 
   const allPosts = posts.map((post) => {
     return (
-      <Card
-        className="card-style"
-        key={post._id}
-        title={post.title}
-        bordered={false}
-      >
-        <p>Descripción: {post.body}</p>
-        <p>Likes: {post.likes.length}</p>
-      </Card>
+      <>
+        <Link to={"/postdetail/" + post._id}>
+          {/* Me da el error de la key */}
+          <Card
+            className="card-style"
+            key={post._id}
+            title={post.title}
+            bordered={false}
+          >
+            <p>Descripción: {post.body}</p>
+            <p>Likes: {post.likes.length}</p>
+          </Card>
+        </Link>
+      </>
     );
   });
   return <div>{allPosts}</div>;
