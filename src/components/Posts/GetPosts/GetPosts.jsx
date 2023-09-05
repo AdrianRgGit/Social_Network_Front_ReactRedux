@@ -1,20 +1,29 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../../features/posts/postsSlice";
+import { getPosts, reset } from "../../../features/posts/postsSlice";
 import { Card, Spin } from "antd";
 
 const GetPosts = () => {
-  const { posts } = useSelector((state) => state.posts);
+  const { posts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-  
+
+  // Preguntar a sofia esta sintaxis y la que me recomienda vs
   useEffect(() => {
-    dispatch(getPosts());
+    async function fetchData() {
+      try {
+        await dispatch(getPosts());
+        dispatch(reset());
+      } catch (error) {
+        console.error("hubo un problema");
+      }
+    }
+
+    fetchData();
   }, []);
 
-  if (!posts) {
+  if (isLoading) {
     return <Spin />;
   }
-  console.log(posts)
 
   const allPosts = posts.map((post) => {
     return (
