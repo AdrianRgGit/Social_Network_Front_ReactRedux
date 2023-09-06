@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import Register from "./components/Register/Register";
-import GetPosts from "./components/Posts/GetPosts/GetPosts";
 import Header from "./components/Header/Header";
 import PostDetail from "./components/Posts/PostDetail/PostDetail";
 import Search from "./components/Search/Search";
 import Login from "./components/Login/Login";
+import GetPosts from "./components/Posts/GetPosts/GetPosts";
 
 function App() {
   return (

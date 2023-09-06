@@ -27,9 +27,9 @@ const PostDetail = () => {
   // }
 
   // De momento lo soluciono así, pero quiero utilizar el isLoading ya que está hecho
-  if (!post) {
-    return <Spin />;
-  }
+  // if (!post) {
+  //   return <Spin />;
+  // }
 
   return (
     <>
