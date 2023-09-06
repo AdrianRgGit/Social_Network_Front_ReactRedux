@@ -13,22 +13,21 @@ const Login = () => {
   const { email, password } = formData;
   const {isSuccess, isError, message } = useSelector((state) => state.auth);
   
-  const dispatch = useDispatch();
   const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isSuccess) {
       notification.success({
         message: "Login Success",
         description: message,
-      });
-      
-      //navigate no funciona, no redirige a profile;
+      });     
         setTimeout(() => {
-        navigate("/profile");
+        navigate("/posts");
       }, 3000);
     }
     if (isError) {
+      console.log("erroooor")
       notification.error({
         message: "Login Error",
         description: message,

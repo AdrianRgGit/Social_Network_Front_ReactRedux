@@ -45,7 +45,7 @@ const Header = () => {
           </>
         )}
 
-        <Link to={"/"}>Home | </Link>
+        <Link to={"/posts"}>Home | </Link>
         <Link to={"/posts"}>Posts | </Link>
       </div>
       <div className="search-container">
