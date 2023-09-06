@@ -20,8 +20,9 @@ const Header = () => {
     <nav className="nav-container">
       <div className="links-container">
         <Link to={"/"}>Home | </Link>
-        <Link to={"/Register"}>Register | </Link>
+        <Link to={"/register"}>Register | </Link>
         <Link to={"/posts"}>Posts | </Link>
+        <Link to={"/addpost"}>Add Post </Link>
       </div>
       <div className="search-container">
         <input

@@ -20,7 +20,6 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.message = "";
     },
-
   },
 
   extraReducers: (builder) => {
@@ -40,22 +39,25 @@ export const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.isError = true;
         state.message = action.payload;
-      })
+      });
   },
 });
 
-export const {reset} = authSlice.actions
+export const { reset } = authSlice.actions;
 
-export const register = createAsyncThunk("auth/register", async (user, thunkAPI) => {
-  try {
-    return await authService.register(user);
-  } catch (error) {
-    const message = error.response.data.msg;
-    return thunkAPI.rejectWithValue(message);
+export const register = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    try {
+      return await authService.register(user);
+    } catch (error) {
+      const message = error.response.data.msg;
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
-export const login = createAsyncThunk("auth/login", async (user) => {
+export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
     return await authService.login(user);
   } catch (error) {
