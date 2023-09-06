@@ -17,10 +17,16 @@ const getPostsByName = async (title) => {
   return res.data;
 };
 
+const createPost = async (postData) => {
+  const res = await axios.post(API_URL + "/create", postData);
+  return res.data;
+};
+
 const postsService = {
   getPosts,
   getById,
   getPostsByName,
+  createPost,
 };
 
 export default postsService;

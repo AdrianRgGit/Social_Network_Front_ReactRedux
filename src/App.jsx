@@ -6,6 +6,7 @@ import PostDetail from "./components/Posts/PostDetail/PostDetail";
 import Search from "./components/Search/Search";
 import Login from "./components/Login/Login";
 import GetPosts from "./components/Posts/GetPosts/GetPosts";
+import AddPost from "./components/Posts/AddPost/AddPost";
 import Profile from "./components/Profile/Profile";
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
           <Route path="/posts" element={<GetPosts />} />
           <Route path="/postdetail/:_id" element={<PostDetail />} />
           <Route path="/search/:title" element={<Search />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/addpost" element={<AddPost />} />
         </Routes>
       </BrowserRouter>
     </div>

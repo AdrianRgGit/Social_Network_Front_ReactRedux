@@ -1,11 +1,15 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import authService from "./postsService";
+import {
+  createAsyncThunk,
+  createSlice,
+} from "@reduxjs/toolkit";
 import postsService from "./postsService";
 
 const initialState = {
   posts: [],
   isLoading: false,
   post: {},
+  newPost: null,
+  token: null,
 };
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -29,6 +33,17 @@ export const getPostsByName = createAsyncThunk(
   async (title) => {
     try {
       return await postsService.getPostsByName(title);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
+export const createPost = createAsyncThunk(
+  "posts/createPost",
+  async (newPost) => {
+    try {
+      return await postsService.createPost(newPost);
     } catch (error) {
       console.error(error);
     }
@@ -59,6 +74,9 @@ export const postsSlice = createSlice({
       })
       .addCase(getPostsByName.fulfilled, (state, action) => {
         state.posts = action.payload;
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        // state.message = action.payload.message;
       });
   },
 });
