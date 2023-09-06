@@ -22,9 +22,9 @@ const PostDetail = () => {
   }, []);
 
   //   Está fallando a la hora de cargar, el return entra antes que se haga la petición, preguntar a sofia
-  if (isLoading) {
-    return <Spin />;
-  }
+  // if (isLoading) {
+  //   return <Spin />;
+  // }
 
   // De momento lo soluciono así, pero quiero utilizar el isLoading ya que está hecho
   if (!post) {
@@ -40,7 +40,7 @@ const PostDetail = () => {
         bordered={false}
       >
         <p>Descripción: {post.body}</p>
-        <p>Likes: {post.likes.length}</p>
+        <p>Likes: {post.likes?.length}</p>
       </Card>
     </>
   );

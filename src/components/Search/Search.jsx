@@ -5,16 +5,16 @@ import { getPostsByName } from "../../features/posts/postsSlice";
 import GetPosts from "../Posts/GetPosts/GetPosts";
 
 const Search = () => {
-  const { postTitle } = useParams();
+  const { title } = useParams();
   const dispatch = useDispatch();
 
   //   Me sale undefined
   useEffect(() => {
-    console.log(postTitle);
-    dispatch(getPostsByName(postTitle));
-  }, [postTitle]);
+    console.log(title);
+    dispatch(getPostsByName(title));
+  }, [title]);
 
-  return <div>{/* <GetPosts /> */}</div>;
+  return <div>{<GetPosts />}</div>;
 };
 
 export default Search;
