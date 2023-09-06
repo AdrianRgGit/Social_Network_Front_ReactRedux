@@ -4,6 +4,8 @@ import { getPosts, reset } from "../../../features/posts/postsSlice";
 import { Card, Spin } from "antd";
 import { Link } from "react-router-dom";
 
+// ! PINTAR LOS POSTS EN OTRO COMPONENTE, QUE ESTE SÓLO SEA PARA LLAMARLOS
+
 const GetPosts = () => {
   const { posts, isLoading } = useSelector((state) => state.posts);
   const dispatch = useDispatch();

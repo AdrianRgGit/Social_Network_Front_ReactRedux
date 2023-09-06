@@ -26,9 +26,9 @@ export const getById = createAsyncThunk("posts/getById", async (_id) => {
 
 export const getPostsByName = createAsyncThunk(
   "posts/getPostsByName",
-  async (postTitle) => {
+  async (title) => {
     try {
-      return await postsService.getPostsByName(postTitle);
+      return await postsService.getPostsByName(title);
     } catch (error) {
       console.error(error);
     }

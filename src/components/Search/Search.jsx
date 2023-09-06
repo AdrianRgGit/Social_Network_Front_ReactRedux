@@ -8,9 +8,7 @@ const Search = () => {
   const { title } = useParams();
   const dispatch = useDispatch();
 
-  //   Me sale undefined
   useEffect(() => {
-    console.log(title);
     dispatch(getPostsByName(title));
   }, [title]);
 

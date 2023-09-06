@@ -8,7 +8,7 @@ const Header = () => {
   const { posts } = useSelector((state) => state.posts);
 
   const [text, setText] = useState("");
-  
+
   const handleChange = (e) => {
     setText(e.target.value);
     if (e.key === "Enter") {
@@ -25,6 +25,7 @@ const Header = () => {
       </div>
       <div className="search-container">
         <input
+          // onClick={}
           type="text"
           onKeyUp={handleChange}
           placeholder="Search"
