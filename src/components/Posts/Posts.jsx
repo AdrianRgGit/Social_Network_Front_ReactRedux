@@ -8,7 +8,6 @@ const Posts = () => {
   return (
     <>
       <GetPosts />
-      <PrintPosts />
       <AddPost />
       <PostDetail />
     </>
