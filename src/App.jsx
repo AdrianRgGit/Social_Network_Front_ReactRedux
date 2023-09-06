@@ -5,6 +5,7 @@ import GetPosts from "./components/Posts/GetPosts/GetPosts";
 import Header from "./components/Header/Header";
 import PostDetail from "./components/Posts/PostDetail/PostDetail";
 import Search from "./components/Search/Search";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/posts" element={<GetPosts />} />
           <Route path="/postdetail/:_id" element={<PostDetail />} />
           <Route path="/search/:title" element={<Search />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
