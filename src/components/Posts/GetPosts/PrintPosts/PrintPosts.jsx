@@ -13,14 +13,9 @@ const PrintPosts = () => {
   const allPosts = posts.map((post) => {
     return (
       <>
-        <Link to={"/postdetail/" + post._id}>
+        <Link key={post._id} to={"/postdetail/" + post._id}>
           {/* Me da el error de la key */}
-          <Card
-            className="card-style"
-            key={post._id}
-            title={post.title}
-            bordered={false}
-          >
+          <Card className="card-style" title={post.title} bordered={false}>
             <p>Descripción: {post.body}</p>
             <p>Likes: {post.likes.length}</p>
           </Card>
