@@ -6,6 +6,7 @@ import PostDetail from "./components/Posts/PostDetail/PostDetail";
 import Search from "./components/Search/Search";
 import Login from "./components/Login/Login";
 import GetPosts from "./components/Posts/GetPosts/GetPosts";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
         <Header />
         <Routes>
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/posts" element={<GetPosts />} />
           <Route path="/postdetail/:_id" element={<PostDetail />} />
           <Route path="/search/:title" element={<Search />} />
-          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
