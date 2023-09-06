@@ -45,6 +45,11 @@ export const authSlice = createSlice({
         state.user = null;
         state.token= null;
       })
+      .addCase(getUserLogged.fulfilled, (state, action) => {
+        //console.log("action", action.payload)
+        state.userLogged = action.payload
+      
+      })
   },
 });
 
@@ -76,8 +81,16 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   try {
     return await authService.logout()
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 })
+
+export const getUserLogged = createAsyncThunk("auth/getUserLogged", async () => {
+  try {
+    return await authService.getUserLogged()
+  } catch (error) {
+    console.error(error)
+  }
+} )
 
 export default authSlice.reducer;

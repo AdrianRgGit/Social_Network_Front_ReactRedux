@@ -30,10 +30,23 @@ const logout = async () => {
   return res.data;
 };
 
+const getUserLogged = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.get(API_URL + "/users/getuserconnected", {
+    headers: {
+      authorization: token,
+    },
+
+  })
+  //console.log(res.data.getUser)
+  return res.data.getUser
+}
+
 const authService = {
   register,
   login,
   logout,
+  getUserLogged,
 };
 
 export default authService;
