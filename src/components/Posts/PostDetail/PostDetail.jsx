@@ -12,7 +12,7 @@ const PostDetail = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        await dispatch(getById(_id));
+        dispatch(getById(_id));
         dispatch(reset());
       } catch (error) {
         console.error("hubo un problema");
@@ -22,14 +22,14 @@ const PostDetail = () => {
   }, []);
 
   //   Está fallando a la hora de cargar, el return entra antes que se haga la petición, preguntar a sofia
-  if (isLoading) {
-    return <Spin />;
-  }
-  
+  // if (isLoading) {
+  //   return <Spin />;
+  // }
+
   // De momento lo soluciono así, pero quiero utilizar el isLoading ya que está hecho
-  if (!post) {
-    return <Spin />;
-  }
+  // if (!post) {
+  //   return <Spin />;
+  // }
 
   return (
     <>
@@ -40,7 +40,7 @@ const PostDetail = () => {
         bordered={false}
       >
         <p>Descripción: {post.body}</p>
-        <p>Likes: {post.likes.length}</p>
+        <p>Likes: {post.likes?.length}</p>
       </Card>
     </>
   );
