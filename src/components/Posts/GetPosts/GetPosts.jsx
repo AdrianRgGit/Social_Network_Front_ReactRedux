@@ -10,7 +10,6 @@ import PrintPosts from "./PrintPosts/PrintPosts";
 const GetPosts = () => {
   const dispatch = useDispatch();
 
-  // Preguntar a sofia esta sintaxis y la que me recomienda vs
   useEffect(() => {
     async function fetchData() {
       try {

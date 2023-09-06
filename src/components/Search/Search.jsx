@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPostsByName } from "../../features/posts/postsSlice";
-import GetPosts from "../Posts/GetPosts/GetPosts";
+import PrintPosts from "../Posts/GetPosts/PrintPosts/PrintPosts";
 
 const Search = () => {
   const { title } = useParams();
@@ -11,8 +11,13 @@ const Search = () => {
   useEffect(() => {
     dispatch(getPostsByName(title));
   }, [title]);
+  
+  if (title == null) {
+    return <div>{<PrintPosts />}</div>;
+  }
 
-  return <div>{<GetPosts />}</div>;
+
+  return <div>{<PrintPosts />}</div>;
 };
 
 export default Search;
