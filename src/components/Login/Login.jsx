@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, reset } from "../../features/auth/authSlice";
 import { notification } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,9 @@ const Login = () => {
 
   const { email, password } = formData;
   const {isSuccess, isError, message } = useSelector((state) => state.auth);
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isSuccess) {
@@ -18,22 +22,24 @@ const Login = () => {
         message: "Login Success",
         description: message,
       });
+      
+      //navigate no funciona, no redirige a profile;
+        setTimeout(() => {
+        navigate("/profile");
+      }, 3000);
     }
     if (isError) {
       notification.error({
         message: "Login Error",
         description: message,
       });
-    //   setTimeout(() => {
-    //     navigate("/profile");
-    //   }, 2000);
+    
     }
-
+    //revisar reset, funciona? siempre está en redux devtools
     dispatch(reset())
-
   }, [isSuccess, isError, message]);
 
-  const dispatch = useDispatch();
+ 
 
   const onChange = (e) =>
     setFormData((prevState) => ({
