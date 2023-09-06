@@ -41,7 +41,7 @@ const AddPost = () => {
           placeholder="body"
           onChange={onChange}
         />
-        <button type="submit">Register</button>
+        <button type="submit">Add</button>
       </form>
     </>
   );
