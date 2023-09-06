@@ -32,6 +32,7 @@ const Header = () => {
           <>
           <span onClick={onLogout}>Logout | </span>
           <span><Link to={"/profile"}>Profile | </Link></span>
+          <span><Link to={"/userposts"}>My Posts | </Link></span>
           </>
           
         ) : (

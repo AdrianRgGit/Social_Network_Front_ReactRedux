@@ -8,6 +8,7 @@ import Login from "./components/Login/Login";
 import GetPosts from "./components/Posts/GetPosts/GetPosts";
 import AddPost from "./components/Posts/AddPost/AddPost";
 import Profile from "./components/Profile/Profile";
+import UserPosts from "./components/Posts/UserPosts/UserPosts";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/search/:title" element={<Search />} />
           <Route path="/login" element={<Login />} />
           <Route path="/addpost" element={<AddPost />} />
+          <Route path="/userposts" element={<UserPosts />} />
         </Routes>
       </BrowserRouter>
     </div>
