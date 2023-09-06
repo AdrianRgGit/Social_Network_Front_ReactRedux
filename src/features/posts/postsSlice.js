@@ -58,6 +58,14 @@ export const createPost = createAsyncThunk(
   }
 );
 
+export const like = createAsyncThunk("posts/like", async (_id) => {
+  try {
+    return await postsService.like(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -66,6 +74,7 @@ export const postsSlice = createSlice({
       state.isLoading = false;
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getPosts.fulfilled, (state, action) => {
@@ -85,7 +94,7 @@ export const postsSlice = createSlice({
       })
       .addCase(getUserConnected.fulfilled, (state, action) => {
         state.posts = action.payload;
-      })
+      });
   },
 });
 

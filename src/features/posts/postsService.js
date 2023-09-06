@@ -37,12 +37,23 @@ const createPost = async (postData) => {
   return res.data;
 };
 
+const like = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.put(API_URL + "/like/" + _id, {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return res.data;
+};
+
 const postsService = {
   getPosts,
   getById,
   getPostsByName,
   getUserConnected,
   createPost,
+  like,
 };
 
 export default postsService;
