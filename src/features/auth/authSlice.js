@@ -9,6 +9,7 @@ const initialState = {
   token: token,
   isError: false,
   message: "",
+  isLoading: false,
 };
 
 export const authSlice = createSlice({
@@ -19,6 +20,7 @@ export const authSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.message = "";
+      state.isLoading = false;
     },
   },
 
@@ -43,12 +45,23 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
-        state.token= null;
+        state.token = null;
+      })
+      .addCase(getUserLogged.pending, (state) => {
+        console.log("pending Logged")
+        state.isLoading = true;
       })
       .addCase(getUserLogged.fulfilled, (state, action) => {
-        //console.log("action", action.payload)
-        state.userLogged = action.payload
-      
+        console.log("fulfilled Logged")
+        state.user = action.payload;
+        state.isLoading = false;
+         console.log("action", action.payload)
+        console.log(state.user)
+      })
+      .addCase(getUserLogged.rejected, (state, action) => {
+        console.log("rejected Logged")
+        state.isError = true;
+        state.message = "error getUserLogged";
       })
   },
 });
@@ -79,18 +92,21 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 
 export const logout = createAsyncThunk("auth/logout", async () => {
   try {
-    return await authService.logout()
+    return await authService.logout();
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-})
+});
 
-export const getUserLogged = createAsyncThunk("auth/getUserLogged", async () => {
-  try {
-    return await authService.getUserLogged()
-  } catch (error) {
-    console.error(error)
+export const getUserLogged = createAsyncThunk(
+  "auth/getUserLogged",
+  async () => {
+    try {
+      return await authService.getUserLogged();
+    } catch (error) {
+      console.error(error);
+    }
   }
-} )
+);
 
 export default authSlice.reducer;

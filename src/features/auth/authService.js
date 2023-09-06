@@ -38,7 +38,7 @@ const getUserLogged = async () => {
     },
 
   })
-  //console.log(res.data.getUser)
+  console.log(res.data.getUser)
   return res.data.getUser
 }
 
