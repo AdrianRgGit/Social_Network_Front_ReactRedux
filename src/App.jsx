@@ -11,7 +11,7 @@ import Profile from "./components/Profile/Profile";
 import UserPosts from "./components/Posts/UserPosts/UserPosts";
 import LikePost from "./components/Posts/LikePost/LikePost";
 import AddComment from "./components/Comments/AddComment/AddComment";
-import GetComments from "./components/Comments/AddComment/GetComments/GetComments";
+import GetComments from "./components/Comments/GetComments/GetComments";
 import Comments from "./components/Comments/Comments";
 
 function App() {
@@ -30,7 +30,6 @@ function App() {
           <Route path="/addpost" element={<AddPost />} />
           <Route path="/userposts" element={<UserPosts />} />
           <Route path="/like/:_id" element={<LikePost />} />
-          <Route path="/comments" element={<Comments />} />
         </Routes>
       </BrowserRouter>
     </div>

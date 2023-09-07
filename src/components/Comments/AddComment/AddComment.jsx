@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createComment } from "../../../features/comment/CommentSlice";
+import { useParams } from "react-router-dom";
 
 const AddComment = () => {
   const dispatch = useDispatch();
+  const { _id } = useParams();
 
   const [formData, setFormData] = useState({
     title: "",
     body: "",
     image: "",
+    postId: _id,
   });
 
   const { title, body, image } = formData;
@@ -22,7 +25,9 @@ const AddComment = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(createComment(formData));
+    setFormData({ title: "", body: "", image: "" });
   };
+
   return (
     <>
       <form onSubmit={onSubmit}>

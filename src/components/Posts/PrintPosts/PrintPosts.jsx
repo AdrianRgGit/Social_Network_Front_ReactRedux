@@ -22,7 +22,6 @@ const PrintPosts = () => {
             <div className="button-container">
               <button onClick={like}>Like</button>
               <button>Dislike</button>
-              <button>Comment</button>
             </div>
           </Card>
         </Link>

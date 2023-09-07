@@ -46,7 +46,7 @@ const Header = () => {
           </>
         )}
 
-        <Link to={"/posts"}>Home | </Link>
+        <Link to={"/"}>Home | </Link>
         <Link to={"/posts"}>Posts | </Link>
         <Link to={"/addpost"}>Add Post </Link>
       </div>

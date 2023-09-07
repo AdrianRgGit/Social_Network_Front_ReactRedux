@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
-import { Card, Spin } from "antd";
+import { Card } from "antd";
 import AddComment from "../../Comments/AddComment/AddComment";
 
 const PostDetail = () => {
   const { _id } = useParams();
-  const { post, isLoading } = useSelector((state) => state.posts);
+  const { post } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
@@ -23,6 +23,8 @@ const PostDetail = () => {
     }
     fetchData();
   }, []);
+
+  // ! Que sólo se muestre el formulario de hacer un comentario cuando le de al botón de comment
 
   const printCard = (message) => {
     return (
@@ -48,12 +50,12 @@ const PostDetail = () => {
             );
           })}
           <div>{message}</div>
+          <button>Comment</button>
         </div>
       </Card>
     );
   };
 
-  // ! Aparece fuera de la card, arreglar
   if (post.commentIds?.length === 0) {
     const message = "Todavía no hay ningún comentario ¡Se el primero!";
     return <>{printCard(message)}</>;
@@ -62,7 +64,9 @@ const PostDetail = () => {
   return (
     <>
       {printCard()}
-      <AddComment />
+      <div>
+        <AddComment />
+      </div>
     </>
   );
 };

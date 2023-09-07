@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import AddComment from "./AddComment/AddComment";
-import GetComments from "./AddComment/GetComments/GetComments";
+import GetComments from "./GetComments/GetComments";
 import { Link } from "react-router-dom";
 import { Card, Spin } from "antd";
 import { useDispatch, useSelector } from "react-redux";
