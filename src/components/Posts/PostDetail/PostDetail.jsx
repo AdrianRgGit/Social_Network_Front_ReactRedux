@@ -4,6 +4,7 @@ import {  useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
 import { Card } from "antd";
 import AddComment from "../../Comments/AddComment/AddComment";
+import LikePost from "../LikePost/LikePost";
 
 const PostDetail = () => {
   const { _id } = useParams();
@@ -14,7 +15,6 @@ const PostDetail = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        console.log(post.commentIds);
         dispatch(getById(_id));
         dispatch(reset());
       } catch (error) {
@@ -54,6 +54,7 @@ const PostDetail = () => {
           <button>Comment</button>
         </div>
       </Card>
+      
     );
   };
 
@@ -65,6 +66,7 @@ const PostDetail = () => {
   return (
     <>
       {printCard()}
+      <LikePost />
       <div>
         <AddComment />
       </div>

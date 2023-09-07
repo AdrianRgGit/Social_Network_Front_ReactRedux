@@ -44,11 +44,29 @@ const createPost = async (postData) => {
 
 const like = async (_id) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const res = await axios.put(API_URL + "/like/" + _id, {
-    headers: {
-      Authorization: token,
-    },
-  });
+  const res = await axios.put(
+    API_URL + "/like/" + _id,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  return res.data;
+};
+
+const dislike = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.put(
+    API_URL + "/dislike/" + _id,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
   return res.data;
 };
 
@@ -60,6 +78,7 @@ const postsService = {
   getUserConnected,
   createPost,
   like,
+  dislike,
 };
 
 export default postsService;

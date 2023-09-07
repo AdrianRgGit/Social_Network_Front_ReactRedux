@@ -2,7 +2,8 @@ import { Card, Spin } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { like } from "../../../features/posts/postsSlice";
+
+import LikePost from "../LikePost/LikePost";
 
 const PrintPosts = () => {
   const { posts, isLoading } = useSelector((state) => state.posts);
@@ -19,12 +20,9 @@ const PrintPosts = () => {
           <Card className="card-style" title={post.title} bordered={false}>
             <p>Descripción: {post.body}</p>
             <p>Likes: {post.likes.length}</p>
-            <div className="button-container">
-              <button onClick={like}>Like</button>
-              <button>Dislike</button>
-            </div>
           </Card>
         </Link>
+        
       </>
     );
   });
