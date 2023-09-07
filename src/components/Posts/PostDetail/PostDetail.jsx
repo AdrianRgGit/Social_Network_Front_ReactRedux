@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
 import { Card, Spin } from "antd";
+import AddComment from "../../Comments/AddComment/AddComment";
 
 const PostDetail = () => {
   const { _id } = useParams();
   const { post, isLoading } = useSelector((state) => state.posts);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,16 +23,6 @@ const PostDetail = () => {
     fetchData();
   }, []);
 
-  //   Está fallando a la hora de cargar, el return entra antes que se haga la petición, preguntar a sofia
-  // if (isLoading) {
-  //   return <Spin />;
-  // }
-
-  // De momento lo soluciono así, pero quiero utilizar el isLoading ya que está hecho
-  // if (!post) {
-  //   return <Spin />;
-  // }
-
   return (
     <>
       <Card
@@ -39,9 +31,24 @@ const PostDetail = () => {
         title={post.title}
         bordered={false}
       >
-        <p>Descripción: {post.body}</p>
-        <p>Likes: {post.likes?.length}</p>
+        <div className="post-container">
+          <p>Descripción: {post.body}</p>
+          <p>Likes: {post.likes?.length}</p>
+        </div>
+        <div className="comments-container">
+          Comments:
+          {post.commentIds?.map((comment) => {
+            return (
+              <div key={comment._id}>
+                <div>Title: {comment.title}</div>
+                <div>Body: {comment.body}</div>
+                <br />
+              </div>
+            );
+          })}
+        </div>
       </Card>
+      <AddComment />
     </>
   );
 };

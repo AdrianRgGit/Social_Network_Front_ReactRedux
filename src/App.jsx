@@ -31,7 +31,6 @@ function App() {
           <Route path="/userposts" element={<UserPosts />} />
           <Route path="/like/:_id" element={<LikePost />} />
           <Route path="/comments" element={<Comments />} />
-          <Route path="/addcomment" element={<AddComment />} />
         </Routes>
       </BrowserRouter>
     </div>
