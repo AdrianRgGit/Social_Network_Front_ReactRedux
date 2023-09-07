@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
 import { Card } from "antd";
-import AddComment from "../../Comments/AddComment/AddComment";
+import AddComment from "../../AddComment/AddComment";
 import LikePost from "../LikePost/LikePost";
-import LikeComment from "../../Comments/LikeComment/LikeComment";
+import LikeComment from "../../LikeComment/LikeComment";
 
 const PostDetail = () => {
   const { _id } = useParams();

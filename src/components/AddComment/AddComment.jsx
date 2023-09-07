@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createComment } from "../../../features/comment/CommentSlice";
+import { createComment } from "../../features/comment/CommentSlice";
 import { useParams } from "react-router-dom";
 import { notification } from "antd";
 // import { getById } from "../../../features/posts/postsSlice";
