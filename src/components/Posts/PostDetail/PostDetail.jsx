@@ -14,6 +14,7 @@ const PostDetail = () => {
   useEffect(() => {
     async function fetchData() {
       try {
+        console.log(post.commentIds);
         dispatch(getById(_id));
         dispatch(reset());
       } catch (error) {
@@ -23,8 +24,8 @@ const PostDetail = () => {
     fetchData();
   }, []);
 
-  return (
-    <>
+  const printCard = (message) => {
+    return (
       <Card
         className="card-style"
         key={post._id}
@@ -46,8 +47,21 @@ const PostDetail = () => {
               </div>
             );
           })}
+          <div>{message}</div>
         </div>
       </Card>
+    );
+  };
+
+  // ! Aparece fuera de la card, arreglar
+  if (post.commentIds?.length === 0) {
+    const message = "Todavía no hay ningún comentario ¡Se el primero!";
+    return <>{printCard(message)}</>;
+  }
+
+  return (
+    <>
+      {printCard()}
       <AddComment />
     </>
   );
