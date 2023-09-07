@@ -18,7 +18,7 @@ const PrintPosts = () => {
         <Link to={"/postdetail/" + post._id}>
           {/* Me da el error de la key > solucion meter key en el div */}
           <Card className="card-style" title={post.title} bordered={false}>
-            <img alt="post-image" src={post.image_url}></img>
+            { post.image_url?<img alt="post-image" src={post.image_url}></img> : <div></div> }           
             <p>Descripción: {post.body}</p>
             <p>Likes: {post.likes.length}</p>
           </Card>
