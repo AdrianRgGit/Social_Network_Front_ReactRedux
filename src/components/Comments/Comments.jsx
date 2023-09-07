@@ -1,12 +1,27 @@
-import { Card, Spin } from "antd";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import AddComment from "./AddComment/AddComment";
+import GetComments from "./AddComment/GetComments/GetComments";
 import { Link } from "react-router-dom";
-import { like } from "../../../features/posts/postsSlice";
+import { Card, Spin } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getPostsComments, reset } from "../../features/posts/postsSlice";
 
-const PrintPosts = () => {
+const Comments = () => {
   const { posts, isLoading } = useSelector((state) => state.posts);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await dispatch(getPostsComments());
+        dispatch(reset());
+      } catch (error) {
+        console.error("hubo un problema");
+      }
+    }
+    fetchData();
+  }, []);
   if (isLoading) {
     return <Spin />;
   }
@@ -20,7 +35,7 @@ const PrintPosts = () => {
             <p>Descripción: {post.body}</p>
             <p>Likes: {post.likes.length}</p>
             <div className="button-container">
-              <button onClick={like}>Like</button>
+              <button>Like</button>
               <button>Dislike</button>
               <button>Comment</button>
             </div>
@@ -32,4 +47,4 @@ const PrintPosts = () => {
   return <div>{allPosts}</div>;
 };
 
-export default PrintPosts;
+export default Comments;
