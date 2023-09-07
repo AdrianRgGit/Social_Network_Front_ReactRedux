@@ -13,7 +13,7 @@ const Login = () => {
   const { email, password } = formData;
   const {isSuccess, isError, message } = useSelector((state) => state.auth);
   
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
