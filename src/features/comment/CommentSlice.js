@@ -3,6 +3,7 @@ import commentService from "./CommentService";
 
 const initialState = {
   newComment: "",
+  comment: "",
 };
 
 export const createComment = createAsyncThunk(
@@ -15,6 +16,22 @@ export const createComment = createAsyncThunk(
     }
   }
 );
+
+export const like = createAsyncThunk("comment/like", async (_id) => {
+  try {
+    return await commentService.like(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const dislike = createAsyncThunk("comment/dislike", async (_id) => {
+  try {
+    return await commentService.dislike(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 export const commentSlice = createSlice({
   name: "comment",

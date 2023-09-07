@@ -12,8 +12,38 @@ const createComment = async (commentData) => {
   return res.data;
 };
 
+const like = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.put(
+    API_URL + "/like/" + _id,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  return res.data;
+};
+
+const dislike = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.put(
+    API_URL + "/dislike/" + _id,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  return res.data;
+};
+
 const commentService = {
   createComment,
+  like,
+  dislike,
 };
 
 export default commentService;

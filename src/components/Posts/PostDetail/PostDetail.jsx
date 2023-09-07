@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
 import { Card } from "antd";
 import AddComment from "../../Comments/AddComment/AddComment";
 import LikePost from "../LikePost/LikePost";
+import LikeComment from "../../Comments/LikeComment/LikeComment";
 
 const PostDetail = () => {
   const { _id } = useParams();
@@ -39,6 +40,8 @@ const PostDetail = () => {
           <p>Descripción: {post.body}</p>
           <p>Likes: {post.likes?.length}</p>
         </div>
+        <LikePost />
+        <br />
         <div className="comments-container">
           Comments:
           {post.commentIds?.map((comment) => {
@@ -46,7 +49,9 @@ const PostDetail = () => {
               <div key={comment._id}>
                 <div>Title: {comment.title}</div>
                 <div>Body: {comment.body}</div>
+                <div>Likes: {comment.likes.length}</div>
                 <br />
+                <LikeComment key={comment._id} comment={comment} />
               </div>
             );
           })}
@@ -54,7 +59,6 @@ const PostDetail = () => {
           <button>Comment</button>
         </div>
       </Card>
-      
     );
   };
 
@@ -66,7 +70,6 @@ const PostDetail = () => {
   return (
     <>
       {printCard()}
-      <LikePost />
       <div>
         <AddComment />
       </div>
