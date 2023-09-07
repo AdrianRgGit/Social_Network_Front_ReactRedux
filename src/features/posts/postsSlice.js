@@ -1,7 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import postsService from "./postsService";
 
 const initialState = {
@@ -19,6 +16,17 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
     console.error(error);
   }
 });
+
+export const getPostsComments = createAsyncThunk(
+  "posts/getPostsComments",
+  async () => {
+    try {
+      return await postsService.getPostsComments();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
 
 export const getById = createAsyncThunk("posts/getById", async (_id) => {
   try {
@@ -39,6 +47,17 @@ export const getPostsByName = createAsyncThunk(
   }
 );
 
+export const getUserConnected = createAsyncThunk(
+  "posts/getUserConnected",
+  async () => {
+    try {
+      return await postsService.getUserConnected();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
 export const createPost = createAsyncThunk(
   "posts/createPost",
   async (newPost) => {
@@ -50,6 +69,22 @@ export const createPost = createAsyncThunk(
   }
 );
 
+export const like = createAsyncThunk("posts/like", async (_id) => {
+  try {
+    return await postsService.like(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+export const dislike = createAsyncThunk("posts/dislike", async (_id) => {
+  try {
+    return await postsService.dislike(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -58,12 +93,19 @@ export const postsSlice = createSlice({
       state.isLoading = false;
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getPosts.fulfilled, (state, action) => {
         state.posts = action.payload;
       })
       .addCase(getPosts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getPostsComments.fulfilled, (state, action) => {
+        state.posts = action.payload;
+      })
+      .addCase(getPostsComments.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getById.fulfilled, (state, action) => {
@@ -75,8 +117,8 @@ export const postsSlice = createSlice({
       .addCase(getPostsByName.fulfilled, (state, action) => {
         state.posts = action.payload;
       })
-      .addCase(createPost.fulfilled, (state, action) => {
-        // state.message = action.payload.message;
+      .addCase(getUserConnected.fulfilled, (state, action) => {
+        state.posts = action.payload;
       });
   },
 });

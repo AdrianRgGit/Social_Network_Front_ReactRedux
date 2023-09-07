@@ -7,6 +7,11 @@ const getPosts = async () => {
   return res.data;
 };
 
+const getPostsComments = async () => {
+  const res = await axios.get(API_URL + "/");
+  return res.data;
+};
+
 const getById = async (_id) => {
   const res = await axios.get(API_URL + "/id/" + _id);
   return res.data;
@@ -14,6 +19,16 @@ const getById = async (_id) => {
 
 const getPostsByName = async (title) => {
   const res = await axios.get(API_URL + "/title/" + title);
+  return res.data;
+};
+
+const getUserConnected = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.get(API_URL + "/getuserconnected", {
+    headers: {
+      Authorization: token,
+    },
+  });
   return res.data;
 };
 
@@ -27,11 +42,43 @@ const createPost = async (postData) => {
   return res.data;
 };
 
+const like = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.put(
+    API_URL + "/like/" + _id,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  return res.data;
+};
+
+const dislike = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.put(
+    API_URL + "/dislike/" + _id,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  return res.data;
+};
+
 const postsService = {
   getPosts,
+  getPostsComments,
   getById,
   getPostsByName,
+  getUserConnected,
   createPost,
+  like,
+  dislike,
 };
 
 export default postsService;

@@ -3,6 +3,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import LikePost from "../LikePost/LikePost";
+
 const PrintPosts = () => {
   const { posts, isLoading } = useSelector((state) => state.posts);
 
@@ -20,6 +22,7 @@ const PrintPosts = () => {
             <p>Likes: {post.likes.length}</p>
           </Card>
         </Link>
+        
       </>
     );
   });
