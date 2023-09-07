@@ -25,6 +25,7 @@ const PostDetail = () => {
   }, []);
 
   // ! Que sólo se muestre el formulario de hacer un comentario cuando le de al botón de comment
+  // ! Que salga el nombre del usuario que ha comentado
 
   const printCard = (message) => {
     return (
