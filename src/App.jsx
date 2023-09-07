@@ -10,8 +10,7 @@ import AddPost from "./components/Posts/AddPost/AddPost";
 import Profile from "./components/Profile/Profile";
 import UserPosts from "./components/Posts/UserPosts/UserPosts";
 import LikePost from "./components/Posts/LikePost/LikePost";
-import AddComment from "./components/AddComment/AddComment";
-import Comments from "./components/Comments/Comments";
+
 
 function App() {
   return (
