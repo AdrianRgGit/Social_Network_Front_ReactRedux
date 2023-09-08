@@ -12,6 +12,8 @@ const PrintPosts = () => {
     return <Spin />;
   }
 
+  console.log(posts[7]?.userId.username);
+
   const allPosts = posts.map((post) => {
     return (
       <div key={post._id}>
@@ -24,7 +26,9 @@ const PrintPosts = () => {
               <div></div>
             )}
             <p>Descripción: {post.body}</p>
+            <p>Posted by: {post.userId?.username}</p>
             <p>Likes: {post.likes.length}</p>
+            {/*El interrogante de aquí se debe de eliminar */}
           </Card>
         </Link>
       </div>

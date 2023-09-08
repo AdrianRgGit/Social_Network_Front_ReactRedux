@@ -8,7 +8,6 @@ import Login from "./components/Login/Login";
 import GetPosts from "./components/Posts/GetPosts/GetPosts";
 import AddPost from "./components/Posts/AddPost/AddPost";
 import Profile from "./components/Profile/Profile";
-import UserPosts from "./components/Posts/UserPosts/UserPosts";
 import LikePost from "./components/Posts/LikePost/LikePost";
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
           <Route path="/search/:title" element={<Search />} />
           <Route path="/login" element={<Login />} />
           <Route path="/addpost" element={<AddPost />} />
-          <Route path="/userposts" element={<UserPosts />} />
           <Route path="/like/:_id" element={<LikePost />} />
         </Routes>
       </BrowserRouter>

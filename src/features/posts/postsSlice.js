@@ -85,6 +85,14 @@ export const dislike = createAsyncThunk("posts/dislike", async (_id) => {
   }
 });
 
+export const deletePost = createAsyncThunk("posts/delete", async (_id) => {
+  try {
+    return await postsService.deletePost(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
