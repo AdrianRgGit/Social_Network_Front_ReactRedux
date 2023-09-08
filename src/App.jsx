@@ -11,7 +11,6 @@ import Profile from "./components/Profile/Profile";
 import UserPosts from "./components/Posts/UserPosts/UserPosts";
 import LikePost from "./components/Posts/LikePost/LikePost";
 
-
 function App() {
   return (
     <div>
