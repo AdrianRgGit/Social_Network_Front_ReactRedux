@@ -27,14 +27,12 @@ const Login = () => {
       }, 3000);
     }
     if (isError) {
-      console.log("erroooor")
       notification.error({
         message: "Login Error",
         description: message,
       });
     
     }
-    //revisar reset, funciona? siempre está en redux devtools
     dispatch(reset())
   }, [isSuccess, isError, message]);
 
