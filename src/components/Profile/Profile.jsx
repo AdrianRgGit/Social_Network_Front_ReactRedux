@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { getUserLogged } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import ".profile.scss";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -43,15 +44,17 @@ const Profile = () => {
             <div key={post._id}>
               <p>{post.title}</p>
               <p>{post.body}</p>
+              <div classname="container-img-post">
               {post.image_url ? (
                 <img
-                  className="img-post"
+                  classname="img-post"
                   alt="post-image"
                   src={post.image_url}
                 ></img>
               ) : (
                 <div></div>
               )}{" "}
+              </div>
             </div>
           );
         })}
