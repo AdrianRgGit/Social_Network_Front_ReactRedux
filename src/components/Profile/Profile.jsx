@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { getUserLogged } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./profile.scss";
+import { Card } from "antd";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -18,43 +19,60 @@ const Profile = () => {
     return <span>cargando</span>;
   }
 
-  console.log("user after useEffect", user);
+  const gridStyle = {
+    width: "50%",
+    textAlign: "center",
+  };
 
   return (
     <>
-      <div>Profile</div>
-      <div>
-        <h1>{username}</h1>
-        {avatar_url ? (
-          <img alt="avatar-profile-image" src={avatar_url}></img>
-        ) : (
-          <div></div>
-        )}
-        {/* //TODO: */}
-        <button onClick={() => alert("haz la FUNCION")}>
-          add/change your avatar{" "}
-        </button>
-        <p>Email: {email}</p>
-        <p>Followers: {followers ? followers.length : "0"}</p>
-        <p>Following: hay que hacer la logica en bakcend</p>
-        <p>posts hacer map o traer de componente</p>
+      <div className="container-card-profile">
+        <Card title="Profile">
+          <Card.Grid className="card-grid" style={gridStyle}>
+            <div>
+              <h1>{username}</h1>
+              {avatar_url ? (
+                <img
+                  className="avatar"
+                  alt="avatar-profile-image"
+                  src={avatar_url}
+                ></img>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          </Card.Grid>
+          <Card.Grid hoverable={false} style={gridStyle}>
+            <button onClick={() => alert("haz la FUNCION")}>
+              {" "}
+              {/* //TODO: */}
+              add/change your avatar{" "}
+            </button>
+            <p>Email: {email}</p>
+            <p>Followers: {followers ? followers.length : "0"}</p>
+            <p>Following: hay que hacer la logica en bakcend</p>
+          </Card.Grid>
+        </Card>
+      </div>
+      <div className="container-post-profile">
         {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
         {postIds?.map((post) => {
           return (
             <div key={post._id}>
-              <p>{post.title}</p>
-              <p>{post.body}</p>
-              <div classname="container-img-post">
-              {post.image_url ? (
-                <img
-                  classname="img-post"
-                  alt="post-image"
-                  src={post.image_url}
-                ></img>
-              ) : (
-                <div></div>
-              )}{" "}
-              </div>
+              <Card title={post.title} bordered={false}>
+                <p>{post.body}</p>
+                <div className="container-img-post">
+                  {post.image_url ? (
+                    <img
+                      className="img-post"
+                      alt="post-image"
+                      src={post.image_url}
+                    ></img>
+                  ) : (
+                    <div></div>
+                  )}{" "}
+                </div>
+              </Card>
             </div>
           );
         })}

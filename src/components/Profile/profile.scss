@@ -13,8 +13,20 @@
 }
 
 .avatar {
-  width: 100%;
+  max-width: 150px;
 }
+
+.card-grid{
+
+  justify-content: space-evenly
+}
+
+.container-post-profile{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 
 // p {
 //   background-color: red;
