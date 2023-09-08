@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
+import { Link } from "react-router-dom";
 
 const AddPost = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,10 @@ const AddPost = () => {
           placeholder="body"
           onChange={onChange}
         />
-        <button type="submit">Add</button>
+        <input type="file" name="image" accept="image/*,video/*" />
+        <Link to={"/posts"}>
+          <button type="submit">Add</button>
+        </Link>
       </form>
     </>
   );
