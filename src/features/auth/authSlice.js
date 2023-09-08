@@ -4,6 +4,8 @@ import authService from "./authService";
 const user = JSON.parse(localStorage.getItem("user")) || null;
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
+
+
 const initialState = {
   user: user,
   token: token,
@@ -11,6 +13,8 @@ const initialState = {
   message: "",
   isLoading: false,
 };
+
+console.log(initialState.user)
 
 export const authSlice = createSlice({
   name: "auth",
@@ -48,18 +52,14 @@ export const authSlice = createSlice({
         state.token = null;
       })
       .addCase(getUserLogged.pending, (state) => {
-        console.log("pending Logged")
         state.isLoading = true;
       })
       .addCase(getUserLogged.fulfilled, (state, action) => {
-        console.log("fulfilled Logged")
         state.user = action.payload;
         state.isLoading = false;
-         console.log("action", action.payload)
-        console.log(state.user)
+        console.log("fulfilled Logged", state.user)
       })
       .addCase(getUserLogged.rejected, (state, action) => {
-        console.log("rejected Logged")
         state.isError = true;
         state.message = "error getUserLogged";
       })
