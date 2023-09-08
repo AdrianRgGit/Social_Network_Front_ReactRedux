@@ -4,11 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import "./profile.scss";
 import { Card } from "antd";
 import { deletePost } from "../../features/posts/postsSlice";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+} from "@chakra-ui/react";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.auth);
   const { username, email, followers, postIds, avatar_url } = user;
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   console.log("user before useEffect", user);
 
@@ -34,6 +46,7 @@ const Profile = () => {
               <h1>{username}</h1>
               {avatar_url ? (
                 <img
+                  onClick={onOpen}
                   className="avatar"
                   alt="avatar-profile-image"
                   src={avatar_url}
@@ -41,14 +54,25 @@ const Profile = () => {
               ) : (
                 <div></div>
               )}
+              <div className="modal-profile">
+                <Modal isOpen={isOpen} onClose={onClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>hola</ModalBody>
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={onClose}>
+                        Close
+                      </Button>
+                      <Button variant="ghost">Secondary Action</Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              </div>
             </div>
           </Card.Grid>
           <Card.Grid hoverable={false} style={gridStyle}>
-            <button onClick={() => alert("haz la FUNCION")}>
-              {" "}
-              {/* //TODO: */}
-              add/change your avatar{" "}
-            </button>
             <p>Email: {email}</p>
             <p>Followers: {followers ? followers.length : "0"}</p>
             <p>Following: hay que hacer la logica en bakcend</p>
