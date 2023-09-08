@@ -38,6 +38,11 @@ const PostDetail = () => {
       >
         <div className="post-container">
           <p>Descripción: {post.body}</p>
+          {post.image ? (
+            <img alt="post-image" src={post.image}></img>
+          ) : (
+            <div></div>
+          )}
           <p>Likes: {post.likes?.length}</p>
         </div>
         <LikePost />

@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
 
 const AddPost = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
     body: "",
-    image: "",
+    image: null,
   });
 
   const { title, body, image } = formData;
@@ -20,9 +22,40 @@ const AddPost = () => {
       [e.target.name]: e.target.value,
     }));
 
-  const onSubmit = (e) => {
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      image: selectedFile,
+    }));
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createPost(formData));
+
+    if (title === "" || body === "" || !image) {
+      return notification.error({
+        message: "Rellene los campos y seleccione una imagen",
+      });
+    }
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("title", title);
+    formDataToSend.append("body", body);
+    formDataToSend.append("image", image);
+
+    try {
+      await dispatch(createPost(formDataToSend));
+      notification.success({
+        message: "Post creado con éxito",
+      });
+      navigate("/posts");
+    } catch (error) {
+      console.error("Error al crear el post:", error);
+      notification.error({
+        message: "Error al crear el post",
+      });
+    }
   };
 
   return (
@@ -42,10 +75,14 @@ const AddPost = () => {
           placeholder="body"
           onChange={onChange}
         />
-        <input type="file" name="image" accept="image/*,video/*" />
-        <Link to={"/posts"}>
-          <button type="submit">Add</button>
-        </Link>
+        <input
+          type="file"
+          name="image"
+          accept="image/*,video/*"
+          onChange={handleFileChange}
+        />
+
+        <button type="submit">Add</button>
       </form>
     </>
   );
