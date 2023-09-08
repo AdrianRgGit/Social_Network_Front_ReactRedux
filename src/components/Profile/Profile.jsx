@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { getUserLogged } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./profile.scss";
+import { Card } from "antd";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -24,38 +25,47 @@ const Profile = () => {
     <>
       <div>Profile</div>
       <div>
-        <h1>{username}</h1>
-        {avatar_url ? (
-          <img alt="avatar-profile-image" src={avatar_url}></img>
-        ) : (
-          <div></div>
-        )}
-        {/* //TODO: */}
-        <button onClick={() => alert("haz la FUNCION")}>
-          add/change your avatar{" "}
-        </button>
-        <p>Email: {email}</p>
-        <p>Followers: {followers ? followers.length : "0"}</p>
-        <p>Following: hay que hacer la logica en bakcend</p>
-        <p>posts hacer map o traer de componente</p>
+        <Card className="card-style" title={user.title} bordered={false}>
+          <h1>{username}</h1>
+          {avatar_url ? (
+            <img alt="avatar-profile-image" src={avatar_url}></img>
+          ) : (
+            <div></div>
+          )}
+          {/* //TODO: */}
+          <button onClick={() => alert("haz la FUNCION")}>
+            add/change your avatar{" "}
+          </button>
+          {user.image_url ? (
+            <img alt="user-image" src={user.image_url}></img>
+          ) : (
+            <div></div>
+          )}
+          <p>Email: {email}</p>
+          <p>Followers: {followers ? followers.length : "0"}</p>
+          <p>Following: hay que hacer la logica en bakcend</p>
+          <p>posts hacer map o traer de componente</p>
+        </Card>
         {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
         {postIds?.map((post) => {
           return (
-            <div key={post._id}>
-              <p>{post.title}</p>
-              <p>{post.body}</p>
-              <div classname="container-img-post">
-              {post.image_url ? (
-                <img
-                  classname="img-post"
-                  alt="post-image"
-                  src={post.image_url}
-                ></img>
-              ) : (
-                <div></div>
-              )}{" "}
+            <Card key={post._id}>
+              <div>
+                <p>{post.title}</p>
+                <p>{post.body}</p>
+                <div className="container-img-post">
+                  {post.image_url ? (
+                    <img
+                      className="img-post"
+                      alt="post-image"
+                      src={post.image_url}
+                    ></img>
+                  ) : (
+                    <div></div>
+                  )}{" "}
+                </div>
               </div>
-            </div>
+            </Card>
           );
         })}
       </div>
