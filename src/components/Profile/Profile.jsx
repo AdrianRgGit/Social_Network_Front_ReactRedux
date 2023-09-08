@@ -3,6 +3,7 @@ import { getUserLogged } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./profile.scss";
 import { Card } from "antd";
+import { deletePost } from "../../features/posts/postsSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,14 @@ const Profile = () => {
               <div>
                 <p>{post.title}</p>
                 <p>{post.body}</p>
+                <div>
+                  <button onClick={() => console.log(post._id)}>
+                    Borrar post
+                  </button>
+                  <button onClick={() => console.log("hola")}>
+                    Actualizar post
+                  </button>
+                </div>
                 <div className="container-img-post">
                   {post.image_url ? (
                     <img

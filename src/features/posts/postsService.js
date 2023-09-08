@@ -70,6 +70,20 @@ const dislike = async (_id) => {
   return res.data;
 };
 
+const deletePost = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.delete(
+    API_URL + "/delete/" + _id,
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  return res.data;
+};
+
 const postsService = {
   getPosts,
   getPostsComments,
@@ -79,6 +93,7 @@ const postsService = {
   createPost,
   like,
   dislike,
+  deletePost,
 };
 
 export default postsService;

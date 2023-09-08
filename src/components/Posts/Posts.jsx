@@ -3,7 +3,6 @@ import GetPosts from "./GetPosts/GetPosts";
 import AddPost from "./AddPost/AddPost";
 import PostDetail from "./PostDetail/PostDetail";
 import PrintPosts from "./GetPosts/PrintPosts/PrintPosts";
-import UserPosts from "./UserPosts/UserPosts";
 
 const Posts = () => {
   return (
@@ -12,7 +11,6 @@ const Posts = () => {
       <PrintPosts />
       <AddPost />
       <PostDetail />
-      <UserPosts />
     </>
   );
 };
