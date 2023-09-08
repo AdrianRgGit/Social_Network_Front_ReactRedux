@@ -60,8 +60,7 @@ const Profile = () => {
         {postIds?.map((post) => {
           return (
             <div key={post._id}>
-              <Card title={post.title} bordered={false}>
-                <p>{post.body}</p>
+              <Card className="container-card-profile" bordered={true}>
                 <div className="container-img-post">
                   {post.image_url ? (
                     <img
@@ -73,6 +72,8 @@ const Profile = () => {
                     <div></div>
                   )}{" "}
                 </div>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
                 <div>
                   <button onClick={() => console.log(post._id)}>
                     Borrar post
