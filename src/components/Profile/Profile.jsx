@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getUserLogged } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import ".profile.scss";
+import "./profile.scss";
 
 const Profile = () => {
   const dispatch = useDispatch();
