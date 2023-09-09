@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createComment } from "../../features/comment/CommentSlice";
+import { createComment } from "../../../features/comment/CommentSlice";
 import { useParams } from "react-router-dom";
 import { notification } from "antd";
 // import { getById } from "../../../features/posts/postsSlice";
+
 
 const AddComment = () => {
   const dispatch = useDispatch();
@@ -37,9 +38,6 @@ const AddComment = () => {
     });
     dispatch(createComment(formData));
     setFormData({ title: "", body: "", image: "" });
-    // ! Preguntar a sofía la manera que había para actualizar esto sin tener que hacer otra petición
-    // ! Sólo puedes comentar una vez por post sin refrescar la página
-    // dispatch(getById(_id));
   };
 
   return (

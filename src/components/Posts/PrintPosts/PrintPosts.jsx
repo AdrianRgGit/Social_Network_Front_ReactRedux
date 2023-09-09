@@ -3,7 +3,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import LikePost from "../LikePost/LikePost";
 
 const PrintPosts = () => {
   const { posts, isLoading } = useSelector((state) => state.posts);
@@ -11,8 +10,6 @@ const PrintPosts = () => {
   if (isLoading) {
     return <Spin />;
   }
-
-  console.log(posts[7]?.userId.username);
 
   const allPosts = posts.map((post) => {
     return (

@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "./profile.scss";
 import { Card } from "antd";
 import { deletePost } from "../../features/posts/postsSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useDispatch();
+
   const { user, isLoading } = useSelector((state) => state.auth);
   const { username, email, followers, postIds, avatar_url } = user;
 
@@ -73,6 +75,10 @@ const Profile = () => {
                     <div></div>
                   )}{" "}
                 </div>
+                <br />
+                <button>
+                  <Link to={"/profilepost/" + post._id}>Update Post</Link>
+                </button>
               </div>
             </Card>
           );
