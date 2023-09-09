@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getById, reset } from "../../../features/posts/postsSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { deletePost, getById, reset } from "../../../features/posts/postsSlice";
 import { Card } from "antd";
 import AddComment from "../../Comments/AddComment/AddComment";
 import LikePost from "../LikePost/LikePost";
@@ -16,6 +16,7 @@ const ProfilePost = () => {
   const { post } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -28,6 +29,15 @@ const ProfilePost = () => {
     }
     fetchData();
   }, []);
+
+  const deleteAndNavigate = async () => {
+    try {
+      dispatch(deletePost(_id));
+    } catch (error) {
+      console.error(error);
+    }
+    setTimeout(navigate("/profile"), 500);
+  };
 
   const printCard = () => {
     return (
@@ -47,6 +57,7 @@ const ProfilePost = () => {
             )}
             <p>Likes: {post.likes?.length}</p>
           </div>
+          <button onClick={() => deleteAndNavigate()}>Delete</button>
           <br />
         </Card>
         <UpdatePost />
