@@ -10,7 +10,7 @@ const register = async (userData) => {
 const login = async (userData) => {
   const res = await axios.post(API_URL + "/users/login", userData);
   if (res.data) {
-    localStorage.setItem("user", JSON.stringify(res.data.user));
+    localStorage.setItem("username", JSON.stringify(res.data.user));
     localStorage.setItem("token", JSON.stringify(res.data.token));
   }
   return res.data;
@@ -38,15 +38,24 @@ const getUserLogged = async () => {
     },
 
   })
-  console.log(res.data.getUser)
+  //console.log(res.data.getUser)
   return res.data.getUser
-}
+};
+
+const updateUser = async (userData) => {
+  const res = await axios.put(API_URL + "/users/id" + _id, userData);
+  console.log(res.data)
+  return res.data;
+};
+
+
 
 const authService = {
   register,
   login,
   logout,
   getUserLogged,
+  updateUser,
 };
 
 export default authService;

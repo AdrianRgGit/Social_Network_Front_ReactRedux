@@ -1,28 +1,25 @@
-import React, { useEffect } from "react";
-import { getUserLogged } from "../../features/auth/authSlice";
+import React, { useEffect, useState } from "react";
+import { getUserLogged, updateUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "./profile.scss";
-import { Card } from "antd";
+import { Card, notification } from "antd";
 import { deletePost } from "../../features/posts/postsSlice";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure,
-  Button,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import ModalRender from "../ModalRender/ModalRender";
 
 const Profile = () => {
+
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.auth);
-  const { username, email, followers, postIds, avatar_url } = user;
+  const { username, email, followers, postIds, avatar_url, avatar } = user;
   const { isOpen, onOpen, onClose } = useDisclosure();
+const [userEdit, setUserEdit] = useState({})
+  const navigate = useNavigate();
 
-  console.log("user before useEffect", user);
+  //console.log("user before useEffect", user);
 
   useEffect(() => {
     dispatch(getUserLogged());
@@ -31,6 +28,55 @@ const Profile = () => {
   if (isLoading) {
     return <span>cargando</span>;
   }
+
+  //FIXME: utilizar en el form para actualizar user
+  const onChange = (e) =>
+  setUserEdit( prevState =>( {
+      ...prevState,
+    [e.target.name]: e.target.value
+    }));
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    console.log(selectedFile.name)
+    setUserEdit( prevState =>( {
+      ...prevState,
+      avatar: selectedFile.name,
+    }));
+    
+  };
+
+
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    // if (title === "" || body === "" || !image) {
+    //   return notification.error({
+    //     message: "Rellene los campos y seleccione una imagen",
+    //   });
+    // }
+
+    // const formDataToSend = new FormData();
+    // formDataToSend.append("username", username);
+    // formDataToSend.append("email", email);
+    // formDataToSend.append("avatar", avatar);
+    
+    try {
+      console.log(userEdit)
+      dispatch(updateUser(userEdit));
+      notification.success({
+        message: "User updated successfully",
+      });
+      console.log("User updated successfully");
+      //TODO: cerrar modal y refrescar pagina
+    } catch (error) {
+      console.error("Error updating user:", error);
+      // notification.error({
+      //   message: "Error updating user",
+      // });
+    }
+  };
 
   const gridStyle = {
     width: "50%",
@@ -46,7 +92,6 @@ const Profile = () => {
               <h1>{username}</h1>
               {avatar_url ? (
                 <img
-                  onClick={onOpen}
                   className="avatar"
                   alt="avatar-profile-image"
                   src={avatar_url}
@@ -55,20 +100,22 @@ const Profile = () => {
                 <div></div>
               )}
               <div className="modal-profile">
-                <Modal isOpen={isOpen} onClose={onClose}>
-                  <ModalOverlay />
-                  <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>hola</ModalBody>
-                    <ModalFooter>
-                      <Button colorScheme="blue" mr={3} onClick={onClose}>
-                        Close
-                      </Button>
-                      <Button variant="ghost">Secondary Action</Button>
-                    </ModalFooter>
-                  </ModalContent>
-                </Modal>
+                <ModalRender 
+                 modalTitle= {"Change image"}
+                textBtn = {"Change image"}
+                text={
+                       <>
+                       <form onSubmit={onSubmit}>
+                         <input
+                           type="file"
+                           name="avatar"
+                           accept="image/*,video/*"
+                           onChange={handleFileChange}
+                         />
+                         <button type="submit">Send</button>
+                       </form>
+                     </>
+                }/>
               </div>
             </div>
           </Card.Grid>
@@ -76,6 +123,34 @@ const Profile = () => {
             <p>Email: {email}</p>
             <p>Followers: {followers ? followers.length : "0"}</p>
             <p>Following: hay que hacer la logica en bakcend</p>
+            <button onClick={onOpen}>Update User</button>
+            <div className="modal-profile">
+       
+            <ModalRender 
+            modalTitle= {"Update user"}
+              textBtn = {"Update user"}
+                text={
+                  <>
+                  <form onSubmit={onSubmit}>
+                    <input
+                      type="text"
+                      name="username"
+                      value={username}
+                      placeholder="username"
+                      onChange={onChange}
+                    />
+                    <input
+                      type="text"
+                      name="email"
+                      value={email}
+                      placeholder="email"
+                      onChange={onChange}
+                    />
+                    <button type="submit">Send</button>
+                  </form>
+                </>
+                }/>
+            </div>
           </Card.Grid>
         </Card>
       </div>

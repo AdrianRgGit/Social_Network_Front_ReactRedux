@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "./authService";
 
-const user = JSON.parse(localStorage.getItem("user")) || null;
+const user = JSON.parse(localStorage.getItem("username")) || null;
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
 
@@ -14,7 +14,7 @@ const initialState = {
   isLoading: false,
 };
 
-console.log(initialState.user)
+//console.log(initialState.user)
 
 export const authSlice = createSlice({
   name: "auth",
@@ -57,11 +57,15 @@ export const authSlice = createSlice({
       .addCase(getUserLogged.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoading = false;
-        console.log("fulfilled Logged", state.user)
+        //console.log("fulfilled Logged", state.user)
       })
-      .addCase(getUserLogged.rejected, (state, action) => {
+      .addCase(getUserLogged.rejected, (state) => {
         state.isError = true;
         state.message = "error getUserLogged";
+      })
+      .addCase(updateUser.fulfilled, (state, action ) => {
+        console.log("fulfilled update", action)
+        state.user = action.payload
       })
   },
 });
@@ -108,5 +112,15 @@ export const getUserLogged = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk("auth/updateUser", async (user, thunkAPI) => {
+  try {
+    return await authService.updateUser(user);
+  } catch (error) {
+    console.error("updateUser slice error", error.response.data);
+    //const message = error.response.data.message;
+    //return thunkAPI.rejectWithValue(message);
+  }
+});
 
 export default authSlice.reducer;
