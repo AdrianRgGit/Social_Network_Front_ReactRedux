@@ -42,6 +42,20 @@ const createPost = async (postData) => {
   return res.data;
 };
 
+// const updatePost = async (_id, postData) => {
+//   const token = JSON.parse(localStorage.getItem("token"));
+//   const res = await axios.put(
+//     API_URL + "/id/" + _id,
+//     {},
+//     {
+//       headers: {
+//         Authorization: token,
+//       },
+//     }
+//   );
+//   return res.data;
+// };
+
 const like = async (_id) => {
   const token = JSON.parse(localStorage.getItem("token"));
   const res = await axios.put(
@@ -74,7 +88,6 @@ const deletePost = async (_id) => {
   const token = JSON.parse(localStorage.getItem("token"));
   const res = await axios.delete(
     API_URL + "/delete/" + _id,
-    {},
     {
       headers: {
         Authorization: token,
@@ -91,6 +104,7 @@ const postsService = {
   getPostsByName,
   getUserConnected,
   createPost,
+  // updatePost,
   like,
   dislike,
   deletePost,

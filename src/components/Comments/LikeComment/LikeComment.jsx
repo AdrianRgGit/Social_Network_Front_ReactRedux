@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { dislike, like } from "../../features/comment/CommentSlice";
+import { dislike, like } from "../../../features/comment/CommentSlice";
 import { useParams } from "react-router-dom";
 
 const LikeComment = (props) => {

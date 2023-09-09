@@ -13,12 +13,13 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 import ModalRender from "../ModalRender/ModalRender";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useDispatch();
+
   const { user, isLoading } = useSelector((state) => state.auth);
   const { username, email, followers, postIds, avatar_url, avatar } = user;
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -205,7 +206,11 @@ const Profile = () => {
                   <button onClick={() => console.log("hola")}>
                     Actualizar post
                   </button>
-                </div>
+                  <br />
+                <button>
+                  <Link to={"/profilepost/" + post._id}>Update Post</Link>
+                </button>
+              </div>
               </Card>
             </div>
           );

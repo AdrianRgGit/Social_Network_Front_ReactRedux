@@ -3,9 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
 import { Card } from "antd";
-import AddComment from "../../AddComment/AddComment";
+import AddComment from "../../Comments/AddComment/AddComment";
 import LikePost from "../LikePost/LikePost";
-import LikeComment from "../../LikeComment/LikeComment";
+import LikeComment from "../../Comments/LikeComment/LikeComment";
+
+// ! Que sólo se muestre el formulario de hacer un comentario cuando le de al botón de comment
+// ! Que salga el nombre del usuario que ha comentado
+// ! No me va al hacer un subcomponente para los comentarios
 
 const PostDetail = () => {
   const { _id } = useParams();
@@ -25,10 +29,8 @@ const PostDetail = () => {
     fetchData();
   }, []);
 
-  // ! Que sólo se muestre el formulario de hacer un comentario cuando le de al botón de comment
-  // ! Que salga el nombre del usuario que ha comentado
 
-  const printCard = (message) => {
+  const printCard = () => {
     return (
       <Card
         className="card-style"
@@ -46,6 +48,7 @@ const PostDetail = () => {
           <p>Likes: {post.likes?.length}</p>
         </div>
         <LikePost />
+        {/* <CommentList comments={post.commentIds} /> */}
         <br />
         <div className="comments-container">
           Comments:
@@ -60,7 +63,7 @@ const PostDetail = () => {
               </div>
             );
           })}
-          <div>{message}</div>
+          <br />
           <button>Comment</button>
         </div>
       </Card>
@@ -83,3 +86,4 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+
