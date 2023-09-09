@@ -26,7 +26,7 @@ const PrintPosts = () => {
   }
 
   const allPosts = posts.map((post) => {
-    console.log(post)
+    console.log(post);
     return (
       <div key={post._id}>
         <Link to={"/postdetail/" + post._id}>
@@ -34,15 +34,11 @@ const PrintPosts = () => {
           <Card maxW="md">
             <CardHeader>
               <Text fontSize="3xl">{post.title}</Text>
+              <Text fontSize="3x1">Likes {post.likes.length}</Text>
             </CardHeader>
             <CardBody>
-              <Text>{post.body}</Text>
+              <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
             </CardBody>
-            <Image
-              objectFit="cover"
-              src={post.image_url}
-              alt="Chakra UI"
-            />
 
             <CardFooter
               justify="space-between"
@@ -57,19 +53,14 @@ const PrintPosts = () => {
               <Flex spacing="4">
                 <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
                   <Avatar
-                    name="Segun Adebayo"
-                    src="https://bit.ly/sage-adebayo"
+                    name={post.userId?.username}
+                    src={post.userId?.avatar_url}
                   />
 
                   <Box>
-                    <Heading size="sm">Segun Adebayo</Heading>
+                    <Heading size="sm">{post.userId?.username}</Heading>
                   </Box>
                 </Flex>
-                <IconButton
-                  variant="ghost"
-                  colorScheme="gray"
-                  aria-label="See menu"
-                />
               </Flex>
             </CardFooter>
           </Card>
