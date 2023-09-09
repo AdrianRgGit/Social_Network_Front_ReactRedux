@@ -42,9 +42,21 @@ const getUserLogged = async () => {
   return res.data.getUser
 };
 
-const updateUser = async (userData) => {
-  const res = await axios.put(API_URL + "/users/id" + _id, userData);
-  console.log(res.data)
+const updateUser = async (userData, _id) => {
+  console.log("update Service",userData)
+  console.log("id",_id)
+  const token = JSON.parse(localStorage.getItem("token"));
+  console.log("token",token)
+  const res = await axios.put(
+    API_URL + "/users/id/" + _id,
+    userData,
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+  console.log("service user", res.data);
   return res.data;
 };
 

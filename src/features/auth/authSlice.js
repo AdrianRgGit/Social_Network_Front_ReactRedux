@@ -114,6 +114,7 @@ export const getUserLogged = createAsyncThunk(
 );
 
 export const updateUser = createAsyncThunk("auth/updateUser", async (user, thunkAPI) => {
+  console.log("slice user", user)
   try {
     return await authService.updateUser(user);
   } catch (error) {

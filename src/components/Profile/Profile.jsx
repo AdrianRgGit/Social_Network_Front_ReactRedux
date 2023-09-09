@@ -69,10 +69,10 @@ const Profile = () => {
     try {
       console.log(userEdit);
       dispatch(updateUser(userEdit));
-      notification.success({
-        message: "User updated successfully",
-      });
-      console.log("User updated successfully");
+      // notification.success({
+      //   message: "User updated successfully",
+      // });
+      console.log("User update success notification");
       //TODO: cerrar modal y refrescar pagina
     } catch (error) {
       console.error("Error updating user:", error);
