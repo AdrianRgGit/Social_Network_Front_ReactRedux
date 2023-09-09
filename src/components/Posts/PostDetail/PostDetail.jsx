@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
 import AddComment from "../../Comments/AddComment/AddComment";
 import LikePost from "../LikePost/LikePost";
-import LikeComment from "../../Comments/LikeComment/LikeComment";
 
 import {
   Button,
@@ -21,10 +20,7 @@ import {
   Flex,
   Spinner,
 } from "@chakra-ui/react";
-
-// ! Que sólo se muestre el formulario de hacer un comentario cuando le de al botón de comment
-// ! Que salga el nombre del usuario que ha comentado
-// ! No me va al hacer un subcomponente para los comentarios
+import CommentList from "../../Comments/CommentList/CommentList"; // Importa el componente CommentList desde el mismo directorio
 
 const PostDetail = () => {
   const { _id } = useParams();
@@ -44,6 +40,10 @@ const PostDetail = () => {
     fetchData();
   }, []);
 
+  if (!post) {
+    return <Spinner />;
+  }
+  
   const printCard = () => {
     return (
       <Card maxW="md">
@@ -81,53 +81,15 @@ const PostDetail = () => {
           </Flex>
         </CardFooter>
       </Card>
-      // <Card
-      //   className="card-style"
-      //   key={post._id}
-      //   title={post.title}
-      //   bordered={false}
-      // >
-      //   <div className="post-container">
-      //     <p>Descripción: {post.body}</p>
-      //     {post.image ? (
-      //       <img alt="post-image" src={post.image_url}></img>
-      //     ) : (
-      //       <div></div>
-      //     )}
-      //     <p>Likes: {post.likes?.length}</p>
-      //   </div>
-      //   <LikePost />
-      //   {/* <CommentList comments={post.commentIds} /> */}
-      //   <br />
-      //   <div className="comments-container">
-      //     Comments:
-      //     {post.commentIds?.map((comment) => {
-      //       return (
-      //         <div key={comment._id}>
-      //           <div>Title: {comment.title}</div>
-      //           <div>Body: {comment.body}</div>
-      //           <div>Likes: {comment.likes.length}</div>
-      //           <br />
-      //           <LikeComment key={comment._id} comment={comment} />
-      //         </div>
-      //       );
-      //     })}
-      //     <br />
-      //     <button>Comment</button>
-      //   </div>
-      // </Card>
     );
   };
-
-  if (post.commentIds?.length === 0) {
-    const message = "Todavía no hay ningún comentario ¡Se el primero!";
-    return <>{printCard(message)}</>;
-  }
 
   return (
     <>
       {printCard()}
       <div>
+        {/* Utiliza el componente CommentList y pasa las prop comments */}
+        <CommentList comments={post.commentIds} />
         <AddComment />
       </div>
     </>
