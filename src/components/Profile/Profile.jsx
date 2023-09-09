@@ -1,22 +1,28 @@
+import "./profile.scss";
 import React, { useEffect, useState } from "react";
 import { getUserLogged, updateUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import "./profile.scss";
-import { Card, notification } from "antd";
+import { notification } from "antd";
 import { deletePost } from "../../features/posts/postsSlice";
 import {
+  Button,
+  ButtonGroup,
+  Heading,
+  Image,
+  Stack,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import ModalRender from "../ModalRender/ModalRender";
+import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 
 const Profile = () => {
-
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.auth);
   const { username, email, followers, postIds, avatar_url, avatar } = user;
   const { isOpen, onOpen, onClose } = useDisclosure();
-const [userEdit, setUserEdit] = useState({})
+  const [userEdit, setUserEdit] = useState({});
   const navigate = useNavigate();
 
   //console.log("user before useEffect", user);
@@ -31,22 +37,19 @@ const [userEdit, setUserEdit] = useState({})
 
   //FIXME: utilizar en el form para actualizar user
   const onChange = (e) =>
-  setUserEdit( prevState =>( {
+    setUserEdit((prevState) => ({
       ...prevState,
-    [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    console.log(selectedFile.name)
-    setUserEdit( prevState =>( {
+    console.log(selectedFile.name);
+    setUserEdit((prevState) => ({
       ...prevState,
       avatar: selectedFile.name,
     }));
-    
   };
-
-
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -61,9 +64,9 @@ const [userEdit, setUserEdit] = useState({})
     // formDataToSend.append("username", username);
     // formDataToSend.append("email", email);
     // formDataToSend.append("avatar", avatar);
-    
+
     try {
-      console.log(userEdit)
+      console.log(userEdit);
       dispatch(updateUser(userEdit));
       notification.success({
         message: "User updated successfully",
@@ -78,99 +81,121 @@ const [userEdit, setUserEdit] = useState({})
     }
   };
 
-  const gridStyle = {
-    width: "50%",
-    textAlign: "center",
-  };
-
   return (
     <>
-      <div className="container-card-profile">
-        <Card title="Profile">
-          <Card.Grid className="card-grid" style={gridStyle}>
-            <div>
-              <h1>{username}</h1>
+      <div className="container-profile">
+        <div className="card-profile-data">
+          <Card
+            direction={{ base: "column", sm: "row" }}
+            overflow="hidden"
+            variant="filled"
+          >
+            <div className="container-img-profile">
               {avatar_url ? (
-                <img
-                  className="avatar"
-                  alt="avatar-profile-image"
+                <Image
+                  className="img-profile"
+                  objectFit="cover"
+                  maxW={{ base: "100%", sm: "200px" }}
                   src={avatar_url}
-                ></img>
+                  alt="avatar-profile-image"
+                />
               ) : (
                 <div></div>
               )}
-              <div className="modal-profile">
-                <ModalRender 
-                 modalTitle= {"Change image"}
-                textBtn = {"Change image"}
-                text={
-                       <>
-                       <form onSubmit={onSubmit}>
-                         <input
-                           type="file"
-                           name="avatar"
-                           accept="image/*,video/*"
-                           onChange={handleFileChange}
-                         />
-                         <button type="submit">Send</button>
-                       </form>
-                     </>
-                }/>
-              </div>
             </div>
-          </Card.Grid>
-          <Card.Grid hoverable={false} style={gridStyle}>
-            <p>Email: {email}</p>
-            <p>Followers: {followers ? followers.length : "0"}</p>
-            <p>Following: hay que hacer la logica en bakcend</p>
-            <button onClick={onOpen}>Update User</button>
-            <div className="modal-profile">
-       
-            <ModalRender 
-            modalTitle= {"Update user"}
-              textBtn = {"Update user"}
-                text={
-                  <>
-                  <form onSubmit={onSubmit}>
-                    <input
-                      type="text"
-                      name="username"
-                      value={username}
-                      placeholder="username"
-                      onChange={onChange}
-                    />
-                    <input
-                      type="text"
-                      name="email"
-                      value={email}
-                      placeholder="email"
-                      onChange={onChange}
-                    />
-                    <button type="submit">Send</button>
-                  </form>
-                </>
-                }/>
-            </div>
-          </Card.Grid>
-        </Card>
+            <Stack>
+              <CardBody>
+                <Heading title="Profile" size="lg">
+                  {username}
+                </Heading>
+                <div className="profile-data">
+                  <Text py="2">Email: {email}</Text>
+                  <Text py="2">
+                    Followers: {followers ? followers.length : "0"}
+                  </Text>
+                  <Text py="2">
+                    Following: hay que hacer la logica en bakcend
+                  </Text>
+                </div>
+              </CardBody>
+
+              <CardFooter>
+                <div className="modal-profile">
+                  <ModalRender
+                    modalTitle={"Change image"}
+                    textBtn={"Change image"}
+                    text={
+                      <>
+                        <form onSubmit={onSubmit}>
+                          <input
+                            type="file"
+                            name="avatar"
+                            accept="image/*,video/*"
+                            onChange={handleFileChange}
+                          />
+                          <button type="submit">Send</button>
+                        </form>
+                      </>
+                    }
+                  />
+                </div>
+
+                <div className="modal-profile">
+                  <ModalRender
+                    modalTitle={"Update user"}
+                    textBtn={"Update user"}
+                    text={
+                      <>
+                        <form onSubmit={onSubmit}>
+                          <input
+                            type="text"
+                            name="username"
+                            value={username}
+                            placeholder="username"
+                            onChange={onChange}
+                          />
+                          <input
+                            type="text"
+                            name="email"
+                            value={email}
+                            placeholder="email"
+                            onChange={onChange}
+                          />
+                          <button type="submit">Send</button>
+                        </form>
+                      </>
+                    }
+                  />
+                </div>
+
+                <Button variant="solid" colorScheme="blue">
+                  Add Post
+                  {/* useNavigate to addpost (ocultar comp en header) */}
+                </Button>
+              </CardFooter>
+            </Stack>
+          </Card>
+        </div>
       </div>
       <div className="container-post-profile">
         {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
         {postIds?.map((post) => {
           return (
             <div key={post._id}>
-              <Card className="container-card-profile" bordered={true}>
-                <div className="container-img-post">
-                  {post.image_url ? (
-                    <img
-                      className="img-post"
-                      alt="post-image"
-                      src={post.image_url}
-                    ></img>
-                  ) : (
-                    <div></div>
-                  )}{" "}
-                </div>
+              <Card className="card-profile-post">
+              <div className="container-img-post">
+              {post.image_url ? (
+                <Image
+                  className="img-post"
+                  objectFit="cover"
+                  maxW={{ base: "100%", sm: "200px" }}
+                  src={post.image_url}
+                  alt="post-image"
+                />
+              ) : (
+                <div></div>
+              )}
+            </div>
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
                 <div>
