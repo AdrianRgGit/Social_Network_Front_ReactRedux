@@ -22,48 +22,47 @@ const Profile = () => {
     return <span>cargando</span>;
   }
 
-  console.log("user after useEffect", user);
+  const gridStyle = {
+    width: "50%",
+    textAlign: "center",
+  };
 
   return (
     <>
-      <div>Profile</div>
-      <div>
-        <Card className="card-style" title={user.title} bordered={false}>
-          <h1>{username}</h1>
-          {avatar_url ? (
-            <img alt="avatar-profile-image" src={avatar_url}></img>
-          ) : (
-            <div></div>
-          )}
-          {/* //TODO: */}
-          <button onClick={() => alert("haz la FUNCION")}>
-            add/change your avatar{" "}
-          </button>
-          {user.image_url ? (
-            <img alt="user-image" src={user.image_url}></img>
-          ) : (
-            <div></div>
-          )}
-          <p>Email: {email}</p>
-          <p>Followers: {followers ? followers.length : "0"}</p>
-          <p>Following: hay que hacer la logica en bakcend</p>
-          <p>posts hacer map o traer de componente</p>
+      <div className="container-card-profile">
+        <Card title="Profile">
+          <Card.Grid className="card-grid" style={gridStyle}>
+            <div>
+              <h1>{username}</h1>
+              {avatar_url ? (
+                <img
+                  className="avatar"
+                  alt="avatar-profile-image"
+                  src={avatar_url}
+                ></img>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          </Card.Grid>
+          <Card.Grid hoverable={false} style={gridStyle}>
+            <button onClick={() => alert("haz la FUNCION")}>
+              {" "}
+              {/* //TODO: */}
+              add/change your avatar{" "}
+            </button>
+            <p>Email: {email}</p>
+            <p>Followers: {followers ? followers.length : "0"}</p>
+            <p>Following: hay que hacer la logica en bakcend</p>
+          </Card.Grid>
         </Card>
+      </div>
+      <div className="container-post-profile">
         {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
         {postIds?.map((post) => {
           return (
-            <Card key={post._id}>
-              <div>
-                <p>{post.title}</p>
-                <p>{post.body}</p>
-                <div>
-                  <button onClick={() => console.log(post._id)}>
-                    Borrar post
-                  </button>
-                  <button onClick={() => console.log("hola")}>
-                    Actualizar post
-                  </button>
-                </div>
+            <div key={post._id}>
+              <Card className="container-card-profile" bordered={true}>
                 <div className="container-img-post">
                   {post.image_url ? (
                     <img
@@ -75,12 +74,22 @@ const Profile = () => {
                     <div></div>
                   )}{" "}
                 </div>
-                <br />
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+                <div>
+                  <button onClick={() => console.log(post._id)}>
+                    Borrar post
+                  </button>
+                  <button onClick={() => console.log("hola")}>
+                    Actualizar post
+                  </button>
+                  <br />
                 <button>
                   <Link to={"/profilepost/" + post._id}>Update Post</Link>
                 </button>
               </div>
-            </Card>
+              </Card>
+            </div>
           );
         })}
       </div>
