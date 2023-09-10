@@ -10,7 +10,8 @@ const initialState = {
   isError: false,
   message: "",
   isLoading: false,
-  userConnected: {}
+  userConnected: {},
+  _id: ""
 };
 
 
@@ -37,10 +38,11 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload.user)
+        console.log(action.payload)
         state.isSuccess = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state._id = action.payload.userObject._id
       })
       .addCase(login.rejected, (state, action) => {
         state.isError = true;
@@ -56,15 +58,12 @@ export const authSlice = createSlice({
       .addCase(getUserConnected.fulfilled, (state, action) => {
         state.userConnected = action.payload;
         state.isLoading = false;
-        console.log("connected action", state.userConnected)
-        //console.log("fulfilled Logged", state.user)
       })
       .addCase(getUserConnected.rejected, (state) => {
         state.isError = true;
         state.message = "error getUserConnected";
       })
       .addCase(updateUser.fulfilled, (state, action ) => {
-        console.log("fulfilled update", action)
         state.user = action.payload
       })
   },

@@ -7,10 +7,10 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, userConnected } = useSelector((state) => state.auth);
+  const { user, userConnected, _id } = useSelector((state) => state.auth);
 
-  const {_id} = userConnected
-  //console.log(_id)
+
+  console.log(_id)
 
   const onLogout = (e) => {
     e.preventDefault();

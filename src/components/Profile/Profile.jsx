@@ -20,6 +20,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 const Profile = () => {
   const { _id } = useParams();
 
+ 
+
   const dispatch = useDispatch();
   
   const { userConnected, user, isLoading } = useSelector((state) => state.auth);
