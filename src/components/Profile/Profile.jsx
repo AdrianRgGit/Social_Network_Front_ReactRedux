@@ -24,9 +24,13 @@ const Profile = () => {
   
   const { userConnected, user, isLoading } = useSelector((state) => state.auth);
   const { username, email, followers, postIds, avatar_url, avatar } = userConnected;
-  
-  
-  const [userEdit, setUserEdit] = useState({});
+
+
+  const [userEdit, setUserEdit] = useState({
+    username: username || "", // Asigna el valor actual o una cadena vacía, es importante inicilizar el estado de un input
+    email: email || "", // Asigna el valor actual o una cadena vacía
+  });
+
   
   // const navigate = useNavigate();
   
