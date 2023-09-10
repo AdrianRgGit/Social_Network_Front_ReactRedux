@@ -195,17 +195,15 @@ const Profile = () => {
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
                 <div>
-                  <button onClick={() => console.log(post._id)}>
+                  <button onClick={() => dispatch(deletePost(post._id))}>
                     Borrar post
                   </button>
-                  <button onClick={() => console.log("hola")}>
-                    Actualizar post
+                  <button>
+                    <Link to={"/profilepost/" + post._id}>Update Post</Link>
                   </button>
+
                   <br />
-                <button>
-                  <Link to={"/profilepost/" + post._id}>Update Post</Link>
-                </button>
-              </div>
+                </div>
               </Card>
             </div>
           );
