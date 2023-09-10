@@ -7,7 +7,11 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
+  const { user, userConnected } = useSelector((state) => state.auth);
+
+  const {_id} = userConnected
+  //console.log(_id)
+
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
@@ -15,6 +19,8 @@ const Header = () => {
   };
 
   const { posts } = useSelector((state) => state.posts);
+
+
 
   const [text, setText] = useState("");
 
@@ -31,7 +37,7 @@ const Header = () => {
         {user ? (
           <>
           <span onClick={onLogout}>Logout | </span>
-          <span><Link to={"/profile"}>Profile | </Link></span>
+           <span><Link to={`/profile/${_id}`}>Profile | </Link></span>
           </>
           
         ) : (

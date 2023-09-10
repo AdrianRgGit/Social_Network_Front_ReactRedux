@@ -8,9 +8,10 @@ const register = async (userData) => {
 };
 
 const login = async (userData) => {
-  const res = await axios.post(API_URL + "/users/login", userData);
+  const res = await axios.post(API_URL + "/users/login", userData); //email + password de los inputs del login
+
   if (res.data) {
-    localStorage.setItem("username", JSON.stringify(res.data.user));
+    localStorage.setItem("user", JSON.stringify(res.data.user));
     localStorage.setItem("token", JSON.stringify(res.data.token));
   }
   return res.data;
@@ -30,25 +31,28 @@ const logout = async () => {
   return res.data;
 };
 
-const getUserLogged = async () => {
+const getUserConnected = async (_id) => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const res = await axios.get(API_URL + "/users/getuserconnected", {
+  const res = await axios.get(API_URL + "/users/getuserconnected/" + _id, {
     headers: {
       authorization: token,
     },
+  });
 
-  })
-  //console.log(res.data.getUser)
-  return res.data.getUser
+  return res.data.getUser;
 };
 
-const updateUser = async (userData, _id) => {
-  console.log("update Service",userData)
-  console.log("id",_id)
+// http://localhost:3000/users/getuserconnected/64f9d819f052557b73482724
+// (API_URL + "/posts/id/"+id)
+
+const updateUser = async (userId, userData) => {
+  console.log("update Service", userData);
+  console.log("id", userId);
   const token = JSON.parse(localStorage.getItem("token"));
-  console.log("token",token)
+  console.log("token", token);
   const res = await axios.put(
-    API_URL + "/users/id/" + _id,
+    // `${API_URL}/users/id/${userId}`,
+    API_URL + "/users/id/" + userId,
     userData,
     {
       headers: {
@@ -60,13 +64,11 @@ const updateUser = async (userData, _id) => {
   return res.data;
 };
 
-
-
 const authService = {
   register,
   login,
   logout,
-  getUserLogged,
+  getUserConnected,
   updateUser,
 };
 

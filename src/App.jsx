@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:_id" element={<Profile />} />
           <Route path="/posts" element={<GetPosts />} />
           <Route path="/postdetail/:_id" element={<PostDetail />} />
           <Route path="/search/:title" element={<Search />} />

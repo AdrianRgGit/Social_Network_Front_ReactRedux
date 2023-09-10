@@ -1,6 +1,6 @@
 import "./profile.scss";
 import React, { useEffect, useState } from "react";
-import { getUserLogged, updateUser } from "../../features/auth/authSlice";
+import { getUserConnected, updateUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { deletePost } from "../../features/posts/postsSlice";
@@ -15,29 +15,36 @@ import {
 } from "@chakra-ui/react";
 import ModalRender from "../ModalRender/ModalRender";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Profile = () => {
+  const { _id } = useParams();
+
   const dispatch = useDispatch();
-
-  const { user, isLoading } = useSelector((state) => state.auth);
-  const { username, email, followers, postIds, avatar_url, avatar } = user;
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  
+  const { userConnected, user, isLoading } = useSelector((state) => state.auth);
+  const { username, email, followers, postIds, avatar_url, avatar } = userConnected;
+  
+  
   const [userEdit, setUserEdit] = useState({});
-  const navigate = useNavigate();
-
-  //console.log("user before useEffect", user);
-
+  
+  // const navigate = useNavigate();
+  
   useEffect(() => {
-    dispatch(getUserLogged());
-  }, []);
+    dispatch(getUserConnected(_id));
+  }, [avatar]);
+
+ 
+
+
 
   if (isLoading) {
-    return <span>cargando</span>;
+    return <span>cargando...</span>;
   }
 
+
   //FIXME: utilizar en el form para actualizar user
-  const onChange = (e) =>
+  const handleInputChange = (e) =>
     setUserEdit((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -54,21 +61,9 @@ const Profile = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    // if (title === "" || body === "" || !image) {
-    //   return notification.error({
-    //     message: "Rellene los campos y seleccione una imagen",
-    //   });
-    // }
-
-    // const formDataToSend = new FormData();
-    // formDataToSend.append("username", username);
-    // formDataToSend.append("email", email);
-    // formDataToSend.append("avatar", avatar);
-
     try {
       console.log(userEdit);
-      dispatch(updateUser(userEdit));
+      dispatch(updateUser(user._id, userEdit));
       // notification.success({
       //   message: "User updated successfully",
       // });
@@ -151,16 +146,16 @@ const Profile = () => {
                           <input
                             type="text"
                             name="username"
-                            value={username}
+                            value={userEdit.username}
                             placeholder="username"
-                            onChange={onChange}
+                            onChange={handleInputChange}
                           />
                           <input
                             type="text"
                             name="email"
-                            value={email}
+                            value={userEdit.email}
                             placeholder="email"
-                            onChange={onChange}
+                            onChange={handleInputChange}
                           />
                           <button type="submit">Send</button>
                         </form>
