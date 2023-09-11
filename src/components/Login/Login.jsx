@@ -23,7 +23,7 @@ const Login = () => {
         description: message,
       });     
         setTimeout(() => {
-        navigate("/posts");
+        navigate("/");
       }, 3000);
     }
     if (isError) {

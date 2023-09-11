@@ -24,17 +24,26 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const { userConnected, user, isLoading } = useSelector((state) => state.auth);
-  const { username, email, followers, postIds, avatar_url, avatar } =
-    userConnected;
+  const { username, email, followers, postIds, avatar_url, avatar } = userConnected;
+  console.log(userConnected)
 
-  const [userEdit, setUserEdit] = useState({});
+  const [userEdit, setUserEdit] = useState({
+    username: username || "", // Asigna el valor actual o una cadena vacía, es importante inicilizar el estado de un input
+    email: email || "", // Asigna el valor actual o una cadena vacía
+  });
 
+  
   // const navigate = useNavigate();
 
   useEffect(() => {
+  
     dispatch(getUserConnected(_id));
   }, [avatar]);
 
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> develop
   if (isLoading) {
     return <span>cargando...</span>;
   }
@@ -59,7 +68,8 @@ const Profile = () => {
     e.preventDefault();
     try {
       console.log(userEdit);
-      dispatch(updateUser(user._id, userEdit));
+      console.log(_id)
+      dispatch(updateUser(_id, userEdit));
       // notification.success({
       //   message: "User updated successfully",
       // });

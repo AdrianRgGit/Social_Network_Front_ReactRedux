@@ -9,9 +9,9 @@ const register = async (userData) => {
 
 const login = async (userData) => {
   const res = await axios.post(API_URL + "/users/login", userData); //email + password de los inputs del login
-
+  console.log(res.data)
   if (res.data) {
-    localStorage.setItem("user", JSON.stringify(res.data.user));
+    localStorage.setItem("user", JSON.stringify(res.data.user)); //user del back y user del back es user.username
     localStorage.setItem("token", JSON.stringify(res.data.token));
   }
   return res.data;
@@ -38,7 +38,7 @@ const getUserConnected = async (_id) => {
       authorization: token,
     },
   });
-
+  
   return res.data.getUser;
 };
 

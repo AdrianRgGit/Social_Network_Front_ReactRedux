@@ -7,10 +7,10 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, userConnected } = useSelector((state) => state.auth);
+  const { user, userConnected, _id } = useSelector((state) => state.auth);
 
-  const {_id} = userConnected
-  //console.log(_id)
+  console.log(_id);
+  console.log(userConnected._id);
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -19,8 +19,6 @@ const Header = () => {
   };
 
   const { posts } = useSelector((state) => state.posts);
-
-
 
   const [text, setText] = useState("");
 
@@ -34,12 +32,14 @@ const Header = () => {
   return (
     <nav className="nav-container">
       <div className="links-container">
+        <Link to={"/"}>Home | </Link>
         {user ? (
           <>
-          <span onClick={onLogout}>Logout | </span>
-           <span><Link to={`/profile/${_id}`}>Profile | </Link></span>
+            <span onClick={onLogout}>Logout | </span>
+            <span>
+              <Link to={`/profile/${_id}`}>Profile | </Link>
+            </span>
           </>
-          
         ) : (
           <>
             <span>
@@ -48,12 +48,11 @@ const Header = () => {
             <span>
               <Link to={"/register"}>Register | </Link>
             </span>
+            <span>
+              <Link to={"/addpost"}>Add Post </Link>
+            </span>
           </>
         )}
-
-        <Link to={"/"}>Home | </Link>
-        <Link to={"/posts"}>Posts | </Link>
-        <Link to={"/addpost"}>Add Post </Link>
       </div>
       <div className="search-container">
         <input
