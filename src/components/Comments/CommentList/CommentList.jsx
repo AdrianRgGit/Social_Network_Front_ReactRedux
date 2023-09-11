@@ -17,7 +17,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById } from "../../../features/auth/authSlice";
 
 const CommentList = () => {
   const { post } = useSelector((state) => state.posts);
