@@ -35,8 +35,13 @@ const Header = () => {
         <Link to={"/"}>Home | </Link>
         {user ? (
           <>
-          <span onClick={onLogout}>Logout | </span>
-           <span><Link to={`/profile`}>Profile | </Link></span>
+            <span onClick={onLogout}>Logout | </span>
+            <span>
+              <Link to={`/profile`}>Profile | </Link>
+            </span>
+            <span>
+              <Link to={"/addpost"}>Add Post </Link>
+            </span>
           </>
         ) : (
           <>
@@ -45,9 +50,6 @@ const Header = () => {
             </span>
             <span>
               <Link to={"/register"}>Register | </Link>
-            </span>
-            <span>
-              <Link to={"/addpost"}>Add Post </Link>
             </span>
           </>
         )}
