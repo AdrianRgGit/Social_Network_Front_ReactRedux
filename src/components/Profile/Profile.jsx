@@ -40,10 +40,7 @@ const Profile = () => {
     dispatch(getUserConnected());
   }, [avatar]);
 
-<<<<<<< HEAD
-=======
  
->>>>>>> develop
   if (isLoading) {
     return <span>cargando...</span>;
   }
