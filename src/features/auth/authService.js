@@ -9,7 +9,7 @@ const register = async (userData) => {
 
 const login = async (userData) => {
   const res = await axios.post(API_URL + "/users/login", userData); //email + password de los inputs del login
-  console.log(res.data)
+  console.log(res.data);
   if (res.data) {
     localStorage.setItem("user", JSON.stringify(res.data.user)); //user del back y user del back es user.username
     localStorage.setItem("token", JSON.stringify(res.data.token));
@@ -38,10 +38,23 @@ const getUserConnected = async () => {
       authorization: token,
     },
   });
-  
+
   return res.data.getUser;
 };
 
+const getUserById = async (_id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.get(API_URL + "/users/getuserbyid/" + _id, {
+    headers: {
+      Authorization: token,
+    },
+  });
+
+  return res.data;
+};
+
+// http://localhost:3000/users/getuserconnected/64f9d819f052557b73482724
+// (API_URL + "/posts/id/"+id)
 
 const updateUser = async (userData) => {
   console.log("update Service", userData);
@@ -64,6 +77,7 @@ const authService = {
   login,
   logout,
   getUserConnected,
+  getUserById,
   updateUser,
 };
 

@@ -1,7 +1,13 @@
 @import "../../../index.scss";
 
 .comments-container{
+    display: flex;
     background-color: $white-color;
     border: solid 1px $primary-color-05;
     border-radius: 0px;
+}
+
+.form-container {
+  margin-top: 20px;
+  min-height: 100vh;
 }

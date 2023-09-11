@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { createComment } from "../../../features/comment/CommentSlice";
 import { useParams } from "react-router-dom";
 import { notification } from "antd";
-// import { getById } from "../../../features/posts/postsSlice";
-
+import { Button, FormControl, Input, Textarea } from "@chakra-ui/react";
+import "./AddComment.scss";
 
 const AddComment = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ const AddComment = () => {
   });
 
   const { title, body, image } = formData;
+  const [resize] = React.useState("horizontal");
 
   const onChange = (e) =>
     setFormData((prevState) => ({
@@ -28,7 +29,7 @@ const AddComment = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (title == "" || body == "") {
-      notification.error({
+      return notification.error({
         message: "Error",
         description: "Rellene los campos",
       });
@@ -43,21 +44,26 @@ const AddComment = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          placeholder="title"
-          onChange={onChange}
-        />
-        <input
-          type="text"
+        <FormControl className="comment-title-container">
+          <Input
+            type="text"
+            name="title"
+            placeholder="Title"
+            onChange={onChange}
+          />
+        </FormControl>
+
+        <Textarea
           name="body"
-          value={body}
-          placeholder="body"
+          placeholder="Comment"
+          size="sm"
+          resize={resize}
           onChange={onChange}
         />
-        <button type="submit">Add</button>
+
+        <Button mt={4} colorScheme="teal" type="submit">
+          Submit
+        </Button>
       </form>
     </>
   );
