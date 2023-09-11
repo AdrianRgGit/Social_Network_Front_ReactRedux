@@ -9,7 +9,6 @@ const Header = () => {
 
   const { user } = useSelector((state) => state.auth);
 
-
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
