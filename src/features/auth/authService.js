@@ -31,9 +31,9 @@ const logout = async () => {
   return res.data;
 };
 
-const getUserConnected = async (_id) => {
+const getUserConnected = async () => {
   const token = JSON.parse(localStorage.getItem("token"));
-  const res = await axios.get(API_URL + "/users/getuserconnected/" + _id, {
+  const res = await axios.get(API_URL + "/users/getuserconnected/", {
     headers: {
       authorization: token,
     },

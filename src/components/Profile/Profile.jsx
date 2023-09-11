@@ -35,8 +35,8 @@ const Profile = () => {
   // const navigate = useNavigate();
   
   useEffect(() => {
-  
-    dispatch(getUserConnected(_id));
+  console.log("Eee")
+    dispatch(getUserConnected());
   }, [avatar]);
 
  

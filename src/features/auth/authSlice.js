@@ -104,10 +104,9 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 
 export const getUserConnected = createAsyncThunk(
   "auth/getUserConnected",
-  async (_id) => {
-    console.log(_id)
+  async () => {
     try {
-      return await authService.getUserConnected(_id);
+      return await authService.getUserConnected();
     } catch (error) {
       console.error(error);
     }

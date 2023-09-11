@@ -38,7 +38,7 @@ const Header = () => {
         {user ? (
           <>
           <span onClick={onLogout}>Logout | </span>
-           <span><Link to={`/profile/${_id}`}>Profile | </Link></span>
+           <span><Link to={`/profile`}>Profile | </Link></span>
           </>
           
         ) : (
