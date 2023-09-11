@@ -37,7 +37,6 @@ const CommentList = () => {
 
   return (
     <div className="card-comments-container">
-      Comments:
       {commentIds?.map((comment) => {
         return (
           <>

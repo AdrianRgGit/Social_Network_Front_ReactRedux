@@ -50,7 +50,10 @@ const PostDetail = () => {
       <Card maxW="md" className="detail-post-container">
         <CardHeader className="detail-post-header-container">
           <Text>{post.title}</Text>
-          <Text>Likes {post.likes?.length}</Text>
+          <div className="like-container">
+            <LikePost />
+            <Text>{post.likes?.length}</Text>
+          </div>
         </CardHeader>
         <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
 
