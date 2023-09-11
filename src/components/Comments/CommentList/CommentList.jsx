@@ -1,26 +1,27 @@
 // CommentList.js
-import React from "react";
+import React, { useEffect } from "react";
 import LikeComment from "../../Comments/LikeComment/LikeComment";
 import { Spinner } from "@chakra-ui/spinner";
 import "./CommentList.scss";
 import {
+  Avatar,
   Box,
   Card,
   CardBody,
+  CardFooter,
   CardHeader,
+  Flex,
   Heading,
   Stack,
   StackDivider,
   Text,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserById } from "../../../features/auth/authSlice";
 
 const CommentList = () => {
   const { post } = useSelector((state) => state.posts);
   const { commentIds } = post;
-
-  console.log(commentIds);
-  console.log(post);
 
   if (!commentIds) {
     return <Spinner />;
@@ -39,25 +40,46 @@ const CommentList = () => {
     <div className="card-comments-container">
       Comments:
       {commentIds?.map((comment) => {
+        console.log(comment);
         return (
           <>
-            <Card className="comments-container">
+            <Card className="comments-container" key={comment._id}>
               <CardHeader>
-                <Heading size="md">fdsgsdg</Heading>
+                <Heading size="sm">{comment.title}</Heading>
               </CardHeader>
 
               <CardBody>
-                <Stack divider={<StackDivider />} spacing="4">
+                <Stack>
                   <Box>
-                    <Heading size="xs" textTransform="uppercase">
-                      Summary
-                    </Heading>
                     <Text pt="2" fontSize="sm">
-                      View a summary of all your clients over the last month.
+                      {comment.body}
                     </Text>
                   </Box>
                 </Stack>
               </CardBody>
+              <CardFooter
+                className="post-footer-container"
+                justify="space-between"
+                flexWrap="wrap"
+                sx={{
+                  "& > button": {
+                    minW: "136px",
+                  },
+                }}
+              >
+                <Flex spacing="4">
+                  <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
+                    <Avatar
+                      name={post.userId?.username}
+                      src={post.userId?.avatar_url}
+                    />
+
+                    <Box>
+                      <Heading size="sm">{post.userId?.username}</Heading>
+                    </Box>
+                  </Flex>
+                </Flex>
+              </CardFooter>
             </Card>
           </>
         );

@@ -3,6 +3,15 @@ import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Input,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
 
 const AddPost = () => {
   const dispatch = useDispatch();
@@ -13,6 +22,7 @@ const AddPost = () => {
     body: "",
     image: null,
   });
+  const [resize] = React.useState("horizontal");
 
   const { title, body, image } = formData;
 
@@ -28,6 +38,22 @@ const AddPost = () => {
       ...prevData,
       image: selectedFile,
     }));
+
+    if (selectedFile) {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const imgPreview = document.getElementById("imagePreview");
+        imgPreview.src = event.target.result;
+        imgPreview.style.display = "block";
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      const imgPreview = document.getElementById("imagePreview");
+      imgPreview.style.display = "none";
+      imgPreview.src = "";
+    }
   };
 
   const onSubmit = async (e) => {
@@ -49,7 +75,7 @@ const AddPost = () => {
       notification.success({
         message: "Post creado con éxito",
       });
-      navigate("/posts");
+      navigate("/");
     } catch (error) {
       console.error("Error al crear el post:", error);
       notification.error({
@@ -59,32 +85,48 @@ const AddPost = () => {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={title}
-          placeholder="title"
-          onChange={onChange}
-        />
-        <input
-          type="text"
+    <div className="form-container">
+      <form onSubmit={onSubmit} className="form">
+        <FormControl className="form-title-container">
+          <Input
+            type="text"
+            name="title"
+            placeholder="Title"
+            onChange={onChange}
+          />
+        </FormControl>
+
+        <div className="img-form-container">
+          <FormControl className="input-file-container">
+            <Input
+              type="file"
+              name="image"
+              accept="image/*,video/*"
+              onChange={handleFileChange}
+            />
+          </FormControl>
+          <img
+            id="imagePreview"
+            className="img-preview-container"
+            src=""
+            alt="Vista previa de la imagen"
+            style={{ display: "none", maxWidth: "300px", maxHeight: "300px" }}
+          />
+        </div>
+
+        <Textarea
           name="body"
-          value={body}
-          placeholder="body"
+          placeholder="Comment"
+          size="sm"
+          resize={resize}
           onChange={onChange}
-        />
-        <input
-          type="file"
-          name="image"
-          accept="image/*,video/*"
-          onChange={handleFileChange}
         />
 
-        <button type="submit">Add</button>
+        <Button mt={4} colorScheme="teal" type="submit">
+          Submit
+        </Button>
       </form>
-    </>
+    </div>
   );
 };
 

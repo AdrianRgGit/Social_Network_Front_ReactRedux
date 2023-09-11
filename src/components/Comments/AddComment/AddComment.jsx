@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { notification } from "antd";
 // import { getById } from "../../../features/posts/postsSlice";
 
-
 const AddComment = () => {
   const dispatch = useDispatch();
   const { _id } = useParams();
@@ -28,7 +27,7 @@ const AddComment = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (title == "" || body == "") {
-      notification.error({
+      return notification.error({
         message: "Error",
         description: "Rellene los campos",
       });

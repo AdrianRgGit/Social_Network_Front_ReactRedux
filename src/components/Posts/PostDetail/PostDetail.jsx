@@ -86,8 +86,8 @@ const PostDetail = () => {
       {printCard()}
       <div>
         {/* Utiliza el componente CommentList y pasa las prop comments */}
-        <CommentList />
         <AddComment />
+        <CommentList />
       </div>
     </>
   );

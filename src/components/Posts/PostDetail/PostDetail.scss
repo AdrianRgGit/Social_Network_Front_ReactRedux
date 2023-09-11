@@ -1,5 +1,26 @@
 @import "../../../index.scss";
 
-.detail-post-container{
-    background-color: $white-color;
+.form-container {
+  margin-top: 20px;
+  min-height: 100vh;
+}
+
+.form-title-container {
+  margin-bottom: 5px;
+}
+
+.img-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.input-file-container{
+}
+
+.img-preview-container {
+  min-width: 100%;
+  height: auto;
 }
