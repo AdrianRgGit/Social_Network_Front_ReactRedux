@@ -42,17 +42,12 @@ const getUserConnected = async () => {
   return res.data.getUser;
 };
 
-// http://localhost:3000/users/getuserconnected/64f9d819f052557b73482724
-// (API_URL + "/posts/id/"+id)
 
-const updateUser = async (userId, userData) => {
+const updateUser = async (userData) => {
   console.log("update Service", userData);
-  console.log("id", userId);
   const token = JSON.parse(localStorage.getItem("token"));
-  console.log("token", token);
   const res = await axios.put(
-    // `${API_URL}/users/id/${userId}`,
-    API_URL + "/users/id/" + userId,
+    API_URL + "/users/update/",
     userData,
     {
       headers: {
