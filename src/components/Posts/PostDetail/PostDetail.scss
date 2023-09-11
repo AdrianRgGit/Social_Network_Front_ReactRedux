@@ -1,8 +1,9 @@
 @import "../../../index.scss";
 
-.form-container {
+.detail-post-container {
   margin-top: 20px;
-  min-height: 100vh;
+//   Cambiar esto para que sea responsive
+  width: 448px; 
 }
 
 .form-title-container {
@@ -17,7 +18,7 @@
   text-align: center;
 }
 
-.input-file-container{
+.input-file-container {
 }
 
 .img-preview-container {

@@ -40,7 +40,6 @@ const CommentList = () => {
     <div className="card-comments-container">
       Comments:
       {commentIds?.map((comment) => {
-        console.log(comment);
         return (
           <>
             <Card className="comments-container" key={comment._id}>
@@ -89,5 +88,4 @@ const CommentList = () => {
     </div>
   );
 };
-
 export default CommentList;
