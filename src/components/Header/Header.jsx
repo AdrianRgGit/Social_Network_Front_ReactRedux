@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import BtnTop from "../BtnTop/BtnTop";
+import HeaderDrawer from "../HeaderDrawer/HeaderDrawer";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ const Header = () => {
 
   return (
     <nav className="nav-container">
+      <div className="drawer-btn">
+        <HeaderDrawer />
+      </div>
       <div className="links-container">
         <Link to={"/"}>Home | </Link>
         {user ? (
