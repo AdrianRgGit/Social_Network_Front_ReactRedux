@@ -16,36 +16,41 @@ import {
 } from "@chakra-ui/react";
 import ModalRender from "../ModalRender/ModalRender";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { _id } = useParams();
-
   const dispatch = useDispatch();
 
-  const { userConnected, user, isLoading } = useSelector((state) => state.auth);
-  const { username, email, followers, postIds, avatar_url, avatar } = userConnected;
-  console.log(userConnected)
+  const { userConnected, isLoading } = useSelector((state) => state.auth);
+  const { username, email, password, followers, postIds, avatar_url, avatar } =
+    userConnected;
 
   const [userEdit, setUserEdit] = useState({
     username: username || "", // Asigna el valor actual o una cadena vacía, es importante inicilizar el estado de un input
     email: email || "", // Asigna el valor actual o una cadena vacía
+    password: password || "", // Asigna el valor actual o una cadena vacía
   });
 
-  
   // const navigate = useNavigate();
 
+  //FIXME: hace 2 veces la peticion de getsuerconnected
   useEffect(() => {
-  console.log("Eee")
     dispatch(getUserConnected());
-  }, [avatar]);
 
- 
+    // Inicializar el estado de userEdit con los valores actuales del usuario conectado
+    setUserEdit({
+      username: username || "",
+      email: email || "",
+      password: password || "",
+    });
+  }, [avatar, username, email, password]);
+
   if (isLoading) {
     return <span>cargando...</span>;
   }
 
-  //FIXME: utilizar en el form para actualizar user
+//FIXME: solo funciona si rellena todos los campos de input, no debería ser necesario > que rellene automaticamente los vacios con el userstate prev
+//FIXME: si no pones la contraseña la guarda como "" string vacio
   const handleInputChange = (e) =>
     setUserEdit((prevState) => ({
       ...prevState,
@@ -65,13 +70,13 @@ const Profile = () => {
     e.preventDefault();
     try {
       console.log(userEdit);
-      console.log(_id)
-      dispatch(updateUser(_id, userEdit));
+      dispatch(updateUser(userEdit));
       // notification.success({
       //   message: "User updated successfully",
       // });
       console.log("User update success notification");
-      //TODO: cerrar modal y refrescar pagina
+      
+//TODO: cerrar modal y refrescar pagina
     } catch (error) {
       console.error("Error updating user:", error);
       // notification.error({
@@ -158,6 +163,13 @@ const Profile = () => {
                             name="email"
                             value={userEdit.email}
                             placeholder="email"
+                            onChange={handleInputChange}
+                          />
+                          <input
+                            type="text"
+                            name="password"
+                            value={userEdit.password}
+                            placeholder="password"
                             onChange={handleInputChange}
                           />
                           <button type="submit">Send</button>

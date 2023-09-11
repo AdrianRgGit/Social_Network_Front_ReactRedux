@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
+import BtnTop from "../BtnTop/BtnTop";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, userConnected, _id } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -60,6 +61,7 @@ const Header = () => {
           name="text"
         />
       </div>
+      <BtnTop />
     </nav>
   );
 };

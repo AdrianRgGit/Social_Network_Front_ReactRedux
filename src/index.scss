@@ -1,24 +1,5 @@
-//Importaciones
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,700;1,6..12,400&family=Quicksand:wght@300;500;700&display=swap");
+@import "./variables.scss";
 
-// Variables
-// Fonts
-$primary-font: "Nunito Sans", sans-serif;
-$secondary-font: "Quicksand", sans-serif;
-
-// Colors
-$primary-color: rgb(29, 91, 121);
-$secondary-color: rgb(70, 139, 151);
-$tertiary-color: rgb(239, 98, 98);
-$fourth-color: rgb(243, 170, 96);
-
-$primary-color-05: rgba(29, 91, 121, 05);
-$secondary-color-05: rgba(70, 139, 151, 05);
-$tertiary-color-05: rgba(239, 98, 98, 05);
-$fourth-color-05: rgba(243, 170, 96, 05);
-
-$white-color: rgb(240, 240, 240);
-$black-color: rgb(20, 20, 20);
 
 img {
   width: 100%;
