@@ -4,6 +4,7 @@ import commentService from "./CommentService";
 const initialState = {
   newComment: "",
   comment: "",
+  comments: [],
 };
 
 export const createComment = createAsyncThunk(

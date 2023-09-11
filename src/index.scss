@@ -12,12 +12,22 @@ $secondary-color: rgb(70, 139, 151);
 $tertiary-color: rgb(239, 98, 98);
 $fourth-color: rgb(243, 170, 96);
 
+$primary-color-05: rgba(29, 91, 121, 05);
+$secondary-color-05: rgba(70, 139, 151, 05);
+$tertiary-color-05: rgba(239, 98, 98, 05);
+$fourth-color-05: rgba(243, 170, 96, 05);
+
 $white-color: rgb(240, 240, 240);
 $black-color: rgb(20, 20, 20);
 
 img {
   width: 100%;
   height: auto;
+}
+
+// ! Añado esto para que se vea en todo el ancho de pantalla
+#root {
+  padding: 0px;
 }
 
 :root {

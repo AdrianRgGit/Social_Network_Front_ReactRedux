@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getById, reset } from "../../../features/posts/postsSlice";
 import AddComment from "../../Comments/AddComment/AddComment";
 import LikePost from "../LikePost/LikePost";
+import "./PostDetail.scss";
 
 import {
   Button,
@@ -43,19 +44,18 @@ const PostDetail = () => {
   if (!post) {
     return <Spinner />;
   }
-  
+
   const printCard = () => {
     return (
-      <Card maxW="md">
-        <CardHeader>
-          <Text fontSize="3xl">{post.title}</Text>
+      <Card maxW="md" className="detail-post-container">
+        <CardHeader className="detail-post-header-container">
+          <Text>{post.title}</Text>
+          <Text>Likes {post.likes?.length}</Text>
         </CardHeader>
-        <CardBody>
-          <Text>{post.body}</Text>
-          <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
-        </CardBody>
+        <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
 
         <CardFooter
+          className="detail-post-footer-container"
           justify="space-between"
           flexWrap="wrap"
           sx={{
@@ -70,12 +70,9 @@ const PostDetail = () => {
                 name={post.userId?.username}
                 src={post.userId?.avatar_url}
               />
+
               <Box>
                 <Heading size="sm">{post.userId?.username}</Heading>
-                <Text fontSize="xs">
-                  Followers: {post.userId?.followers.length}
-                </Text>
-                <br />
               </Box>
             </Flex>
           </Flex>
@@ -89,7 +86,7 @@ const PostDetail = () => {
       {printCard()}
       <div>
         {/* Utiliza el componente CommentList y pasa las prop comments */}
-        <CommentList comments={post.commentIds} />
+        <CommentList />
         <AddComment />
       </div>
     </>
