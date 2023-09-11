@@ -1,0 +1,24 @@
+@import "../../variables.scss";
+
+.btn-top {
+  color: $tertiary-color;
+  background-color: $white-color;
+  width: 40px;
+  height: 60px;
+  text-align: center;
+  border-radius: 12px;
+  border: 1px solid $tertiary-color ;
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  z-index: 1000;
+  padding: 0;
+
+  &:hover {
+    color: $white-color;
+    background-color: $tertiary-color;
+    cursor: pointer;
+  }
+
+}

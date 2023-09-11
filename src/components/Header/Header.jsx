@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
+import BtnTop from "../BtnTop/BtnTop";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const Header = () => {
           name="text"
         />
       </div>
+      <BtnTop />
     </nav>
   );
 };
