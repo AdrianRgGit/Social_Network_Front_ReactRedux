@@ -20,13 +20,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 const Profile = () => {
   const { _id } = useParams();
 
- 
-
   const dispatch = useDispatch();
   
   const { userConnected, user, isLoading } = useSelector((state) => state.auth);
   const { username, email, followers, postIds, avatar_url, avatar } = userConnected;
-
+  console.log(userConnected)
 
   const [userEdit, setUserEdit] = useState({
     username: username || "", // Asigna el valor actual o una cadena vacía, es importante inicilizar el estado de un input
@@ -37,13 +35,11 @@ const Profile = () => {
   // const navigate = useNavigate();
   
   useEffect(() => {
+  
     dispatch(getUserConnected(_id));
   }, [avatar]);
 
  
-
-
-
   if (isLoading) {
     return <span>cargando...</span>;
   }
@@ -69,7 +65,8 @@ const Profile = () => {
     e.preventDefault();
     try {
       console.log(userEdit);
-      dispatch(updateUser(user._id, userEdit));
+      console.log(_id)
+      dispatch(updateUser(_id, userEdit));
       // notification.success({
       //   message: "User updated successfully",
       // });

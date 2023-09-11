@@ -38,9 +38,9 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload)
+        console.log(action.payload) //=res.data del service
         state.isSuccess = true;
-        state.user = action.payload.user;
+        state.user = action.payload.user; //username
         state.token = action.payload.token;
         state._id = action.payload.userObject._id
       })
@@ -56,6 +56,7 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getUserConnected.fulfilled, (state, action) => {
+        console.log(action.payload)
         state.userConnected = action.payload;
         state.isLoading = false;
       })

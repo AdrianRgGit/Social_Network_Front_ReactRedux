@@ -11,6 +11,7 @@ const Header = () => {
 
 
   console.log(_id)
+  console.log(userConnected._id)
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -51,7 +52,7 @@ const Header = () => {
           </>
         )}
 
-        <Link to={"/"}>Home | </Link>
+        <Link to={"/posts"}>Home | </Link>
         <Link to={"/posts"}>Posts | </Link>
         <Link to={"/addpost"}>Add Post </Link>
       </div>
