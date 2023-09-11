@@ -9,6 +9,7 @@ import {
   ButtonGroup,
   Heading,
   Image,
+  Spinner,
   Stack,
   Text,
   useDisclosure,
@@ -21,7 +22,7 @@ const Profile = () => {
   const { _id } = useParams();
 
   const dispatch = useDispatch();
-  
+
   const { userConnected, user, isLoading } = useSelector((state) => state.auth);
   const { username, email, followers, postIds, avatar_url, avatar } = userConnected;
   console.log(userConnected)
@@ -33,17 +34,19 @@ const Profile = () => {
 
   
   // const navigate = useNavigate();
-  
+
   useEffect(() => {
   console.log("Eee")
     dispatch(getUserConnected());
   }, [avatar]);
 
+<<<<<<< HEAD
+=======
  
+>>>>>>> develop
   if (isLoading) {
     return <span>cargando...</span>;
   }
-
 
   //FIXME: utilizar en el form para actualizar user
   const handleInputChange = (e) =>
@@ -182,19 +185,19 @@ const Profile = () => {
           return (
             <div key={post._id}>
               <Card className="card-profile-post">
-              <div className="container-img-post">
-              {post.image_url ? (
-                <Image
-                  className="img-post"
-                  objectFit="cover"
-                  maxW={{ base: "100%", sm: "200px" }}
-                  src={post.image_url}
-                  alt="post-image"
-                />
-              ) : (
-                <div></div>
-              )}
-            </div>
+                <div className="container-img-post">
+                  {post.image_url ? (
+                    <Image
+                      className="img-post"
+                      objectFit="cover"
+                      maxW={{ base: "100%", sm: "200px" }}
+                      src={post.image_url}
+                      alt="post-image"
+                    />
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
                 <h3>{post.title}</h3>
                 <p>{post.body}</p>
                 <div>

@@ -9,9 +9,8 @@ const Header = () => {
 
   const { user, userConnected, _id } = useSelector((state) => state.auth);
 
-
-  console.log(_id)
-  console.log(userConnected._id)
+  console.log(_id);
+  console.log(userConnected._id);
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -20,8 +19,6 @@ const Header = () => {
   };
 
   const { posts } = useSelector((state) => state.posts);
-
-
 
   const [text, setText] = useState("");
 
@@ -35,12 +32,12 @@ const Header = () => {
   return (
     <nav className="nav-container">
       <div className="links-container">
+        <Link to={"/"}>Home | </Link>
         {user ? (
           <>
           <span onClick={onLogout}>Logout | </span>
            <span><Link to={`/profile`}>Profile | </Link></span>
           </>
-          
         ) : (
           <>
             <span>
@@ -49,11 +46,11 @@ const Header = () => {
             <span>
               <Link to={"/register"}>Register | </Link>
             </span>
+            <span>
+              <Link to={"/addpost"}>Add Post </Link>
+            </span>
           </>
         )}
-
-        <Link to={"/"}>Home | </Link>
-        <Link to={"/addpost"}>Add Post </Link>
       </div>
       <div className="search-container">
         <input
