@@ -11,7 +11,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
+  const { userConnected } = useSelector((state) => state.auth);
 
   const onLogout = (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const Header = () => {
       </div>
       <div className="links-container">
         <Link to={"/"}>Home | </Link>
-        {user ? (
+        {userConnected ? (
           <>
             <span onClick={onLogout}>Logout | </span>
             <span>

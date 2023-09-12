@@ -7,27 +7,27 @@ import { faBone } from "@fortawesome/free-solid-svg-icons";
 
 const LikePost = () => {
   const dispatch = useDispatch();
-  // const { _id } = useParams();
+  const { _id } = useParams();
   const { post } = useSelector((state) => state.posts);
-  const { _id } = useSelector((state) => state.auth);
+  const { userConnected } = useSelector((state) => state.auth);
 
   console.log(post);
+  console.log(userConnected);
   console.log(_id);
+
+  const isAlreadyLiked = post.likes?.includes(userConnected._id);
 
   return (
     <div className="button-container">
-      {/* {isAlreadyLiked ? (
-        <HeartFilled onClick={() => console.log("dislike")} />
+      {isAlreadyLiked ? (
+        <FontAwesomeIcon
+          icon={faBone}
+          onClick={() => dispatch(dislike(_id))}
+          style={{ color: "#d7902d" }}
+        />
       ) : (
-        <HeartOutlined onClick={() => dispatch(like(product._id))} />
-      )} */}
-      <FontAwesomeIcon
-        icon={faBone}
-        onClick={() => dispatch(like(_id))}
-        style={{ color: "#d7902d" }}
-      />
-
-      <FontAwesomeIcon icon={faBone} onClick={() => dispatch(dislike(_id))} />
+        <FontAwesomeIcon icon={faBone} onClick={() => dispatch(like(_id))} />
+      )}
     </div>
   );
 };

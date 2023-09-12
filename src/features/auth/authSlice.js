@@ -1,16 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "./authService";
 
-const user = JSON.parse(localStorage.getItem("user")) || null;
+// const user = JSON.parse(localStorage.getItem("user")) || null;
 const token = JSON.parse(localStorage.getItem("token")) || null;
+const userConnected = JSON.parse(localStorage.getItem("userConnected")) || null;
 
 const initialState = {
-  user: user,
+  // user: user,
   token: token,
   isError: false,
   message: "",
   isLoading: false,
-  userConnected: {},
+  userConnected: userConnected,
   // _id: "",
 };
 
@@ -39,7 +40,7 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         console.log(action.payload); //=res.data del service
         state.isSuccess = true;
-        state.user = action.payload.user; //username
+        // state.user = action.payload.user; //username
         state.token = action.payload.token;
         // state._id = action.payload.userObject._id;
         state.userConnected = action.payload;
@@ -49,8 +50,9 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.user = null;
+        // state.user = null;
         state.token = null;
+        state.userConnected = null;
       })
       .addCase(getUserConnected.pending, (state) => {
         state.isLoading = true;
@@ -65,7 +67,7 @@ export const authSlice = createSlice({
         state.message = "error getUserConnected";
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.userConnected = action.payload;
       })
       .addCase(updateUser.rejected, (state) => {
         state.isError = true;

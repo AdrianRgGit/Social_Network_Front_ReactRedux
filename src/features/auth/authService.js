@@ -13,6 +13,7 @@ const login = async (userData) => {
   if (res.data) {
     localStorage.setItem("user", JSON.stringify(res.data.user)); //user del back y user del back es user.username
     localStorage.setItem("token", JSON.stringify(res.data.token));
+    localStorage.setItem("userConnected", JSON.stringify(res.data.userObject)); //user del back y user del back es user.username
   }
   return res.data;
 };
