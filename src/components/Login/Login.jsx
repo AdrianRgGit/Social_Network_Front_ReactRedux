@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, reset } from "../../features/auth/authSlice";
 import { notification } from "antd";
 import { useNavigate } from "react-router-dom";
+import { getUserConnected } from "../../features/posts/postsSlice";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,8 +12,8 @@ const Login = () => {
   });
 
   const { email, password } = formData;
-  const {isSuccess, isError, message } = useSelector((state) => state.auth);
-  
+  const { isSuccess, isError, message } = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,8 +22,8 @@ const Login = () => {
       notification.success({
         message: "Login Success",
         description: message,
-      });     
-        setTimeout(() => {
+      });
+      setTimeout(() => {
         navigate("/");
       }, 3000);
     }
@@ -31,12 +32,9 @@ const Login = () => {
         message: "Login Error",
         description: message,
       });
-    
     }
-    dispatch(reset())
+    dispatch(reset());
   }, [isSuccess, isError, message]);
-
- 
 
   const onChange = (e) =>
     setFormData((prevState) => ({

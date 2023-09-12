@@ -11,7 +11,7 @@ const initialState = {
   message: "",
   isLoading: false,
   userConnected: {},
-  _id: "",
+  // _id: "",
 };
 
 export const authSlice = createSlice({
@@ -41,7 +41,8 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload.user; //username
         state.token = action.payload.token;
-        state._id = action.payload.userObject._id;
+        // state._id = action.payload.userObject._id;
+        state.userConnected = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.isError = true;
