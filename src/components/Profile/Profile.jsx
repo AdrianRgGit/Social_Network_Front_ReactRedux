@@ -28,7 +28,7 @@ const Profile = () => {
   const [userEdit, setUserEdit] = useState({
     username: username || "", // Asigna el valor actual o una cadena vacía, es importante inicilizar el estado de un input
     email: email || "", // Asigna el valor actual o una cadena vacía
-    password: password || "", // Asigna el valor actual o una cadena vacía
+    avatar: avatar || "", // Asigna el valor actual o vacio
   });
 
   // const navigate = useNavigate();
@@ -41,42 +41,29 @@ const Profile = () => {
     setUserEdit({
       username: username || "",
       email: email || "",
-      password: password || "",
+      avatar: avatar || "",
     });
-  }, [avatar, username, email, password]);
+  }, [avatar, username, email]);
 
   if (isLoading) {
     return <span>cargando...</span>;
   }
 
-//FIXME: solo funciona si rellena todos los campos de input, no debería ser necesario > que rellene automaticamente los vacios con el userstate prev
-//FIXME: si no pones la contraseña la guarda como "" string vacio
-  const handleInputChange = (e) =>
-    setUserEdit((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+  //TODO: Nota. No utilizar un form si vas a subir/editar fotos > hay que usar un FORM-DATA (como en postman)
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    console.log(selectedFile.name);
-    setUserEdit((prevState) => ({
-      ...prevState,
-      avatar: selectedFile.name,
-    }));
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
     try {
-      console.log(userEdit);
-      dispatch(updateUser(userEdit));
-      // notification.success({
-      //   message: "User updated successfully",
-      // });
-      console.log("User update success notification");
-      
-//TODO: cerrar modal y refrescar pagina
+      console.log("userEdit:", userEdit, "formData:", formData);
+      if (event.target.avatar.files[0])
+        formData.set("avatar", event.target.avatar.files[0]);
+      formData.set("username", event.target.username.value);
+      formData.set("email", event.target.email.value);
+
+      //addProduct(formData) > sustituye por el dispatch y la funcion(formData)
+      dispatch(updateUser(formData));
+      console.log("userEdit:", userEdit, "formData:", formData);
     } catch (error) {
       console.error("Error updating user:", error);
       // notification.error({
@@ -84,6 +71,8 @@ const Profile = () => {
       // });
     }
   };
+
+  //TODO: cerrar modal y refrescar pagina
 
   return (
     <>
@@ -126,53 +115,44 @@ const Profile = () => {
               <CardFooter>
                 <div className="modal-profile">
                   <ModalRender
-                    modalTitle={"Change image"}
-                    textBtn={"Change image"}
-                    text={
-                      <>
-                        <form onSubmit={onSubmit}>
-                          <input
-                            type="file"
-                            name="avatar"
-                            accept="image/*,video/*"
-                            onChange={handleFileChange}
-                          />
-                          <button type="submit">Send</button>
-                        </form>
-                      </>
-                    }
-                  />
-                </div>
-
-                <div className="modal-profile">
-                  <ModalRender
                     modalTitle={"Update user"}
-                    textBtn={"Update user"}
+                    textBtn={"Edit profile"}
                     text={
                       <>
-                        <form onSubmit={onSubmit}>
+                        <form
+                          className="form-updateUser"
+                          onSubmit={handleSubmit}
+                        >
                           <input
                             type="text"
                             name="username"
-                            value={userEdit.username}
-                            placeholder="username"
-                            onChange={handleInputChange}
+                            placeholder={userEdit.username}
                           />
                           <input
                             type="text"
                             name="email"
-                            value={userEdit.email}
-                            placeholder="email"
-                            onChange={handleInputChange}
+                            placeholder={userEdit.email}
                           />
                           <input
-                            type="text"
-                            name="password"
-                            value={userEdit.password}
-                            placeholder="password"
-                            onChange={handleInputChange}
+                            type="file"
+                            name="avatar"
+                            id="file"
+                            className="input-avatar"
                           />
-                          <button type="submit">Send</button>
+                          <label
+                            htmlFor="file"
+                            className="btn btn-tertiary js-labelFile"
+                          >
+                            <i className="icon fa fa-check"></i>
+                            <span className="js-fileName">Choose a file</span>
+                          </label>
+                          <Button
+                            type="submit"
+                            variant="solid"
+                            colorScheme="blue"
+                          >
+                            Send
+                          </Button>
                         </form>
                       </>
                     }
