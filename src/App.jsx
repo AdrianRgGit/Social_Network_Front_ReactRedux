@@ -10,7 +10,6 @@ import AddPost from "./components/Posts/AddPost/AddPost";
 import Profile from "./components/Profile/Profile";
 import LikePost from "./components/Posts/LikePost/LikePost";
 import ProfilePost from "./components/Posts/ProfilePost/ProfilePost";
-import HeaderDrawer from "./components/HeaderDrawer/HeaderDrawer";
 import PostCard from "./components/PostCard/PostCard";
 
 function App() {
@@ -29,7 +28,6 @@ function App() {
           <Route path="/addpost" element={<AddPost />} />
           <Route path="/like/:_id" element={<LikePost />} />
           <Route path="/profilepost/:_id" element={<ProfilePost />} />
-          <Route path="/drawer" element={<HeaderDrawer />} />
           <Route path="/postcard" element={<PostCard />} />
         </Routes>
       </BrowserRouter>
