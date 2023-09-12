@@ -10,11 +10,7 @@ const LikePost = () => {
   const { _id } = useParams();
   const { post } = useSelector((state) => state.posts);
   const { userConnected } = useSelector((state) => state.auth);
-
-  console.log(post);
-  console.log(userConnected);
-  console.log(_id);
-
+  
   const isAlreadyLiked = post.likes?.includes(userConnected._id);
 
   return (

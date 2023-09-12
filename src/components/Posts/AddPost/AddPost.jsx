@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
+import "./AddPost.scss"
 import {
   Button,
   FormControl,

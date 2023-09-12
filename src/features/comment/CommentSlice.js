@@ -7,6 +7,17 @@ const initialState = {
   comments: [],
 };
 
+export const getCommentById = createAsyncThunk(
+  "comment/getCommentById",
+  async (_id) => {
+    try {
+      return await commentService.getCommentById(_id);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
 export const createComment = createAsyncThunk(
   "comment/createComment",
   async (newComment) => {
@@ -40,7 +51,14 @@ export const commentSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
-    builder;
+    builder
+      // .addCase(getCommentById.fulfilled, (state, action) => {
+      //   console.log(action.payload);
+      //   state.comment = action.payload.comment;
+      // })
+      .addCase(createComment.fulfilled, (state, action) => {
+        state.comment = action.payload.comment;
+      });
   },
 });
 
