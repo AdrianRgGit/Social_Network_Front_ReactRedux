@@ -10,6 +10,7 @@ import AddPost from "./components/Posts/AddPost/AddPost";
 import Profile from "./components/Profile/Profile";
 import LikePost from "./components/Posts/LikePost/LikePost";
 import ProfilePost from "./components/Posts/ProfilePost/ProfilePost";
+import HeaderDrawer from "./components/HeaderDrawer/HeaderDrawer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/addpost" element={<AddPost />} />
           <Route path="/like/:_id" element={<LikePost />} />
           <Route path="/profilepost/:_id" element={<ProfilePost />} />
+          <Route path="/drawer" element={<HeaderDrawer />} />
         </Routes>
       </BrowserRouter>
     </div>

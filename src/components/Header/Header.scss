@@ -42,3 +42,24 @@ search:hover {
   width: 1rem;
   height: 1rem;
 }
+.div-toggle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .div-toggle {
+    display: none;
+  }
+  
+  /* Estilos para pantallas menores o iguales a 480px */
+  @media (max-width: 480px) {
+    .manu_principal {
+      display: none;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  }
