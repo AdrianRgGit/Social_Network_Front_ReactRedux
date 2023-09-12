@@ -141,10 +141,18 @@ export const postsSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(like.fulfilled, (state, action) => {
-        state.post = { ...action.payload, commentIds: state.post.commentIds };
+        state.post = {
+          ...action.payload,
+          commentIds: state.post.commentIds,
+          userId: state.post.userId,
+        };
       })
       .addCase(dislike.fulfilled, (state, action) => {
-        state.post = { ...action.payload, commentIds: state.post.commentIds };
+        state.post = {
+          ...action.payload,
+          commentIds: state.post.commentIds,
+          userId: state.post.userId,
+        };
       });
   },
 });
