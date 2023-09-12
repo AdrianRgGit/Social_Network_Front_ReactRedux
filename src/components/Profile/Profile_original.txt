@@ -17,10 +17,8 @@ import {
 import ModalRender from "../ModalRender/ModalRender";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import PostCard from "../PostCard/PostCard";
 
 const Profile = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { userConnected, isLoading } = useSelector((state) => state.auth);
@@ -160,35 +158,51 @@ const Profile = () => {
                     }
                   />
                 </div>
-                
-                <Button
-                  onClick={() => navigate("/addpost")}
-                  variant="solid"
-                  colorScheme="blue"
-                >
+
+                <Button variant="solid" colorScheme="blue">
                   Add Post
+                  {/* useNavigate to addpost (ocultar comp en header) */}
                 </Button>
               </CardFooter>
             </Stack>
           </Card>
         </div>
+      </div>
+      <div className="container-post-profile">
+        {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
+        {postIds?.map((post) => {
+          return (
+            <div key={post._id}>
+              <Card className="card-profile-post">
+                <div className="container-img-post">
+                  {post.image_url ? (
+                    <Image
+                      className="img-post"
+                      objectFit="cover"
+                      maxW={{ base: "100%", sm: "200px" }}
+                      src={post.image_url}
+                      alt="post-image"
+                    />
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+                <div>
+                  <button onClick={() => dispatch(deletePost(post._id))}>
+                    Borrar post
+                  </button>
+                  <button>
+                    <Link to={"/profilepost/" + post._id}>Update Post</Link>
+                  </button>
 
-        <div className="container-post-profile">
-          {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
-          {postIds?.map((post) => {
-            return (
-              <div key={post._id}>
-                <Link to={"/postdetail/" + post._id}>
-                  <PostCard
-                    textTitle={post.title}
-                    // textLikes = {post.likes.length} // FIXME: da error al recargar la pagina
-                    srcImage={post.image_url}
-                  />
-                </Link>
-              </div>
-            );
-          })}
-        </div>
+                  <br />
+                </div>
+              </Card>
+            </div>
+          );
+        })}
       </div>
     </>
   );
@@ -198,4 +212,16 @@ export default Profile;
 
 //TODO: Following hay que hacer la logica en bakend
 
-//TODO: Ir a la vista detalle al clicar en el post y que se llene con todo
+//TODO: Falta trae comentarios y likes del post
+// "postIds": [
+//   {
+//       "_id": "64faf39cb14b417e5e3988b4",
+//       "title": "title post prueba 2",
+//       "body": "Body prueba foto 2 beach",
+//       "image": "1694167964671-dog-beach-1.jpeg",
+//       "likes": [],
+//       "userId": "64f9d819f052557b73482724",
+//       "commentIds": [],
+//       "image_url": "/assets/images/post/1694167964671-dog-beach-1.jpeg"
+//   }
+// ]
