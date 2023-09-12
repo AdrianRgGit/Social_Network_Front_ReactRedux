@@ -24,31 +24,17 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const { userConnected, isLoading } = useSelector((state) => state.auth);
-  const { username, email, password, followers, postIds, avatar_url, avatar } =
+  const { username, email, followers, postIds, avatar_url, avatar } =
     userConnected;
-
-  const [userEdit, setUserEdit] = useState({
-    username: username || "", // Asigna el valor actual o una cadena vacía, es importante inicilizar el estado de un input
-    email: email || "", // Asigna el valor actual o una cadena vacía
-    avatar: avatar || "", // Asigna el valor actual o vacio
-  });
-
-  // const navigate = useNavigate();
 
   //FIXME: hace 2 veces la peticion de getsuerconnected
   useEffect(() => {
     dispatch(getUserConnected());
 
-    // Inicializar el estado de userEdit con los valores actuales del usuario conectado
-    setUserEdit({
-      username: username || "",
-      email: email || "",
-      avatar: avatar || "",
-    });
   }, [avatar, username, email]);
 
   if (isLoading) {
-    return <span>cargando...</span>;
+    return <Spinner size="lg" color='red.500' />;
   }
 
   //TODO: Nota. No utilizar un form si vas a subir/editar fotos > hay que usar un FORM-DATA (como en postman)
@@ -57,7 +43,6 @@ const Profile = () => {
     event.preventDefault();
     const formData = new FormData();
     try {
-      console.log("userEdit:", userEdit, "formData:", formData);
       if (event.target.avatar.files[0])
         formData.set("avatar", event.target.avatar.files[0]);
       formData.set("username", event.target.username.value);
@@ -65,9 +50,8 @@ const Profile = () => {
 
       //addProduct(formData) > sustituye por el dispatch y la funcion(formData)
       dispatch(updateUser(formData));
-      console.log("userEdit:", userEdit, "formData:", formData);
     } catch (error) {
-      console.error("Error updating user:", error);
+
       // notification.error({
       //   message: "Error updating user",
       // });
@@ -128,12 +112,14 @@ const Profile = () => {
                           <input
                             type="text"
                             name="username"
-                            placeholder={userEdit.username}
+                            placeholder={username}
+                            defaultValue={username}
                           />
                           <input
                             type="text"
                             name="email"
-                            placeholder={userEdit.email}
+                            placeholder={email}
+                            defaultValue={email}
                           />
                           <input
                             type="file"
@@ -175,13 +161,13 @@ const Profile = () => {
 
         <div className="container-post-profile">
           {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
-          {postIds?.map((post) => {
+          {postIds?.map((post, i) => {
             return (
-              <div key={post._id}>
+              <div key={i}>
                 <Link to={"/postdetail/" + post._id}>
                   <PostCard
                     textTitle={post.title}
-                    // textLikes = {post.likes.length} // FIXME: da error al recargar la pagina
+                    textLikes = {post.likes?.length} 
                     srcImage={post.image_url}
                   />
                 </Link>
