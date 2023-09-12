@@ -139,6 +139,12 @@ export const postsSlice = createSlice({
       })
       .addCase(getUserConnected.fulfilled, (state, action) => {
         state.posts = action.payload;
+      })
+      .addCase(like.fulfilled, (state, action) => {
+        state.post = { ...action.payload, commentIds: state.post.commentIds };
+      })
+      .addCase(dislike.fulfilled, (state, action) => {
+        state.post = { ...action.payload, commentIds: state.post.commentIds };
       });
   },
 });

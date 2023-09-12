@@ -1,17 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "./authService";
 
-const user = JSON.parse(localStorage.getItem("user")) || null;
+// const user = JSON.parse(localStorage.getItem("user")) || null;
 const token = JSON.parse(localStorage.getItem("token")) || null;
+const userConnected = JSON.parse(localStorage.getItem("userConnected")) || null;
 
 const initialState = {
-  user: user,
+  // user: user,
   token: token,
   isError: false,
   message: "",
   isLoading: false,
-  userConnected: {},
-  _id: "",
+  userConnected: userConnected,
+  // _id: "",
 };
 
 export const authSlice = createSlice({
@@ -39,17 +40,19 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         console.log(action.payload); //=res.data del service
         state.isSuccess = true;
-        state.user = action.payload.user; //username
+        // state.user = action.payload.user; //username
         state.token = action.payload.token;
-        state._id = action.payload.userObject._id;
+        // state._id = action.payload.userObject._id;
+        state.userConnected = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
         state.isError = true;
         state.message = action.payload;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.user = null;
+        // state.user = null;
         state.token = null;
+        state.userConnected = null;
       })
       .addCase(getUserConnected.pending, (state) => {
         state.isLoading = true;
@@ -64,12 +67,12 @@ export const authSlice = createSlice({
         state.message = "error getUserConnected";
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.userConnected = action.payload;
       })
-      .addCase(updateUser.rejected, (state ) => {
+      .addCase(updateUser.rejected, (state) => {
         state.isError = true;
         state.message = "error updateUser";
-      })
+      });
   },
 });
 
@@ -126,16 +129,14 @@ export const getUserById = createAsyncThunk("auth/getUserById", async (_id) => {
 
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
-  async (userId, userData, thunkAPI) => {
-    console.log("slice user", user);
+  async (userData, thunkAPI) => {
+    console.log("slice user", userData);
     try {
-      const response = await authService.updateUser(userId, userData);
-      console.log("slice updateUser", response);
-      return response;
+      const res = await authService.updateUser(userData);
+      console.log("slice updateUser", res);
+      return res;
     } catch (error) {
-      console.error("updateUser slice error", error.response.data);
-      //const message = error.response.data.message;
-      //return thunkAPI.rejectWithValue(message);
+      console.error(error);
     }
   }
 );
