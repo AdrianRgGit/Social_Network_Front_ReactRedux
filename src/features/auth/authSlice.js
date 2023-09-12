@@ -116,6 +116,14 @@ export const getUserConnected = createAsyncThunk(
   }
 );
 
+export const getUserById = createAsyncThunk("auth/getUserById", async (_id) => {
+  try {
+    return await authService.getUserById(_id);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
   async (userData, thunkAPI) => {
