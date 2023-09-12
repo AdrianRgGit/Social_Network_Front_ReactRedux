@@ -16,24 +16,23 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.post-container:hover .post-header-container {
-  opacity: 1;
-}
-
 .post-footer-container {
   background-color: $white-color;
 }
 
 @media screen and (min-width: 1200px) {
-  .cards-container{
+  .cards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
   }
 
-  .card-container{
+  .card-container {
     max-width: 448px;
     margin: 10px;
+  }
+  
+  .post-container:hover .post-header-container {
+    opacity: 1;
   }
 }

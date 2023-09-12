@@ -24,8 +24,8 @@ const Login = () => {
         description: message,
       });
       setTimeout(() => {
-        navigate("/");
-      }, 3000);
+        navigate("/profile");
+      }, 1500);
     }
     if (isError) {
       notification.error({

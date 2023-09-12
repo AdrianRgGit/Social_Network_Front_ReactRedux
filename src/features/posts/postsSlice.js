@@ -69,17 +69,17 @@ export const createPost = createAsyncThunk(
   }
 );
 
-// export const updatePost = createAsyncThunk(
-//   "posts/updatePost",
-//   async (newPost) => {
-//     try {
-//       console.log(newPost);
-//       return await postsService.updatePost(newPost);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-// );
+export const updatePost = createAsyncThunk(
+  "posts/updatePost",
+  async (_id, newPost) => {
+    try {
+      console.log(_id, newPost);
+      return await postsService.updatePost(_id, newPost);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
 
 export const like = createAsyncThunk("posts/like", async (_id) => {
   try {
@@ -139,6 +139,9 @@ export const postsSlice = createSlice({
       })
       .addCase(getUserConnected.fulfilled, (state, action) => {
         state.posts = action.payload;
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        state.updatePost = action.payload;
       })
       .addCase(like.fulfilled, (state, action) => {
         state.post = {
