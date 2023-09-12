@@ -28,10 +28,11 @@ const CommentList = () => {
 
   if (commentIds.length === 0) {
     return (
-      <div className="comments-container">
-        <p>Comments:</p>
-        <p>There are no comments yet. Be the first!</p>
-      </div>
+      <Card className="no-comments-container">
+        <CardHeader>
+          <Heading size="sm">No comments yet. Be the first!</Heading>
+        </CardHeader>
+      </Card>
     );
   }
 
@@ -67,12 +68,14 @@ const CommentList = () => {
                 <Flex spacing="4">
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
                     <Avatar
+                    // Este avatar es del usuario que ha hecho el post. Habría que cambiarlo al de la persona que ha hecho el comentario
                       name={post.userId?.username}
                       src={post.userId?.avatar_url}
                     />
 
                     <Box>
-                      <Heading size="sm">{post.userId?.username}</Heading>
+                      {/* No se como poner el nombre del usuario que ha hecho el comentario */}
+                      <Heading size="sm">Usuario Prueba</Heading>
                     </Box>
                   </Flex>
                 </Flex>
@@ -82,7 +85,6 @@ const CommentList = () => {
         );
       })}
       <br />
-      <button>Comment</button>
     </div>
   );
 };

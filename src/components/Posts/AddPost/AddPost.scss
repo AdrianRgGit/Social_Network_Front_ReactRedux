@@ -1,8 +1,12 @@
 @import url("../../../index.scss");
 
+.form-container {
+  margin: auto;
+  max-width: 448px;
+}
 
 .uploaded-media {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   width: 100%;
   display: block;

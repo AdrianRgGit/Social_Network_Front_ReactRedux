@@ -65,7 +65,7 @@ const PrintPosts = () => {
       </div>
     );
   });
-  return <div>{allPosts}</div>;
+  return <div className="cards-container">{allPosts}</div>;
 };
 
 export default PrintPosts;

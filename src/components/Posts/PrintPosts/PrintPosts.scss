@@ -1,8 +1,5 @@
 @import "../../../index.scss";
 
-.card-container {
-}
-
 .post-container {
   position: relative;
   display: inline-block;
@@ -28,8 +25,15 @@
 }
 
 @media screen and (min-width: 1200px) {
+  .cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     
-  .post-header-container {
-    opacity: 1;
+  }
+
+  .card-container{
+    max-width: 448px;
+    margin: 10px;
   }
 }

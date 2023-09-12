@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createComment } from "../../../features/comment/CommentSlice";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { notification } from "antd";
 import { Button, FormControl, Input, Textarea } from "@chakra-ui/react";
 import "./AddComment.scss";
 
 const AddComment = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { _id } = useParams();
 
   const [formData, setFormData] = useState({
     title: "",
     body: "",
-    image: "",
     postId: _id,
   });
 
-  const { title, body, image } = formData;
+  const { title, body } = formData;
   const [resize] = React.useState("horizontal");
 
   const onChange = (e) =>
@@ -38,7 +39,9 @@ const AddComment = () => {
       message: "Comentario creado con éxito",
     });
     dispatch(createComment(formData));
-    setFormData({ title: "", body: "", image: "" });
+    setFormData({ title: "", body: "" });
+
+    setTimeout(navigate("/"), 1000);
   };
 
   return (
