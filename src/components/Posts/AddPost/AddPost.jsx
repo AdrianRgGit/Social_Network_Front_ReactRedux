@@ -7,10 +7,7 @@ import "./AddPost.scss"
 import {
   Button,
   FormControl,
-  FormHelperText,
-  FormLabel,
   Input,
-  Text,
   Textarea,
 } from "@chakra-ui/react";
 

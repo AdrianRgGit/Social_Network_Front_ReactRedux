@@ -73,7 +73,6 @@ export const updatePost = createAsyncThunk(
   "posts/updatePost",
   async (obj) => {
     try {
-      console.log(obj);
       return await postsService.updatePost(obj);
     } catch (error) {
       console.error(error);

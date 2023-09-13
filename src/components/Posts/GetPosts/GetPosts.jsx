@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, reset } from "../../../features/posts/postsSlice";
-import { Spin } from "antd";
-import { Link } from "react-router-dom";
 import PrintPosts from "../PrintPosts/PrintPosts";
 import Login from "../../Login/Login";
 import "./GetPosts.scss";

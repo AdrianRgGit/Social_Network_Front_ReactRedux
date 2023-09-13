@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from "react";
-import PostDetail from "../PostDetail/PostDetail";
-import CommentList from "../../Comments/CommentList/CommentList";
 import {
-  Avatar,
-  Box,
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
-  Flex,
   FormControl,
-  Heading,
   Image,
   Input,
   Text,
   Textarea,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import LikePost from "../LikePost/LikePost";
 import { notification } from "antd";
 import {
   deletePost,
@@ -63,7 +55,6 @@ const ProfilePost = () => {
     }
 
     dispatch(updatePost({ _id, formData }));
-    console.log(formData);
 
     notification.success({
       message: "Post created",

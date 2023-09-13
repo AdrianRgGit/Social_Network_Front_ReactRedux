@@ -1,4 +1,3 @@
-import React from "react";
 import { dislike, like } from "../../../features/posts/postsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";

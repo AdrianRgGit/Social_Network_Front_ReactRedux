@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  Button,
 } from "@chakra-ui/react";
 import "./Register.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,7 +56,6 @@ const Register = () => {
 
       await dispatch(register(formData));
 
-      console.log("handle");
     } catch (error) {
       console.error(error);
     }

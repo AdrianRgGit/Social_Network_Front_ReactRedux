@@ -4,15 +4,12 @@ import { Link } from "react-router-dom";
 import "./PrintPosts.scss";
 
 import {
-  Button,
   Card,
   CardHeader,
-  CardBody,
   CardFooter,
   Heading,
   Avatar,
   Image,
-  IconButton,
   Box,
   Text,
   Flex,
