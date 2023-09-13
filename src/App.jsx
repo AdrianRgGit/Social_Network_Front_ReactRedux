@@ -11,6 +11,8 @@ import Profile from "./components/Profile/Profile";
 import LikePost from "./components/Posts/LikePost/LikePost";
 import ProfilePost from "./components/Posts/ProfilePost/ProfilePost";
 import PostCard from "./components/PostCard/PostCard";
+import PrivateZone from "./guards/PrivateZone";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -18,17 +20,47 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
+          <Route
+            path="/profile"
+            element={
+              <PrivateZone>
+                <Profile />
+              </PrivateZone>
+            }
+          />
+          <Route
+            path="/postdetail/:_id"
+            element={
+              <PrivateZone>
+                <PostDetail />
+              </PrivateZone>
+            }
+          />
+          <Route
+            path="/profilepost/:_id"
+            element={
+              <PrivateZone>
+                <ProfilePost />
+              </PrivateZone>
+            }
+          />
+          <Route
+            path="/addpost"
+            element={
+              <PrivateZone>
+                <AddPost />
+              </PrivateZone>
+            }
+          />
+
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<GetPosts />} />
-          <Route path="/postdetail/:_id" element={<PostDetail />} />
           <Route path="/search/:title" element={<Search />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/addpost" element={<AddPost />} />
           <Route path="/like/:_id" element={<LikePost />} />
-          <Route path="/profilepost/:_id" element={<ProfilePost />} />
           <Route path="/postcard" element={<PostCard />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
