@@ -1,8 +1,10 @@
 import React from 'react'
+import "./NotFound.scss"
+import backgroundImage from "../../assets/images/NotFound.png"
 
 const NotFound = () => {
   return (
-    <div>NotFound</div>
+    <div className='img-container'><img src={backgroundImage} alt="" /></div>
   )
 }
 
