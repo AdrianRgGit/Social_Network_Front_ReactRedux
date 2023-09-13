@@ -16,8 +16,8 @@ img {
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #ffffff;
+  color: $black-color;
+  background-color: $white-color;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -28,11 +28,11 @@ img {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: $primary-color;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: $secondary-color;
 }
 
 body {
@@ -48,3 +48,7 @@ h1 {
   line-height: 1.1;
 }
 
+.btn-card {
+  background: $tertiary-color !important;
+  color: $white-color !important;
+}

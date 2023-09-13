@@ -21,7 +21,7 @@ const ModalRender = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button onClick={onOpen}>{textBtn}</Button>
+      <Button className="btn-card" onClick={onOpen}>{textBtn}</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

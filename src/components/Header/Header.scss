@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .search-container {
   display: flex;
   line-height: 28px;
@@ -51,6 +53,17 @@ search:hover {
   display: none;
 }
 
+.container-drawer {
+  background-color: rgb(207, 207, 207) !important;
+  opacity: 0.6 !important;
+  display: flex;
+}
+
+.btn-drawer-header {
+  //background-color: rgb(207, 207, 207) !important;
+  opacity: 0.6 !important;
+}
+
 .nav-container {
   display: flex;
   flex-direction: column;
@@ -63,6 +76,7 @@ search:hover {
   align-items: center;
   gap: 20px;
 }
+
 
 /* Estilos para pantallas menores o iguales a 480px */
 @media (max-width: 480px) {

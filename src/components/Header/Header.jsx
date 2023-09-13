@@ -17,7 +17,7 @@ import { getPosts } from "../../features/posts/postsSlice";
 import logoImg from "../../assets/images/Pets1.png";
 import logoImgText from "../../assets/images/Petspierince1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBone, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBone, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import birdHouseIcon from "../../assets/svg/birdHouseIcon.svg";
 
 const Header = () => {
@@ -51,10 +51,10 @@ const Header = () => {
         <>
           <Button
             className="btn-drawer-header"
-            colorScheme="blue"
+            // colorScheme="blue"
             onClick={onOpen}
           >
-            Open
+           <FontAwesomeIcon icon={faBars} size= "lg" style={{color: "rgb(239, 98, 98)"}} />
           </Button>
           <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
             <DrawerOverlay />

@@ -1,57 +1,66 @@
-.container-img-post {
+@import "../../variables.scss";
+
+.card-profile-data {
   display: flex;
-  max-width: 300px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.img-post {
+.profile-data{
+   padding: 20px;
+}
+
+.container-img-profile {
+  display: flex;
+  align-items: center;
+
+}
+
+.img-profile {
   width: 100%;
+  border-radius: 10px;
 }
 
-.container-avatar {
-  display: flex;
-  max-width: 300px;
-}
-
-.avatar {
-  max-width: 150px;
-}
-
-.card-grid{
-
-  justify-content: space-evenly
-}
-
-.container-profile{
-  display:flex ;
-  flex-direction: column;
-   max-width: 1200px;
-   align-items: center;
-}
-
-.container-post-profile{
+.container-post-profile {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
 }
 
-.container-card-profile{
-  border: 1px solid blue;
-  border-radius: 10px;
-  margin-bottom: 10px;
+.divider-profile{
+  margin: 20px;
 
 }
 
-.card-profile-data{
+.footer-card-profile{
   display: flex;
-  justify-content: center;
-    width: 100%;
-    margin-bottom: 20px;
+  align-items: center;
+  gap: 20px;
 }
 
+// .container-avatar {
+//   display: flex;
+//   max-width: 300px;
+// }
 
+// .avatar {
+//   max-width: 150px;
+// }
+
+// .card-grid{
+//   justify-content: space-evenly
+// }
+
+// .container-card-profile{
+//   border: 1px solid blue;
+//   border-radius: 10px;
+//   margin-bottom: 10px;
+
+// }
 
 // p {
 //   background-color: red;
 // }
-

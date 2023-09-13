@@ -7,6 +7,7 @@ import { deletePost, getPosts } from "../../features/posts/postsSlice";
 import {
   Button,
   ButtonGroup,
+  Divider,
   Heading,
   Image,
   Spinner,
@@ -29,7 +30,6 @@ const Profile = () => {
   const { username, email, followers, postIds, avatar_url, avatar } =
     userConnected;
 
-  //FIXME: hace 2 veces la peticion de getsuerconnected
   useEffect(() => {
     dispatch(getUserConnected());
   }, [avatar, username, email]);
@@ -49,7 +49,6 @@ const Profile = () => {
       formData.set("username", event.target.username.value);
       formData.set("email", event.target.email.value);
 
-      //addProduct(formData) > sustituye por el dispatch y la funcion(formData)
       dispatch(updateUser(formData));
     } catch (error) {
       // notification.error({
@@ -58,47 +57,51 @@ const Profile = () => {
     }
   };
 
-  //TODO: cerrar modal y refrescar pagina
-
   return (
     <>
       <div className="container-profile">
         <div className="card-profile-data">
-          <Card
+          <Card className="card-profile-data"
             direction={{ base: "column", sm: "row" }}
-            overflow="hidden"
-            variant="filled"
+            //overflow="hidden"
+            variant = "unstyled"
+            size = "lg"
           >
             <div className="container-img-profile">
-              {avatar_url ? (
-                <Image
-                  className="img-profile"
-                  objectFit="cover"
-                  maxW={{ base: "100%", sm: "200px" }}
-                  src={avatar_url}
-                  alt="avatar-profile-image"
-                />
-              ) : (
-                <div></div>
-              )}
+              <div className="img-profile">
+                {avatar_url ? (
+                  <Image
+                    className="img-profile"
+                    objectFit="cover"
+                    maxW={{ base: "100%", sm: "200px" }}
+                    src={avatar_url}
+                    alt="avatar-profile-image"
+                  />
+                ) : (
+                  <div></div>
+                )}
+              </div>
             </div>
-            <Stack>
-              <CardBody>
-                <Heading title="Profile" size="lg">
+
+            <Stack className="profile-data" spacing='4'>
+
+              <CardBody >
+                <Heading  title="Profile" size="lg">
                   {username}
                 </Heading>
-                <div className="profile-data">
-                  <Text py="2">Email: {email}</Text>
+                <div >
+                  <Text py="2">{email}</Text>
                   <Text py="2">
                     Followers: {followers ? followers.length : "0"}
                   </Text>
-                  <Text py="2">
+                  {/* <Text py="2">
                     Following: hay que hacer la logica en bakcend
-                  </Text>
+                  </Text> */}
                 </div>
               </CardBody>
+            
 
-              <CardFooter>
+              <CardFooter className="footer-card-profile">
                 <div className="modal-profile">
                   <ModalRender
                     modalTitle={"Update user"}
@@ -135,6 +138,7 @@ const Profile = () => {
                             <span className="js-fileName">Choose a file</span>
                           </label>
                           <Button
+                            className="btn-card"
                             type="submit"
                             variant="solid"
                             colorScheme="blue"
@@ -148,6 +152,7 @@ const Profile = () => {
                 </div>
 
                 <Button
+                  className="btn-card"
                   onClick={() => navigate("/addpost")}
                   variant="solid"
                   colorScheme="blue"
@@ -158,6 +163,8 @@ const Profile = () => {
             </Stack>
           </Card>
         </div>
+
+        <Divider className="divider-profile"/>
 
         <div className="container-post-profile">
           {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}

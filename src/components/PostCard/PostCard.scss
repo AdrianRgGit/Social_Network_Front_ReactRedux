@@ -3,8 +3,11 @@
 
 
 .post-card-container {
-  position: relative;
-  display: inline-block;
+  // position: relative;
+  // display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px ;
 }
 
 .post-card-header-container {
