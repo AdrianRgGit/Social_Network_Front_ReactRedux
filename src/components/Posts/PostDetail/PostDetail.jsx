@@ -7,7 +7,6 @@ import LikePost from "../LikePost/LikePost";
 import "./PostDetail.scss";
 
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
@@ -15,13 +14,16 @@ import {
   Heading,
   Avatar,
   Image,
-  IconButton,
   Box,
   Text,
   Flex,
   Spinner,
+  Button,
 } from "@chakra-ui/react";
 import CommentList from "../../Comments/CommentList/CommentList"; // Importa el componente CommentList desde el mismo directorio
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
+import ModalRender from "../../ModalRender/ModalRender";
 
 const PostDetail = () => {
   const { _id } = useParams();
@@ -48,17 +50,8 @@ const PostDetail = () => {
   const printCard = () => {
     return (
       <Card maxW="md" className="detail-post-container">
-        <CardHeader className="detail-post-header-container">
-          <Text>{post.title}</Text>
-          <div className="like-container">
-            <LikePost />
-            <Text>{post.likes?.length}</Text>
-          </div>
-        </CardHeader>
-        <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
-
-        <CardFooter
-          className="detail-post-footer-container"
+        <CardHeader
+          className="detail-post-header-container"
           justify="space-between"
           flexWrap="wrap"
           sx={{
@@ -79,7 +72,40 @@ const PostDetail = () => {
               </Box>
             </Flex>
           </Flex>
+        </CardHeader>
+        <CardBody className="detail-post-body-container">
+          <Text>{post.title}</Text>
+        </CardBody>
+        <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
+
+        <CardFooter className="detail-post-footer-container">
+          <Text>{post.body}</Text>
         </CardFooter>
+
+        <div className="like-comment-container">
+          <div className="like-container">
+            <LikePost />
+            <Text>{post.likes?.length}</Text>
+          </div>
+          <div>
+            <ModalRender
+              className="modal-btn"
+              modalTitle={"Add comment"}
+              textBtn={
+                <FontAwesomeIcon
+                  icon={faComment}
+                  size="xl"
+                  className="comment-icon"
+                />
+              }
+              text={
+                <>
+                  <AddComment />
+                </>
+              }
+            />
+          </div>
+        </div>
       </Card>
     );
   };
@@ -88,7 +114,6 @@ const PostDetail = () => {
     <>
       {printCard()}
       <div>
-        <AddComment />
         <CommentList />
       </div>
     </>

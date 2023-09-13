@@ -164,7 +164,7 @@ const Profile = () => {
           {postIds?.map((post, i) => {
             return (
               <div key={i}>
-                <Link to={"/postdetail/" + post._id}>
+                <Link to={"/profilepost/" + post._id}>
                   <PostCard
                     textTitle={post.title}
                     textLikes={post.likes?.length}

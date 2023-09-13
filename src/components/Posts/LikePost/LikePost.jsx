@@ -18,11 +18,12 @@ const LikePost = () => {
       {isAlreadyLiked ? (
         <FontAwesomeIcon
           icon={faBone}
+          size="xl"
           onClick={() => dispatch(dislike(_id))}
           style={{ color: "#d7902d" }}
         />
       ) : (
-        <FontAwesomeIcon icon={faBone} onClick={() => dispatch(like(_id))} />
+        <FontAwesomeIcon icon={faBone} size="xl" onClick={() => dispatch(like(_id))} />
       )}
     </div>
   );

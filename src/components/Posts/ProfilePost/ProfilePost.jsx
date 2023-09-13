@@ -55,7 +55,8 @@ const ProfilePost = () => {
       });
     }
 
-    dispatch(updatePost(_id, formData));
+    dispatch(updatePost({ _id, formData }));
+    console.log(formData);
 
     notification.success({
       message: "Post creado con éxito",
@@ -102,7 +103,7 @@ const ProfilePost = () => {
                 resize={resize}
                 onChange={onChange}
               />
-
+              
               <Button mt={4} colorScheme="teal" type="submit">
                 Submit
               </Button>
