@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
-// import { Button } from "@chakra-ui/react";
 import {
   Alert,
   AlertIcon,
@@ -10,6 +9,11 @@ import {
   AlertDescription,
   Button,
 } from "@chakra-ui/react";
+import "./Register.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCamera, faFaceSmile, faMobile } from "@fortawesome/free-solid-svg-icons";
+import petsSperience from "../../assets/images/Petspierince1.png";
+
 
 const Register = () => {
   const { isSuccess, isError, message } = useSelector((state) => state.auth);
@@ -61,63 +65,124 @@ const Register = () => {
 
   return (
     <>
-      <div className="alert-container">
-        {isError && (
-          <Alert status="error">
-            <AlertIcon />
-            <AlertTitle>Error registering user</AlertTitle>
-            <AlertDescription>{message}</AlertDescription>
-          </Alert>
-        )}
+      <div className="father-container">
+        <div className="info-container">
+          <section className="text-container">
+            <img className="logo" src={petsSperience} alt="" />
+          </section>
+          <section className="index-container">
+            <div>
+              <FontAwesomeIcon
+                className="icon"
+                icon={faCamera}
+                style={{ color: "#ef6262" }}
+              />
+              <p>Take photos</p>
+            </div>
+            <div>
+              <FontAwesomeIcon
+                className="icon"
+                icon={faMobile}
+                style={{ color: "#ef6262" }}
+              />
+              <p>Share moments</p>
+            </div>
+            <div>
+              <FontAwesomeIcon
+                className="icon"
+                icon={faFaceSmile}
+                style={{ color: "#ef6262" }}
+              />
+              <p>Meet friends</p>
+            </div>
+          </section>
+        </div>
 
-        {isSuccess && (
-          <Alert status="success">
-            <AlertIcon />
-            <AlertTitle>User registered successfully</AlertTitle>
-            <AlertDescription>{message}</AlertDescription>
-          </Alert>
-        )}
+        <div className="login-container">
+          <div className="alert-container">
+            {isError && (
+              <Alert status="error">
+                <AlertIcon />
+                <AlertTitle>Error register user</AlertTitle>
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+
+            {isSuccess && (
+              <Alert status="success">
+                <AlertIcon />
+                <AlertTitle>User registered successfully</AlertTitle>
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+          </div>
+
+          <form className="form-updateUser" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              // defaultValue={username}
+              required
+            />
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              // defaultValue={email}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              // defaultValue={email}
+              required
+            />
+            <input
+              type="password"
+              name="password2"
+              placeholder="Repeat your password"
+              // defaultValue={email}
+              required
+            />
+            <input
+              type="file"
+              name="avatar"
+              id="file"
+              className="input-avatar"
+            />
+            {/* <label htmlFor="file" className="btn btn-tertiary js-labelFile">
+              <i className="icon fa fa-check"></i>
+              <span className="js-fileName">Choose a file</span>
+            </label> */}
+            <button className="btn" type="submit">
+              Login
+            </button>
+          </form>
+        </div>
       </div>
-
-      <form className="form-updateUser" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="username"
-          // defaultValue={username}
-          required
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="email"
-          // defaultValue={email}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          // defaultValue={email}
-          required
-        />
-        <input
-          type="password"
-          name="password2"
-          placeholder="Repeat your password"
-          // defaultValue={email}
-          required
-        />
-        <input type="file" name="avatar" id="file" className="input-avatar" />
-        <label htmlFor="file" className="btn btn-tertiary js-labelFile">
-          <i className="icon fa fa-check"></i>
-          <span className="js-fileName">Choose a file</span>
-        </label>
-        <Button type="submit" variant="solid" colorScheme="blue">
-          Register
-        </Button>
-      </form>
     </>
+    // <>
+    //   <div className="alert-container">
+    //     {isError && (
+    //       <Alert status="error">
+    //         <AlertIcon />
+    //         <AlertTitle>Error registering user</AlertTitle>
+    //         <AlertDescription>{message}</AlertDescription>
+    //       </Alert>
+    //     )}
+
+    //     {isSuccess && (
+    //       <Alert status="success">
+    //         <AlertIcon />
+    //         <AlertTitle>User registered successfully</AlertTitle>
+    //         <AlertDescription>{message}</AlertDescription>
+    //       </Alert>
+    //     )}
+    //   </div>
+
+    // </>
   );
 };
 
