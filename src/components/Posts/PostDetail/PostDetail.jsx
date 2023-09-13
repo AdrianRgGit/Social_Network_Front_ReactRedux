@@ -18,7 +18,6 @@ import {
   Text,
   Flex,
   Spinner,
-  Button,
 } from "@chakra-ui/react";
 import CommentList from "../../Comments/CommentList/CommentList"; // Importa el componente CommentList desde el mismo directorio
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

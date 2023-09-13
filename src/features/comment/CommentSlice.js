@@ -52,10 +52,6 @@ export const commentSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      // .addCase(getCommentById.fulfilled, (state, action) => {
-      //   console.log(action.payload);
-      //   state.comment = action.payload.comment;
-      // })
       .addCase(createComment.fulfilled, (state, action) => {
         state.comment = action.payload.comment;
       });

@@ -2,24 +2,18 @@ import "./profile.scss";
 import React, { useEffect, useState } from "react";
 import { getUserConnected, updateUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { notification } from "antd";
-import { deletePost, getPosts } from "../../features/posts/postsSlice";
 import {
   Button,
-  ButtonGroup,
   Heading,
   Image,
   Spinner,
   Stack,
   Text,
-  useDisclosure,
 } from "@chakra-ui/react";
 import ModalRender from "../ModalRender/ModalRender";
-import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
+import { Card, CardBody, CardFooter } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import PostCard from "../PostCard/PostCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
   const navigate = useNavigate();
