@@ -125,13 +125,13 @@ const Profile = () => {
                             id="file"
                             className="input-avatar"
                           />
-                          <label
+                          {/* <label
                             htmlFor="file"
                             className="btn btn-tertiary js-labelFile"
                           >
                             <i className="icon fa fa-check"></i>
                             <span className="js-fileName">Choose a file</span>
-                          </label>
+                          </label> */}
                           <Button
                             className="btn-card"
                             type="submit"

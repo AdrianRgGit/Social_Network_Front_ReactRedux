@@ -8,14 +8,13 @@
   margin-bottom: 20px;
 }
 
-.profile-data{
-   padding: 20px;
+.profile-data {
+  padding: 20px;
 }
 
 .container-img-profile {
   display: flex;
   align-items: center;
-
 }
 
 .img-profile {
@@ -30,37 +29,20 @@
   gap: 10px;
 }
 
-.divider-profile{
+.divider-profile {
   margin: 20px;
-
 }
 
-.footer-card-profile{
+.footer-card-profile {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-// .container-avatar {
-//   display: flex;
-//   max-width: 300px;
-// }
-
-// .avatar {
-//   max-width: 150px;
-// }
-
-// .card-grid{
-//   justify-content: space-evenly
-// }
-
-// .container-card-profile{
-//   border: 1px solid blue;
-//   border-radius: 10px;
-//   margin-bottom: 10px;
-
-// }
-
-// p {
-//   background-color: red;
-// }
+.form-updateUser {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  flex-direction: column;
+  align-content: center;
+}
