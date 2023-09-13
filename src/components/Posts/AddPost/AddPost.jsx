@@ -76,7 +76,7 @@ const AddPost = () => {
       notification.success({
         message: "Post creado con éxito",
       });
-      navigate("/");
+      navigate("/profile");
     } catch (error) {
       console.error("Error al crear el post:", error);
       notification.error({

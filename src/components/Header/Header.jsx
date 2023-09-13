@@ -30,7 +30,7 @@ const Header = () => {
   const onLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
     onClose()
   };
 

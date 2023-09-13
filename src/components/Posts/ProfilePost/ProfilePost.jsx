@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Card,
+  CardBody,
   CardFooter,
   CardHeader,
   Flex,
@@ -19,8 +20,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import LikePost from "../LikePost/LikePost";
 import { notification } from "antd";
-import { getById, updatePost } from "../../../features/posts/postsSlice";
+import {
+  deletePost,
+  getById,
+  updatePost,
+} from "../../../features/posts/postsSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import "./ProfilePost.scss";
+import ModalRender from "../../ModalRender/ModalRender";
 
 const ProfilePost = () => {
   const { post } = useSelector((state) => state.posts);
@@ -59,9 +66,17 @@ const ProfilePost = () => {
     console.log(formData);
 
     notification.success({
-      message: "Post creado con éxito",
+      message: "Post created",
     });
     navigate("/profile");
+  };
+
+  const deleteProfilePost = () => {
+    dispatch(deletePost(post._id));
+    notification.success({
+      message: "Post deleted",
+    });
+    setTimeout(navigate("/profile"), 1000);
   };
 
   return (
@@ -75,41 +90,53 @@ const ProfilePost = () => {
         </CardHeader>
         <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
 
-        <CardFooter
-          className="detail-post-footer-container"
-          justify="space-between"
-          flexWrap="wrap"
-          sx={{
-            "& > button": {
-              minW: "136px",
-            },
-          }}
-        >
-          <div className="form-container">
-            <form onSubmit={onSubmit} className="form">
-              <FormControl className="form-title-container">
-                <Input
-                  type="text"
-                  name="title"
-                  placeholder="Title"
-                  onChange={onChange}
-                />
-              </FormControl>
+        <CardBody className="body-container">
+          <Text>{post.body}</Text>
+        </CardBody>
 
-              <Textarea
-                name="body"
-                placeholder="Comment"
-                size="sm"
-                resize={resize}
-                onChange={onChange}
-              />
-              
-              <Button mt={4} colorScheme="teal" type="submit">
-                Submit
-              </Button>
-            </form>
-          </div>
-        </CardFooter>
+        <ModalRender
+          className="modal-btn"
+          modalTitle={"Add comment"}
+          textBtn={"Update"}
+          text={
+            <>
+              <div className="form-container">
+                <form onSubmit={onSubmit} className="form">
+                  <FormControl className="form-title-container">
+                    <Input
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      onChange={onChange}
+                      defaultValue={post.title}
+                    />
+                  </FormControl>
+
+                  <Textarea
+                    name="body"
+                    placeholder="Body"
+                    size="sm"
+                    resize={resize}
+                    onChange={onChange}
+                    defaultValue={post.body}
+                  />
+                  <div className="buttons-container">
+                    <Button mt={4} colorScheme="teal" type="submit">
+                      Update
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </>
+          }
+        />
+        <Button
+          mt={4}
+          colorScheme="red"
+          onClick={() => deleteProfilePost(post._id)}
+        >
+          Delete
+        </Button>
       </Card>
     </>
   );
