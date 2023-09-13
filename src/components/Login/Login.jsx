@@ -10,6 +10,14 @@ import {
   AlertDescription,
   Button,
 } from "@chakra-ui/react";
+import "./Login.scss";
+import petsSperience from "../../assets/images/Petspierince1.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCamera,
+  faFaceSmile,
+  faMobile,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -53,43 +61,81 @@ const Login = () => {
 
   return (
     <>
-      <div className="alert-container">
-        {isError && (
-          <Alert status="error">
-            <AlertIcon />
-            <AlertTitle>Error login user</AlertTitle>
-            <AlertDescription>{message}</AlertDescription>
-          </Alert>
-        )}
+      <div className="father-container">
+        <div className="info-container">
+          <section className="text-container">
+            <img className="logo" src={petsSperience} alt="" />
+          </section>
+          <section className="index-container">
+            <div>
+              <FontAwesomeIcon
+                className="icon"
+                icon={faCamera}
+                style={{ color: "#ef6262" }}
+              />
+              <p>Take photos</p>
+            </div>
+            <div>
+              <FontAwesomeIcon
+                className="icon"
+                icon={faMobile}
+                style={{ color: "#ef6262" }}
+              />
+              <p>Share moments</p>
+            </div>
+            <div>
+              <FontAwesomeIcon
+                className="icon"
+                icon={faFaceSmile}
+                style={{ color: "#ef6262" }}
+              />
+              <p>Meet friends</p>
+            </div>
+          </section>
+        </div>
 
-        {isSuccess && (
-          <Alert status="success">
-            <AlertIcon />
-            <AlertTitle>User logged successfully</AlertTitle>
-            <AlertDescription>{message}</AlertDescription>
-          </Alert>
-        )}
+        <div className="login-container">
+          <div className="alert-container">
+            {isError && (
+              <Alert status="error">
+                <AlertIcon />
+                <AlertTitle>Error login user</AlertTitle>
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+
+            {isSuccess && (
+              <Alert status="success">
+                <AlertIcon />
+                <AlertTitle>User logged successfully</AlertTitle>
+                <AlertDescription>{message}</AlertDescription>
+              </Alert>
+            )}
+          </div>
+
+          <form onSubmit={onSubmit}>
+            <p>Your email</p>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="email"
+              onChange={onChange}
+              required
+            />
+            Your password
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="password"
+              onChange={onChange}
+              required
+            />
+            <button className="btn" type="submit">Login</button>
+          </form>
+        </div>
       </div>
-
-      <form onSubmit={onSubmit}>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          placeholder="email"
-          onChange={onChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          placeholder="password"
-          onChange={onChange}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
     </>
   );
 };

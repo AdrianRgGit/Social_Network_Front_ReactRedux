@@ -1,0 +1,61 @@
+@import "../../index.scss";
+
+.father-container {
+  display: flex;
+  min-width: 50vh;
+  min-height: 50vh;
+}
+
+.info-container,
+.login-container {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.info-container {
+  background-image: url('../../assets/images/loginBack.jpg'); /* Reemplaza 'ruta/de/tu/imagen.jpg' con la URL de tu imagen de fondo */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container form input,
+.login-container form button {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.logo {
+  width: 50vh;
+}
+
+.index-container div {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  width: 40px;
+  height: auto;
+  margin: 10px;
+}
+
+.btn {
+  border-radius: 3px;
+  height: 50px;
+  background-color: $tertiary-color;
+}
