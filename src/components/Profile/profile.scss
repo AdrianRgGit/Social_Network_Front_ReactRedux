@@ -21,9 +21,17 @@
   justify-content: space-evenly
 }
 
+.container-profile{
+  display:flex ;
+  flex-direction: column;
+   max-width: 1200px;
+   align-items: center;
+}
+
 .container-post-profile{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -32,6 +40,13 @@
   border-radius: 10px;
   margin-bottom: 10px;
 
+}
+
+.card-profile-data{
+  display: flex;
+  justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 
