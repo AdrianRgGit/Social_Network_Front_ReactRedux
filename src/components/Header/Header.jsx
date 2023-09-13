@@ -18,6 +18,7 @@ import logoImg from "../../assets/images/Pets1.png";
 import logoImgText from "../../assets/images/Petspierince1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBone, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import birdHouseIcon from "../../assets/svg/birdHouseIcon.svg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const Header = () => {
     e.preventDefault();
     dispatch(logout());
     navigate("/");
-    onClose()
+    onClose();
   };
 
   const [text, setText] = useState("");
@@ -78,10 +79,10 @@ const Header = () => {
                   </div>
                   <div className="links-container">
                     <Link to={"/"} onClick={onClose}>
-                      <FontAwesomeIcon
-                        icon={faBone}
-                        size="2xl"
-                        style={{ color: "#d7902d" }}
+                      <img
+                        className="icon"
+                        src={birdHouseIcon}
+                        alt="birdHouseIcon"
                       />
                     </Link>
                     {userConnected ? (
