@@ -31,6 +31,7 @@ const Header = () => {
     e.preventDefault();
     dispatch(logout());
     navigate("/login");
+    onClose()
   };
 
   const [text, setText] = useState("");
@@ -106,7 +107,7 @@ const Header = () => {
                         </span>
                         <span>
                           <Link to={"/register"} onClick={onClose}>
-                            Register |{" "}
+                            Register{" "}
                           </Link>
                         </span>
                       </>

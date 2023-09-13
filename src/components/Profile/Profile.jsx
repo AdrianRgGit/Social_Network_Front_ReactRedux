@@ -2,7 +2,6 @@ import "./profile.scss";
 import React, { useEffect, useState } from "react";
 import { getUserConnected, updateUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { notification } from "antd";
 import { deletePost } from "../../features/posts/postsSlice";
 import {
   Button,
