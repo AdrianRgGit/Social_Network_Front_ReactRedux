@@ -7,6 +7,7 @@
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
+  gap: 20px;
 }
 
 .search {
@@ -18,13 +19,13 @@
   border: 2px solid transparent;
   border-radius: 8px;
   outline: none;
-  background-color: #f3f3f4;
-  color: #0d0c22;
+  background-color: #cbcbcc;
+  color: #0c0b20;
   transition: 0.3s ease;
 }
 
 .search::placeholder {
-  color: #9e9ea7;
+  color: #3a3a50;
 }
 
 .search:focus,
@@ -51,6 +52,20 @@ search:hover {
   
   .div-toggle {
     display: none;
+  }
+
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .links-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
   }
   
   /* Estilos para pantallas menores o iguales a 480px */

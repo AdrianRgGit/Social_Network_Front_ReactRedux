@@ -1,15 +1,29 @@
 import React, { useState } from "react";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  useDisclosure,
+  Button,
+} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import BtnTop from "../BtnTop/BtnTop";
 import "./Header.scss";
 import { getPosts } from "../../features/posts/postsSlice";
-import HeaderDrawer from "../HeaderDrawer/HeaderDrawer";
+import logoImg from "../../assets/images/Pets1.png";
+import logoImgText from "../../assets/images/Petspierince1.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBone, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { userConnected } = useSelector((state) => state.auth);
 
@@ -31,46 +45,78 @@ const Header = () => {
 
   return (
     <nav className="nav-container">
-      <div className="drawer-btn">
-        <HeaderDrawer />
-      </div>
-      <div className="links-container">
-        <Link to={"/"}>Home | </Link>
-        {userConnected ? (
-          <>
-            <span onClick={onLogout}>Logout | </span>
-            <span>
-              <Link to={`/profile`}>Profile | </Link>
-            </span>
-            <span>
-              <Link to={"/addpost"}>Add Post </Link>
-            </span>
-          </>
-        ) : (
-          <>
-            <span>
-              <Link to={"/login"}>Login | </Link>
-            </span>
-            <span>
-              <Link to={"/register"}>Register | </Link>
-            </span>
-          </>
-        )}
-      </div>
-      <div className="search-container">
-        <svg className="icon" aria-hidden="true" viewBox="0 0 24 24">
-          <g>
-            <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-          </g>
-        </svg>
-        <input
-          className="search"
-          // onClick={}
-          type="text"
-          onKeyUp={handleChange}
-          placeholder="Search"
-          name="text"
-        />
+      <div className="container-drawer">
+        <>
+          <Button
+            className="btn-drawer-header"
+            colorScheme="blue"
+            onClick={onOpen}
+          >
+            Open
+          </Button>
+          <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+            <DrawerOverlay />
+            <DrawerContent>
+              <DrawerHeader borderBottomWidth="1px">
+                <div className="drawerHeader-logo">
+                  <img alt="image logo" src={logoImg} />
+                  <img alt="image logo" src={logoImgText} />
+                </div>
+              </DrawerHeader>
+              <DrawerBody>
+                <nav className="nav-container">
+                  <div className="search-container">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <input
+                      className="search"
+                      type="text"
+                      onKeyUp={handleChange}
+                      placeholder="Search"
+                      name="text"
+                    />
+                  </div>
+                  <div className="links-container">
+                    <Link to={"/"} onClick={onClose}>
+                      <FontAwesomeIcon
+                        icon={faBone}
+                        size="2xl"
+                        style={{ color: "#d7902d" }}
+                      />
+                    </Link>
+                    {userConnected ? (
+                      <>
+                        <span>
+                          <Link to={`/profile`} onClick={onClose}>
+                            Profile{" "}
+                          </Link>
+                        </span>
+                        <span>
+                          <Link to={"/addpost"} onClick={onClose}>
+                            Add Post{" "}
+                          </Link>
+                        </span>
+                        <span onClick={onLogout}>Logout</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>
+                          <Link to={"/login"} onClick={onClose}>
+                            Login{" "}
+                          </Link>
+                        </span>
+                        <span>
+                          <Link to={"/register"} onClick={onClose}>
+                            Register |{" "}
+                          </Link>
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </nav>
+              </DrawerBody>
+            </DrawerContent>
+          </Drawer>
+        </>
       </div>
       <BtnTop />
     </nav>
