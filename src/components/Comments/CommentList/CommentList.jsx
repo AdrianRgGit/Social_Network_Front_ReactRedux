@@ -22,6 +22,10 @@ const CommentList = () => {
   const { post } = useSelector((state) => state.posts);
   const { commentIds } = post;
 
+  // const userComment = commentIds.userId.map((user) => {
+  //   return user;
+  // });
+
   if (!commentIds) {
     return <Spinner />;
   }
@@ -38,10 +42,11 @@ const CommentList = () => {
 
   return (
     <div className="card-comments-container">
-      {commentIds?.map((comment) => {
+      {commentIds?.map((comment, i) => {
+        console.log(comment.userId);
         return (
-          <>
-            <Card className="comments-container" key={comment._id}>
+          <div key={i}>
+            <Card className="comments-container">
               <CardHeader>
                 <Heading size="sm">{comment.title}</Heading>
               </CardHeader>
@@ -68,20 +73,20 @@ const CommentList = () => {
                 <Flex spacing="4">
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
                     <Avatar
-                    // Este avatar es del usuario que ha hecho el post. Habría que cambiarlo al de la persona que ha hecho el comentario
-                      name={post.userId?.username}
-                      src={post.userId?.avatar_url}
+                      // Este avatar es del usuario que ha hecho el post. Habría que cambiarlo al de la persona que ha hecho el comentario
+                      name={comment.userId.username}
+                      src={comment.userId.avatar_url}
                     />
 
                     <Box>
                       {/* No se como poner el nombre del usuario que ha hecho el comentario */}
-                      <Heading size="sm">Usuario Prueba</Heading>
+                      <Heading size="sm">{comment.userId.username}</Heading>
                     </Box>
                   </Flex>
                 </Flex>
               </CardFooter>
             </Card>
-          </>
+          </div>
         );
       })}
       <br />

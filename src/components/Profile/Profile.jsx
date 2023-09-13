@@ -18,6 +18,8 @@ import ModalRender from "../ModalRender/ModalRender";
 import { Card, CardHeader, CardBody, CardFooter } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import PostCard from "../PostCard/PostCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -30,11 +32,10 @@ const Profile = () => {
   //FIXME: hace 2 veces la peticion de getsuerconnected
   useEffect(() => {
     dispatch(getUserConnected());
-
   }, [avatar, username, email]);
 
   if (isLoading) {
-    return <Spinner size="lg" color='red.500' />;
+    return <Spinner size="lg" color="red.500" />;
   }
 
   //TODO: Nota. No utilizar un form si vas a subir/editar fotos > hay que usar un FORM-DATA (como en postman)
@@ -51,7 +52,6 @@ const Profile = () => {
       //addProduct(formData) > sustituye por el dispatch y la funcion(formData)
       dispatch(updateUser(formData));
     } catch (error) {
-
       // notification.error({
       //   message: "Error updating user",
       // });
@@ -146,7 +146,7 @@ const Profile = () => {
                     }
                   />
                 </div>
-                
+
                 <Button
                   onClick={() => navigate("/addpost")}
                   variant="solid"
@@ -167,7 +167,7 @@ const Profile = () => {
                 <Link to={"/postdetail/" + post._id}>
                   <PostCard
                     textTitle={post.title}
-                    textLikes = {post.likes?.length} 
+                    textLikes={post.likes?.length}
                     srcImage={post.image_url}
                   />
                 </Link>
