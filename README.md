@@ -94,6 +94,23 @@ The project emphasizes clean and user-friendly design. Care has been taken to en
 - Yolanda Lopez
 [GitHub yolovi](https://github.com/yolovi)
 
+## Screens 📺
+LOGIN / REGISTER / HOME
+
+![Gif-petsperience](https://github.com/AdrianRgGit/Social_Network_Front_ReactRedux/assets/133784147/18b5b3cb-e330-485b-b0bd-90ad2ee335be)
+
+POST DETAIL
+
+![image](https://github.com/AdrianRgGit/Social_Network_Front_ReactRedux/assets/133784147/d520aafb-1fc1-4cc4-9fab-0c40f3c79a5e)
+
+PROFILE
+
+![image](https://github.com/AdrianRgGit/Social_Network_Front_ReactRedux/assets/133784147/4a8427b4-4993-4514-bd14-ae2f74e19e01)
+
+![image](https://github.com/AdrianRgGit/Social_Network_Front_ReactRedux/assets/133784147/f98c81ae-c98b-4ca8-9333-0907bcd2ef5a)
+
+
+
 
 
 
