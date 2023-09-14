@@ -28,7 +28,6 @@ PETSPERIENCE is a web application built with React and Redux that allows users t
 ### Components 🛠️
 
 - **Header**: Navigation header.
-- **Footer**: Footer section.
 - **Home**: Landing page displaying posts.
 - **Login**: Login page.
 - **Register**: Registration page.
@@ -39,6 +38,13 @@ PETSPERIENCE is a web application built with React and Redux that allows users t
 - **PostDetail**: Detailed view of a post.
 - **AddComment**: Form for adding comments to a post.
 
+### Extras
+- **Vercel**
+- **Comments CRUD**
+- **Multer images**
+- **Guards and NotFound page**
+- **Responsive**
+- 
 ## Requirements 📋
 
 - Node.js and npm installed on your machine.
