@@ -10,9 +10,15 @@ import {
 } from "@chakra-ui/react";
 import "./Register.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faFaceSmile, faMobile } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAt,
+  faCamera,
+  faFaceSmile,
+  faLock,
+  faMobile,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import petsSperience from "../../assets/images/Petspierince1.png";
-
 
 const Register = () => {
   const { isSuccess, isError, message } = useSelector((state) => state.auth);
@@ -55,7 +61,6 @@ const Register = () => {
       formData.set("password2", event.target.password2.value);
 
       await dispatch(register(formData));
-
     } catch (error) {
       console.error(error);
     }
@@ -63,124 +68,127 @@ const Register = () => {
 
   return (
     <>
-      <div className="father-container">
-        <div className="info-container">
-          <section className="text-container">
-            <img className="logo" src={petsSperience} alt="" />
-          </section>
-          <section className="index-container">
-            <div>
-              <FontAwesomeIcon
-                className="icon"
-                icon={faCamera}
-                style={{ color: "#ef6262" }}
-              />
-              <p>Take photos</p>
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className="icon"
-                icon={faMobile}
-                style={{ color: "#ef6262" }}
-              />
-              <p>Share moments</p>
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className="icon"
-                icon={faFaceSmile}
-                style={{ color: "#ef6262" }}
-              />
-              <p>Meet friends</p>
-            </div>
-          </section>
-        </div>
+      <div className="alert-container">
+        {isError && (
+          <Alert status="error">
+            <AlertIcon />
+            <AlertTitle>Error login user</AlertTitle>
+            <AlertDescription>{message}</AlertDescription>
+          </Alert>
+        )}
 
-        <div className="login-container">
-          <div className="alert-container">
-            {isError && (
-              <Alert status="error">
-                <AlertIcon />
-                <AlertTitle>Error register user</AlertTitle>
-                <AlertDescription>{message}</AlertDescription>
-              </Alert>
-            )}
+        {isSuccess && (
+          <Alert status="success">
+            <AlertIcon />
+            <AlertTitle>User logged successfully</AlertTitle>
+            <AlertDescription>{message}</AlertDescription>
+          </Alert>
+        )}
+      </div>
 
-            {isSuccess && (
-              <Alert status="success">
-                <AlertIcon />
-                <AlertTitle>User registered successfully</AlertTitle>
-                <AlertDescription>{message}</AlertDescription>
-              </Alert>
-            )}
+      <div className="container-login">
+        <div className="card-login">
+          <div className="container-icons-left">
+            <section className="container-logo">
+              <img src={petsSperience} alt="Logo Petsperience" />
+            </section>
+            <section className="container-index">
+              <div>
+                <FontAwesomeIcon
+                  className="icon"
+                  icon={faCamera}
+                  style={{ color: "#ef6262" }}
+                />
+                <p>Take photos</p>
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  className="icon"
+                  icon={faMobile}
+                  style={{ color: "#ef6262" }}
+                />
+                <p>Share moments</p>
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  className="icon"
+                  icon={faFaceSmile}
+                  style={{ color: "#ef6262" }}
+                />
+                <p>Meet friends</p>
+              </div>
+            </section>
           </div>
-
-          <form className="form-updateUser" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              // defaultValue={username}
-              required
-            />
-            <input
-              type="text"
-              name="email"
-              placeholder="email"
-              // defaultValue={email}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              // defaultValue={email}
-              required
-            />
-            <input
-              type="password"
-              name="password2"
-              placeholder="Repeat your password"
-              // defaultValue={email}
-              required
-            />
-            <input
-              type="file"
-              name="avatar"
-              id="file"
-              className="input-avatar"
-            />
-            {/* <label htmlFor="file" className="btn btn-tertiary js-labelFile">
-              <i className="icon fa fa-check"></i>
-              <span className="js-fileName">Choose a file</span>
-            </label> */}
-            <button className="btn" type="submit">
-              Login
-            </button>
-          </form>
+          <div className="form-data">
+            <form className="form" onSubmit={handleSubmit}>
+              <p id="heading">Register</p>
+              <div className="field">
+                <FontAwesomeIcon icon={faUser} style={{ color: "#3c5b90" }} />
+                <input
+                  className="input-field"
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  required
+                />
+              </div>
+              <div className="field">
+                <FontAwesomeIcon icon={faAt} style={{ color: "#3c5b90" }} />
+                <input
+                  className="input-field"
+                  type="email"
+                  name="email"
+                  placeholder="email"
+                  required
+                />
+              </div>
+              <div className="field">
+                <FontAwesomeIcon icon={faLock} style={{ color: "#3c5b90" }} />
+                <input
+                  className="input-field"
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  required
+                />
+              </div>
+              <div className="field">
+                <FontAwesomeIcon icon={faLock} style={{ color: "#3c5b90" }} />
+                <input
+                  className="input-field"
+                  type="password"
+                  name="password2"
+                  placeholder="Repeat your password"
+                  required
+                />
+              </div>
+              <input
+                type="file"
+                name="avatar"
+                id="file"
+                className="input-avatar"
+              />
+              <div className="container-btn">
+                <button className="button1" type="submit">
+                  Register
+                </button>
+                <button
+                  className="button2"
+                  onClick={() => {
+                    setTimeout(() => {
+                      navigate("/login");
+                    }, 200);
+                  }}
+                >
+                  Go to Login
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+
     </>
-    // <>
-    //   <div className="alert-container">
-    //     {isError && (
-    //       <Alert status="error">
-    //         <AlertIcon />
-    //         <AlertTitle>Error registering user</AlertTitle>
-    //         <AlertDescription>{message}</AlertDescription>
-    //       </Alert>
-    //     )}
-
-    //     {isSuccess && (
-    //       <Alert status="success">
-    //         <AlertIcon />
-    //         <AlertTitle>User registered successfully</AlertTitle>
-    //         <AlertDescription>{message}</AlertDescription>
-    //       </Alert>
-    //     )}
-    //   </div>
-
-    // </>
   );
 };
 

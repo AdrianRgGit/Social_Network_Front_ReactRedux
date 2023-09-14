@@ -99,7 +99,7 @@ const Profile = () => {
               <CardFooter className="footer-card-profile">
                 <div className="modal-profile">
                   <ModalRender
-                    modalTitle={"Update user"}
+                    modalTitle={"Edit your profile"}
                     textBtn={"Edit profile"}
                     text={
                       <>

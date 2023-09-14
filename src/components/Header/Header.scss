@@ -21,8 +21,8 @@
   border: 2px solid transparent;
   border-radius: 8px;
   outline: none;
-  background-color: #cbcbcc;
-  color: #0c0b20;
+  background-color: $grey-color-light;
+  color: $black-color;
   transition: 0.3s ease;
 }
 
@@ -33,8 +33,8 @@
 .search:focus,
 search:hover {
   outline: none;
-  border-color: rgba(234, 76, 137, 0.4);
-  background-color: #fff;
+  border-color: rgba(225, 67, 20, 0.719);
+  background-color: $white-color;
   box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
 }
 

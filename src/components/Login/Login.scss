@@ -1,48 +1,44 @@
 @import "../../index.scss";
 
-.father-container {
+.container-login {
   display: flex;
-  min-width: 50vh;
-  min-height: 50vh;
-}
-
-.info-container,
-.login-container {
-  flex: 1;
-  padding: 20px;
-  border: 1px solid black;
-}
-
-.info-container {
-  background-image: url('../../assets/images/loginBack.jpg'); /* Reemplaza 'ruta/de/tu/imagen.jpg' con la URL de tu imagen de fondo */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-.login-container {
-  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  min-width: 100vh;
+  min-height: 100vh;
+  flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  align-content: stretch;
 }
 
-.login-container form {
+.card-login {
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  background-color: $grey-color-light;
+  box-shadow: 4px 5px 9px 2px #a5a5a5;
+  padding: 20px;
+
 }
 
-.login-container form input,
-.login-container form button {
-  margin-bottom: 20px;
+.form-data {
+}
+
+.container-icons-left {
+  border-radius: 20px;
+  background-color: $white-color;
+  padding-inline-start: 10px;
+  max-width: 300px;
+}
+
+.container-logo {
+  border-radius: 20px;
+  padding: 20px;
   width: 100%;
 }
 
-.logo {
-  width: 50vh;
-}
-
-.index-container div {
+.container-index div {
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
@@ -54,8 +50,118 @@
   margin: 10px;
 }
 
-.btn {
+// .alert-container {
+//   border: 1px solid blue;
+// }
+
+.container-data-login {
+  display: flex;
+  max-width: 400px;
+  min-width: 300px;
+
+}
+
+
+.btn-login {
   border-radius: 3px;
   height: 50px;
+  background-color: $tertiary-color !important;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 0.4em;
+}
+
+
+#heading {
+  text-align: center;
+  margin: 1em;
+  color: rgb(255, 255, 255);
+  font-size: 1.8em;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border-radius: 25px;
+  padding: 0.6em;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #f9f9f9;
+  box-shadow: 4px 5px 9px 2px #a5a5a5;
+}
+
+
+
+.input-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #3c5b90;
+}
+
+
+.container-btn{
+  margin-top: 20px;
+}
+
+.button1 {
+  padding: 0.5em;
+  padding-left: 1.1em;
+  padding-right: 1.1em;
+  border-radius: 5px;
+  margin-right: 0.5em;
+  border: none;
+  outline: none;
+  transition: 0.4s ease-in-out;
   background-color: $tertiary-color;
+  color: white;
+}
+
+.button1:hover {
+  background-color: $secondary-color;
+  color: white;
+}
+
+.button2 {
+  padding: 0.5em;
+  padding-left: 2.3em;
+  padding-right: 2.3em;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  transition: 0.4s ease-in-out;
+  background-color: $tertiary-color;
+  color: white;
+}
+
+.button2:hover {
+  background-color: $secondary-color;
+  color: white;
+}
+
+.button3 {
+  margin-bottom: 3em;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  transition: 0.4s ease-in-out;
+  background-color: #252525;
+  color: white;
+}
+
+.button3:hover {
+  background-color: red;
+  color: white;
 }

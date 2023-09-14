@@ -9,13 +9,23 @@ import {
   AlertTitle,
   AlertDescription,
   Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Stack,
+  Heading,
+  Image,
+  Text,
 } from "@chakra-ui/react";
 import "./Login.scss";
 import petsSperience from "../../assets/images/Petspierince1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faAt,
   faCamera,
   faFaceSmile,
+  faLock,
   faMobile,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -61,79 +71,101 @@ const Login = () => {
 
   return (
     <>
-      <div className="father-container">
-        <div className="info-container">
-          <section className="text-container">
-            <img className="logo" src={petsSperience} alt="" />
-          </section>
-          <section className="index-container">
-            <div>
-              <FontAwesomeIcon
-                className="icon"
-                icon={faCamera}
-                style={{ color: "#ef6262" }}
-              />
-              <p>Take photos</p>
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className="icon"
-                icon={faMobile}
-                style={{ color: "#ef6262" }}
-              />
-              <p>Share moments</p>
-            </div>
-            <div>
-              <FontAwesomeIcon
-                className="icon"
-                icon={faFaceSmile}
-                style={{ color: "#ef6262" }}
-              />
-              <p>Meet friends</p>
-            </div>
-          </section>
-        </div>
+      <div className="alert-container">
+        {isError && (
+          <Alert status="error">
+            <AlertIcon />
+            <AlertTitle>Error login user</AlertTitle>
+            <AlertDescription>{message}</AlertDescription>
+          </Alert>
+        )}
 
-        <div className="login-container">
-          <div className="alert-container">
-            {isError && (
-              <Alert status="error">
-                <AlertIcon />
-                <AlertTitle>Error login user</AlertTitle>
-                <AlertDescription>{message}</AlertDescription>
-              </Alert>
-            )}
+        {isSuccess && (
+          <Alert status="success">
+            <AlertIcon />
+            <AlertTitle>User logged successfully</AlertTitle>
+            <AlertDescription>{message}</AlertDescription>
+          </Alert>
+        )}
+      </div>
 
-            {isSuccess && (
-              <Alert status="success">
-                <AlertIcon />
-                <AlertTitle>User logged successfully</AlertTitle>
-                <AlertDescription>{message}</AlertDescription>
-              </Alert>
-            )}
+      <div className="container-login">
+        <div className="card-login">
+          <div className="container-icons-left">
+            <section className="container-logo">
+              <img src={petsSperience} alt="Logo Petsperience" />
+            </section>
+            <section className="container-index">
+              <div>
+                <FontAwesomeIcon
+                  className="icon"
+                  icon={faCamera}
+                  style={{ color: "#ef6262" }}
+                />
+                <p>Take photos</p>
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  className="icon"
+                  icon={faMobile}
+                  style={{ color: "#ef6262" }}
+                />
+                <p>Share moments</p>
+              </div>
+              <div>
+                <FontAwesomeIcon
+                  className="icon"
+                  icon={faFaceSmile}
+                  style={{ color: "#ef6262" }}
+                />
+                <p>Meet friends</p>
+              </div>
+            </section>
           </div>
-
-          <form onSubmit={onSubmit}>
-            <p>Your email</p>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              placeholder="email"
-              onChange={onChange}
-              required
-            />
-            Your password
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="password"
-              onChange={onChange}
-              required
-            />
-            <button className="btn" type="submit">Login</button>
-          </form>
+          <div className="form-data">
+            <form class="form" onSubmit={onSubmit}>
+              <p id="heading">Login</p>
+              <div class="field">
+                <FontAwesomeIcon icon={faAt} style={{ color: "#3c5b90" }} />
+                <input
+                  class="input-field"
+                  type="email"
+                  name="email"
+                  value={email}
+                  placeholder="email"
+                  onChange={onChange}
+                  required
+                />
+              </div>
+              <div class="field">
+                <FontAwesomeIcon icon={faLock} style={{ color: "#3c5b90" }} />
+                <input
+                  class="input-field"
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="password"
+                  onChange={onChange}
+                  required
+                />
+              </div>
+              <div class="container-btn">
+                <button class="button1" type="submit">
+                  Login
+                </button>
+                <button
+                  class="button2"
+                  onClick={() => {
+                    setTimeout(() => {
+                      navigate("/register");
+                    }, 200);
+                  }}
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </>

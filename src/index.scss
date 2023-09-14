@@ -26,6 +26,12 @@ img {
   -webkit-text-size-adjust: 100%;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
   color: $primary-color;
@@ -35,13 +41,13 @@ a:hover {
   color: $secondary-color;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+// body {
+//   margin: 0;
+//   display: flex;
+//   //place-items: center;
+//   min-width: 320px;
+//   min-height: 100vh !important;
+// }
 
 h1 {
   font-size: 3.2em;

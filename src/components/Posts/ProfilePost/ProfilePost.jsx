@@ -71,7 +71,7 @@ const ProfilePost = () => {
   };
 
   return (
-    <>
+    <div className="container-postDetail">
       <Card maxW="md" className="detail-post-container">
         <CardHeader className="detail-post-header-container">
           <Text>{post.title}</Text>
@@ -129,7 +129,7 @@ const ProfilePost = () => {
           Delete
         </Button>
       </Card>
-    </>
+    </div>
   );
 };
 

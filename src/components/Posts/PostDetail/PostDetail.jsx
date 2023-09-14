@@ -48,6 +48,7 @@ const PostDetail = () => {
 
   const printCard = () => {
     return (
+      <div className="container-postDetail">
       <Card maxW="md" className="detail-post-container">
         <CardHeader
           className="detail-post-header-container"
@@ -106,16 +107,17 @@ const PostDetail = () => {
           </div>
         </div>
       </Card>
+      </div>
     );
   };
 
   return (
-    <>
+    <div className="container-comments">
       {printCard()}
       <div>
         <CommentList />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,16 @@
 @import "../../../index.scss";
 
+
+.container-postDetail{
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.container-comments{
+  padding-bottom: 100px;
+}
+
 .detail-post-container {
   margin-top: 20px;
   width: 448px; 
