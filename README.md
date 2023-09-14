@@ -38,7 +38,7 @@ PETSPERIENCE is a web application built with React and Redux that allows users t
 - **PostDetail**: Detailed view of a post.
 - **AddComment**: Form for adding comments to a post.
 
-### Extras
+### Extras ✏️
 - **Vercel**
 - **Comments CRUD**
 - **Multer images**
