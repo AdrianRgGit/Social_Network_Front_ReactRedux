@@ -1,10 +1,14 @@
-import "./NotFound.scss"
-import backgroundImage from "../../assets/images/NotFound.png"
+import "./NotFound.scss";
+import backgroundImage from "../../assets/images/NotFound.png";
 
 const NotFound = () => {
   return (
-    <div className='img-container'><img src={backgroundImage} alt="" /></div>
-  )
-}
+    <div className="notfound-container">
+      <div className="img-container">
+        <img src={backgroundImage} alt="" />
+      </div>
+    </div>
+  );
+};
 
-export default NotFound
+export default NotFound;

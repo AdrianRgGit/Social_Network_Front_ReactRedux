@@ -1,5 +1,12 @@
 @import "../../index.scss";
 
-.img-container{
-    width: 100vh;
+.notfound-container {
+  display: flex;
+  justify-content: center;
+  margin: 60px;
+  height: 100vh;
+}
+
+.img-container {
+  width: 100vh;
 }
