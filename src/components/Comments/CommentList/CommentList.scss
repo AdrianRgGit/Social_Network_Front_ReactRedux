@@ -1,11 +1,18 @@
 @import "../../../index.scss";
 
+.card-comments-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
 .comments-container {
-  max-width: 448px;
+  width: 448px;
   text-align: justify;
   background-color: $white-color;
   border: solid 1px $primary-color-05;
   border-radius: 0px;
+  margin-bottom: 10px;
 }
 
 .form-container {
