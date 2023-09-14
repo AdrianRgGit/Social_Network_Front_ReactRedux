@@ -35,11 +35,8 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(login.fulfilled, (state, action) => {
-        console.log(action.payload); //=res.data del service
         state.isSuccess = true;
-        // state.user = action.payload.user; //username
         state.token = action.payload.token;
-        // state._id = action.payload.userObject._id;
         state.userConnected = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
@@ -47,7 +44,6 @@ export const authSlice = createSlice({
         state.message = action.payload;
       })
       .addCase(logout.fulfilled, (state) => {
-        // state.user = null;
         state.token = null;
         state.userConnected = null;
       })
@@ -55,7 +51,6 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getUserConnected.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.userConnected = action.payload;
         state.isLoading = false;
       })
@@ -126,11 +121,9 @@ export const getUserById = createAsyncThunk("auth/getUserById", async (_id) => {
 
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
-  async (userData, thunkAPI) => {
-    console.log("slice user", userData);
+  async (userData) => {
     try {
       const res = await authService.updateUser(userData);
-      console.log("slice updateUser", res);
       return res;
     } catch (error) {
       console.error(error);

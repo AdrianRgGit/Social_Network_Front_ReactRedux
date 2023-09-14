@@ -1,5 +1,4 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./PrintPosts.scss";
 
@@ -32,10 +31,10 @@ const PrintPosts = () => {
               <Text>{post.title}</Text>
               <Text>Likes {post.likes.length}</Text>
             </CardHeader>
-              <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
+            <Image objectFit="cover" src={post.image_url} alt="Chakra UI" />
 
             <CardFooter
-            className="post-footer-container"
+              className="post-footer-container"
               justify="space-between"
               flexWrap="wrap"
               sx={{

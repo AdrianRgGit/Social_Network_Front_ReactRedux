@@ -4,7 +4,6 @@ import { createComment } from "../../../features/comment/CommentSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { notification } from "antd";
 import { Button, FormControl, Input, Textarea } from "@chakra-ui/react";
-import "./AddComment.scss";
 
 const AddComment = () => {
   const dispatch = useDispatch();

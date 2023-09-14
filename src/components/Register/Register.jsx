@@ -27,7 +27,6 @@ const Register = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // Renderizar el Alert
 
     if (isSuccess) {
       setTimeout(() => {
@@ -36,7 +35,6 @@ const Register = () => {
       }, 3000);
     }
 
-    // Limpiar el mensaje de error después de mostrarlo
     if (isError) {
       setTimeout(() => {
         dispatch(reset());
@@ -48,7 +46,7 @@ const Register = () => {
     event.preventDefault();
 
     if (isError) {
-      return; // Si isError es true, no envíes la solicitud
+      return;
     }
 
     const formData = new FormData();

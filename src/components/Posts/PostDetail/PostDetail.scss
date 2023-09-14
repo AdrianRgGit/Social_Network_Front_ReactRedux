@@ -1,40 +1,39 @@
 @import "../../../index.scss";
 
-
-.container-postDetail{
+.container-postDetail {
   display: flex;
   justify-content: center;
   margin: 30px;
 }
 
-.container-comments{
+.container-comments {
   padding-bottom: 100px;
 }
 
 .detail-post-container {
   margin-top: 20px;
-  width: 448px; 
+  width: 448px;
 }
 
-.like-comment-container{
+.like-comment-container {
   display: flex;
   justify-content: center;
   justify-content: space-evenly;
   margin-bottom: 15px;
 }
 
-.like-container{
+.like-container {
   margin-top: 8px;
   gap: 5px;
 }
 
-.like-container{
+.like-container {
   display: flex;
   justify-content: center;
   gap: 5px;
   margin-bottom: 15px;
 }
 
-.detail-post-footer-container{
+.detail-post-footer-container {
   text-align: justify;
 }

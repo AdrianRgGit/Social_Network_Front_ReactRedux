@@ -2,21 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, reset } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
-import { getUserConnected } from "../../features/posts/postsSlice";
 import {
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Stack,
-  Heading,
-  Image,
-  Text,
 } from "@chakra-ui/react";
 import "./Login.scss";
 import petsSperience from "../../assets/images/Petspierince1.png";
@@ -50,7 +40,6 @@ const Login = () => {
       }, 1500);
     }
 
-    // Limpiar el mensaje de error después de mostrarlo
     if (isError) {
       setTimeout(() => {
         dispatch(reset());

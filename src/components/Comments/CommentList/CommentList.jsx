@@ -1,6 +1,3 @@
-// CommentList.js
-import React, { useEffect } from "react";
-import LikeComment from "../../Comments/LikeComment/LikeComment";
 import { Spinner } from "@chakra-ui/spinner";
 import "./CommentList.scss";
 import {
@@ -13,18 +10,13 @@ import {
   Flex,
   Heading,
   Stack,
-  StackDivider,
   Text,
 } from "@chakra-ui/react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CommentList = () => {
   const { post } = useSelector((state) => state.posts);
   const { commentIds } = post;
-
-  // const userComment = commentIds.userId.map((user) => {
-  //   return user;
-  // });
 
   if (!commentIds) {
     return <Spinner />;
@@ -43,7 +35,6 @@ const CommentList = () => {
   return (
     <div className="card-comments-container">
       {commentIds?.map((comment, i) => {
-        console.log(comment.userId);
         return (
           <div key={i}>
             <Card className="comments-container">
@@ -73,13 +64,11 @@ const CommentList = () => {
                 <Flex spacing="4">
                   <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
                     <Avatar
-                      // Este avatar es del usuario que ha hecho el post. Habría que cambiarlo al de la persona que ha hecho el comentario
                       name={comment.userId.username}
                       src={comment.userId.avatar_url}
                     />
 
                     <Box>
-                      {/* No se como poner el nombre del usuario que ha hecho el comentario */}
                       <Heading size="sm">{comment.userId.username}</Heading>
                     </Box>
                   </Flex>

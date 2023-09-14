@@ -1,10 +1,9 @@
 import "./profile.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getUserConnected, updateUser } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
-  ButtonGroup,
   Divider,
   Heading,
   Image,
@@ -46,9 +45,7 @@ const Profile = () => {
 
       dispatch(updateUser(formData));
     } catch (error) {
-      // notification.error({
-      //   message: "Error updating user",
-      // });
+      console.error(error);
     }
   };
 
@@ -56,11 +53,11 @@ const Profile = () => {
     <>
       <div className="container-profile">
         <div className="card-profile-data">
-          <Card className="card-profile-data"
+          <Card
+            className="card-profile-data"
             direction={{ base: "column", sm: "row" }}
-            //overflow="hidden"
-            variant = "unstyled"
-            size = "lg"
+            variant="unstyled"
+            size="lg"
           >
             <div className="container-img-profile">
               <div className="img-profile">
@@ -78,23 +75,18 @@ const Profile = () => {
               </div>
             </div>
 
-            <Stack className="profile-data" spacing='4'>
-
-              <CardBody >
-                <Heading  title="Profile" size="lg">
+            <Stack className="profile-data" spacing="4">
+              <CardBody>
+                <Heading title="Profile" size="lg">
                   {username}
                 </Heading>
-                <div >
+                <div>
                   <Text py="2">{email}</Text>
                   <Text py="2">
                     Followers: {followers ? followers.length : "0"}
                   </Text>
-                  {/* <Text py="2">
-                    Following: hay que hacer la logica en bakcend
-                  </Text> */}
                 </div>
               </CardBody>
-            
 
               <CardFooter className="footer-card-profile">
                 <div className="modal-profile">
@@ -125,13 +117,7 @@ const Profile = () => {
                             id="file"
                             className="input-avatar"
                           />
-                          {/* <label
-                            htmlFor="file"
-                            className="btn btn-tertiary js-labelFile"
-                          >
-                            <i className="icon fa fa-check"></i>
-                            <span className="js-fileName">Choose a file</span>
-                          </label> */}
+
                           <Button
                             className="btn-card"
                             type="submit"
@@ -159,10 +145,9 @@ const Profile = () => {
           </Card>
         </div>
 
-        <Divider className="divider-profile"/>
+        <Divider className="divider-profile" />
 
         <div className="container-post-profile">
-          {/* //FIXME: le he puesto el ? porque sino al recargar post es undifined */}
           {postIds?.map((post, i) => {
             return (
               <div key={i}>
@@ -183,7 +168,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-//TODO: Following hay que hacer la logica en bakend
-
-//TODO: Ir a la vista detalle al clicar en el post y que se llene con todo

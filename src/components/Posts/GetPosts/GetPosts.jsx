@@ -25,7 +25,6 @@ const GetPosts = () => {
     if (!userConnected) {
       const handleScroll = () => {
         if (window.scrollY > 600) {
-          console.log(window.scrollY);
           setShowLogin(true);
         } else {
           setShowLogin(false);

@@ -13,7 +13,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </ChakraProvider>
   </Provider>
 );
-
-// <ChakraProvider>
-// <TheRestOfYourApplication />
-// </ChakraProvider>

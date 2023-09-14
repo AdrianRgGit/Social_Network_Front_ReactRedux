@@ -1,11 +1,11 @@
-@import url("../../../index.scss");
+@import "../../../index.scss";
 
 .form-container {
   margin: auto;
   max-width: 448px;
 }
 
-.form-post{
+.form-post {
   margin-top: 60px;
 }
 
@@ -16,9 +16,8 @@
   display: block;
 }
 
-.container-addPost{
+.container-addPost {
   display: flex;
   justify-content: center;
   margin: 30px;
 }
-

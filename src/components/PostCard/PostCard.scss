@@ -1,10 +1,6 @@
 @import "../../index.scss";
 
-
-
 .post-card-container {
-  // position: relative;
-  // display: inline-block;
   display: flex;
   flex-wrap: wrap;
   width: 300px ;
@@ -24,11 +20,3 @@
 .post-card-container:hover .post-card-header-container {
   opacity: 1;
 }
-
-
-// @media screen and (min-width: 1200px) {
-    
-//   .post-card-header-container {
-//     opacity: 1;
-//   }
-// }

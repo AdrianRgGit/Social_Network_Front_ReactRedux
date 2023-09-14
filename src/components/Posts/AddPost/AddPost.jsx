@@ -3,13 +3,8 @@ import { useDispatch } from "react-redux";
 import { createPost } from "../../../features/posts/postsSlice";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
-import "./AddPost.scss"
-import {
-  Button,
-  FormControl,
-  Input,
-  Textarea,
-} from "@chakra-ui/react";
+import "./AddPost.scss";
+import { FormControl, Input, Textarea } from "@chakra-ui/react";
 
 const AddPost = () => {
   const dispatch = useDispatch();
@@ -84,48 +79,48 @@ const AddPost = () => {
 
   return (
     <div className="container-addPost">
-    <div className="form-container">
-      <form onSubmit={onSubmit} className="form-post">
-        <FormControl className="form-title-container">
-          <Input
-            type="text"
-            name="title"
-            placeholder="Title Post"
-            onChange={onChange}
-          />
-        </FormControl>
-
-        <div className="img-form-container">
-          <FormControl className="input-file-container">
+      <div className="form-container">
+        <form onSubmit={onSubmit} className="form-post">
+          <FormControl className="form-title-container">
             <Input
-              type="file"
-              name="image"
-              accept="image/*,video/*"
-              onChange={handleFileChange}
+              type="text"
+              name="title"
+              placeholder="Title Post"
+              onChange={onChange}
             />
           </FormControl>
-          <img
-            id="imagePreview"
-            className="img-preview-container"
-            src=""
-            alt="Vista previa de la imagen"
-            style={{ display: "none", maxWidth: "300px", maxHeight: "300px" }}
+
+          <div className="img-form-container">
+            <FormControl className="input-file-container">
+              <Input
+                type="file"
+                name="image"
+                accept="image/*,video/*"
+                onChange={handleFileChange}
+              />
+            </FormControl>
+            <img
+              id="imagePreview"
+              className="img-preview-container"
+              src=""
+              alt="Vista previa de la imagen"
+              style={{ display: "none", maxWidth: "300px", maxHeight: "300px" }}
+            />
+          </div>
+
+          <Textarea
+            name="body"
+            placeholder="Add your text here"
+            size="sm"
+            resize={resize}
+            onChange={onChange}
           />
-        </div>
 
-        <Textarea
-          name="body"
-          placeholder="Add your text here"
-          size="sm"
-          resize={resize}
-          onChange={onChange}
-        />
-
-<button className="button1" type="submit">
-                  Create Post
-                </button>
-      </form>
-    </div>
+          <button className="button1" type="submit">
+            Create Post
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

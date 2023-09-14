@@ -13,11 +13,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import BtnTop from "../BtnTop/BtnTop";
 import "./Header.scss";
-import { getPosts } from "../../features/posts/postsSlice";
 import logoImg from "../../assets/images/Pets1.png";
 import logoImgText from "../../assets/images/Petspierince1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBone, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import birdHouseIcon from "../../assets/svg/birdHouseIcon.svg";
 
 const Header = () => {
@@ -51,7 +50,6 @@ const Header = () => {
         <>
           <Button
             className="btn-drawer-header"
-            // colorScheme="blue"
             onClick={onOpen}
           >
            <FontAwesomeIcon icon={faBars} size= "lg" style={{color: "rgb(239, 98, 98)"}} />
