@@ -123,12 +123,12 @@ const Login = () => {
             </section>
           </div>
           <div className="form-data">
-            <form class="form" onSubmit={onSubmit}>
+            <form className="form" onSubmit={onSubmit}>
               <p id="heading">Login</p>
-              <div class="field">
+              <div className="field">
                 <FontAwesomeIcon icon={faAt} style={{ color: "#3c5b90" }} />
                 <input
-                  class="input-field"
+                  className="input-field"
                   type="email"
                   name="email"
                   value={email}
@@ -137,10 +137,10 @@ const Login = () => {
                   required
                 />
               </div>
-              <div class="field">
+              <div className="field">
                 <FontAwesomeIcon icon={faLock} style={{ color: "#3c5b90" }} />
                 <input
-                  class="input-field"
+                  className="input-field"
                   type="password"
                   name="password"
                   value={password}
@@ -149,12 +149,12 @@ const Login = () => {
                   required
                 />
               </div>
-              <div class="container-btn">
-                <button class="button1" type="submit">
+              <div className="container-btn">
+                <button className="button1" type="submit">
                   Login
                 </button>
                 <button
-                  class="button2"
+                  className="button2"
                   onClick={() => {
                     setTimeout(() => {
                       navigate("/register");

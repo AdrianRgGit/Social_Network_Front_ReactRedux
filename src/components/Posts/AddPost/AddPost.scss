@@ -5,9 +5,20 @@
   max-width: 448px;
 }
 
+.form-post{
+  margin-top: 60px;
+}
+
 .uploaded-media {
   width: 100%;
   height: auto;
   width: 100%;
   display: block;
 }
+
+.container-addPost{
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+

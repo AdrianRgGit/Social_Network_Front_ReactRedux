@@ -83,13 +83,14 @@ const AddPost = () => {
   };
 
   return (
+    <div className="container-addPost">
     <div className="form-container">
-      <form onSubmit={onSubmit} className="form">
+      <form onSubmit={onSubmit} className="form-post">
         <FormControl className="form-title-container">
           <Input
             type="text"
             name="title"
-            placeholder="Title"
+            placeholder="Title Post"
             onChange={onChange}
           />
         </FormControl>
@@ -114,16 +115,17 @@ const AddPost = () => {
 
         <Textarea
           name="body"
-          placeholder="Comment"
+          placeholder="Add your text here"
           size="sm"
           resize={resize}
           onChange={onChange}
         />
 
-        <Button mt={4} colorScheme="teal" type="submit">
-          Submit
-        </Button>
+<button className="button1" type="submit">
+                  Create Post
+                </button>
       </form>
+    </div>
     </div>
   );
 };
